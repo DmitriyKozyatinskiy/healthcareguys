@@ -1,0 +1,41 @@
+body {
+    width: 400px;
+    height: auto;
+}
+
+.content-form {
+    padding-top: 10px;
+}
+
+.feedback-container {
+    border-top: 1px solid lightgrey;
+    margin-top: 10px;
+    padding: 5px 0;
+    text-align: center;
+}
+
+.button-submit {
+    width: 100%;
+    background-color: #A8C5E7;
+}
+
+.image-holder {
+    height: 100px !important;
+}
+
+.category-list {
+    margin-bottom: 10px;
+}
+
+.submit-icon {
+    float: left;
+}
+
+.spinner-container {
+    min-height: 100px;
+}
+
+.categories-container {
+    max-height: 120px;
+    overflow-y: auto;
+}
