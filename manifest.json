@@ -9,12 +9,14 @@
   "description": "HealthCareGuys",
   "version": "1.0",
   "background": {
-    "page": "background.html"
+    "scripts": [ "js/background.js" ]
   },
   "browser_action": {
     "default_popup": "popup.html"
   },
   "permissions": [
+    "cookies",
+    "storage",
     "activeTab"
   ],
   "content_scripts": [{

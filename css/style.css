@@ -1,6 +1,12 @@
 body {
     width: 400px;
     height: auto;
+    min-height: 100px;
+    margin-top: 1em;
+}
+
+main {
+    min-height: 100px;
 }
 
 .content-form {
@@ -31,11 +37,56 @@ body {
     float: left;
 }
 
-.spinner-container {
-    min-height: 100px;
+.categories-container {
+    max-height: 90px;
+    overflow-y: auto;
 }
 
-.categories-container {
-    max-height: 120px;
-    overflow-y: auto;
+.textarea-editable {
+    border: none;
+    background-color: transparent;
+    resize: none;
+    outline: none;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.textarea-editable-title {
+    font-size: 16pt;
+}
+
+.textarea-editable-description {
+
+}
+
+.no-events {
+    pointer-events: none;
+}
+
+#js-success {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    color: green;
+    font-size: 3em;
+}
+
+#js-error {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    pointer-events: none;
+    color: red;
+    font-size: 3em;
+}
+
+#js-logout-button {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    cursor: pointer;
 }

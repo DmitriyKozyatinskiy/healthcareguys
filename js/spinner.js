@@ -1,5 +1,9 @@
-$(function () {
+var Loader = (function() {
+  'use strict';
+
+  var $body = $('body');
   var spinnerContainer = document.getElementById('js-spinner');
+  var $spinnerContainer = $(spinnerContainer);
   var spinnerOptions = {
     lines: 13 // The number of lines to draw
     , length: 28 // The length of each line
@@ -22,5 +26,20 @@ $(function () {
     , hwaccel: false // Whether to use hardware acceleration
     , position: 'absolute' // Element positioning
   };
-  var spinner = new Spinner(spinnerOptions).spin(spinnerContainer);
-});
+  
+  function show() {
+    $body.addClass('no-events');
+    $spinnerContainer.removeClass('hidden');
+    new Spinner(spinnerOptions).spin(spinnerContainer);
+  }
+
+  function hide() {
+    $spinnerContainer.empty().addClass('hidden');
+    $body.removeClass('no-events');
+  }
+
+  return {
+    show: show,
+    hide: hide
+  }
+}());

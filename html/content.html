@@ -1,16 +1,15 @@
-<form class="content-form">
-  <h4 class="{{ ^title }}hidden{{ /title }}" id="js-title" data-input="js-title-input" role="button">{{ title }}</h4>
+<!--<div class="alert alert-success hidden" id="js-success-message" role="alert">Data was submitted</div>-->
+<!--<div class="alert alert-warning hidden" id="js-error-message" role="alert">Failed to submit data</div>-->
+<form class="content-form" id="js-content-form">
+  <input id="js-url-input" type="hidden" value="{{ url }}">
   <div class="form-group">
-    <textarea id="js-title-input" class="form-control {{ #title }}hidden{{ /title }}"
-              data-content="js-title" placeholder="Title" rows="3">{{ title }}</textarea>
+    <textarea id="js-title-input" class="form-control textarea-editable textarea-editable-title"
+              placeholder="Title" rows="2">{{ title }}</textarea>
   </div>
   <hr>
-  <p id="js-description" class="{{ ^title }}hidden{{ /title }}" data-input="js-description-input" role="button">
-    {{ description }}
-  </p>
   <div class="form-group">
-    <textarea id="js-description-input" class="form-control {{ #description }}hidden{{ /description }}" data-content="js-description"
-              placeholder="Description" rows="7">{{ description }}</textarea>
+    <textarea id="js-description-input" class="form-control textarea-editable textarea-editable-description"
+              placeholder="Description" rows="6">{{ description }}</textarea>
   </div>
   <a href="#" id="js-image-container" class="thumbnail">
     <img src="{{ image }}" id="js-image" class="image-holder {{ ^image }}hidden{{ /image }}" height="100" alt="Click to add image">
@@ -19,12 +18,12 @@
   <input type="file" class="hidden" id="js-image-uploader">
   <hr>
 
-  <div class="categories-container">
+  <div class="categories-container" id="js-categories-container">
     {{ #categories }}
       <p>
           <div class="checkbox">
-            <label for="category-{{ ID }}">
-              <input type="checkbox" value="{{ ID }}" id="category-{{ ID }}">{{{ name }}}
+            <label for="category-{{ id }}">
+              <input type="checkbox" value="{{ id }}" id="category-{{ id }}" class="js-category-input">{{{ name }}}
             </label>
           </div>
       </p>

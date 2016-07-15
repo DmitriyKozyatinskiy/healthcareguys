@@ -1,10 +1,4 @@
 $(function() {
-  requestData().done(function(data) {
-    setContent('content', data).done(function () {
-      $('#js-spinner').remove();
-    });
-  });
-  
   $(document).on('click', '.js-navigation-button', function() {
     var $button = $(this);
     var dataType = $button.attr('href').substr(1);
@@ -13,18 +7,47 @@ $(function() {
     .on('click', '#js-image-container', function() {
       $('#js-image-uploader').trigger('click');
     })
-    .on('click', '#js-title, #js-description', function() {
-      var $content = $(this);
-      var $input = $('#' + $content.attr('data-input'));
-      $content.addClass('hidden');
-      $input.removeClass('hidden').focus();
+    .on('submit', '#js-login-form', function (event) {
+      var $loginFailedMessage = $('#js-wrong-credentials');
+
+      event.preventDefault();
+      Loader.show();
+      Auth.signIn().done(function () {
+        requestData().done(function(data) {
+          setContent('content', data);
+        }).fail(function () {
+          setContent('no-data-found');
+        }).always(function () {
+          Loader.hide();
+        });
+      }).fail(function () {
+        $loginFailedMessage.removeClass('hidden');
+        Loader.hide();
+      });
     })
-    .on('change, focusout', '#js-title-input, #js-description-input', function() {
-      var $input = $(this);
-      var $content = $('#' + $input.attr('data-content'));
-      $input.addClass('hidden');
-      $content.html($input.val()).removeClass('hidden');
+    .on('click', '#js-logout-button', function () {
+      Loader.show();
+      Auth.signOut().done(function () {
+        Auth.showSignInForm();
+        Loader.hide();
+      });
     });
+
+
+  Loader.show();
+  Auth.isSignedIn().done(function () {
+    requestData().done(function(data) {
+      setContent('content', data);
+    }).fail(function () {
+      setContent('no-data-found');
+    }).always(function () {
+      Loader.hide();
+    });
+  }).fail(function () {
+    Auth.showSignInForm().always(function () {
+      Loader.hide();
+    });
+  });
 });
 
 var $dataContainer = $('#js-main');
@@ -47,7 +70,11 @@ function requestData() {
 
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     chrome.tabs.sendMessage(tabs[0].id, {dataRequired: true}, function(response) {
-      dfd.resolve(response);
+      if (response) {
+        dfd.resolve(response);
+      } else {
+        dfd.reject(response);
+      }
     });
   });
 
