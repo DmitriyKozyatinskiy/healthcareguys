@@ -39,7 +39,7 @@ $(function() {
     requestData().done(function(data) {
       setContent('content', data);
     }).fail(function () {
-      setContent('no-data-found');
+      // setContent('no-data-found');
     }).always(function () {
       Loader.hide();
     });

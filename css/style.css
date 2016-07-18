@@ -2,22 +2,27 @@ body {
     width: 400px;
     height: auto;
     min-height: 100px;
-    margin-top: 1em;
 }
 
 main {
     min-height: 100px;
 }
 
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
 .content-form {
-    padding-top: 10px;
+    #padding-top: 10px;
 }
 
 .feedback-container {
-    border-top: 1px solid lightgrey;
-    margin-top: 10px;
-    padding: 5px 0;
     text-align: center;
+}
+
+.feedback-container a {
+    margin: 0 10px 5px 10px;
 }
 
 .button-submit {
@@ -33,22 +38,47 @@ main {
     margin-bottom: 10px;
 }
 
+.add-image-button {
+    margin: 10px 0;
+}
+
+.submit-container {
+    margin: 0 10px;
+}
+
+.image-container {
+    margin-bottom: 10px;
+    padding-left: 0;
+    padding-right: 0;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+}
+
 .submit-icon {
     float: left;
 }
 
 .categories-container {
+    margin-left: 10px;
+    #max-height: 120px;
     max-height: 90px;
     overflow-y: auto;
 }
 
+.textarea-editable-container {
+    margin-bottom: 2px;
+}
+
 .textarea-editable {
+    width: 100%;
     border: none;
     background-color: transparent;
     resize: none;
     outline: none;
     font-weight: 500;
     line-height: 1.1;
+    border-radius: 0;
 }
 
 .textarea-editable-title {
@@ -63,30 +93,7 @@ main {
     pointer-events: none;
 }
 
-#js-success {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    color: green;
-    font-size: 3em;
-}
-
-#js-error {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 9999;
-    pointer-events: none;
-    color: red;
-    font-size: 3em;
-}
-
-#js-logout-button {
-    position: absolute;
-    top: 2px;
-    right: 2px;
-    cursor: pointer;
+.submission-notification {
+    margin: 10px;
+    padding: 10px;
 }

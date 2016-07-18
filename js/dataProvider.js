@@ -8,9 +8,9 @@
     var image = $('[property="og:image"]').attr('content');
 
     return {
-      url: url || '',
-      title: title || '',
-      description: description || '',
+      url: url || location.href,
+      title: title ||  $('title').text(),
+      description: description || location.href,
       image: image || null
     };
   }
@@ -29,14 +29,10 @@
     if (request.dataRequired) {
       var data = getData();
 
-      if (!data.title) {
-        sendResponse(false);
-      } else {
-        getCategories().done(function(categories) {
-          data.categories = categories;
-          sendResponse(data);
-        });
-      }
+      getCategories().done(function(categories) {
+        data.categories = categories;
+        sendResponse(data);
+      });
     }
     return true;
   });

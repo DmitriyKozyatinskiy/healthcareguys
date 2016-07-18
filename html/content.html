@@ -2,21 +2,19 @@
 <!--<div class="alert alert-warning hidden" id="js-error-message" role="alert">Failed to submit data</div>-->
 <form class="content-form" id="js-content-form">
   <input id="js-url-input" type="hidden" value="{{ url }}">
-  <div class="form-group">
+  <div class="form-group textarea-editable-container">
     <textarea id="js-title-input" class="form-control textarea-editable textarea-editable-title"
-              placeholder="Title" rows="2">{{ title }}</textarea>
+              placeholder="Title" rows="4">{{ title }}</textarea>
   </div>
-  <hr>
-  <div class="form-group">
+  <div class="form-group textarea-editable-container">
     <textarea id="js-description-input" class="form-control textarea-editable textarea-editable-description"
-              placeholder="Description" rows="6">{{ description }}</textarea>
+              placeholder="Description" rows="7">{{ description }}</textarea>
   </div>
-  <a href="#" id="js-image-container" class="thumbnail">
+  <a href="#" id="js-image-container" class="thumbnail image-container">
     <img src="{{ image }}" id="js-image" class="image-holder {{ ^image }}hidden{{ /image }}" height="100" alt="Click to add image">
-    <p class="text-center {{ #image }}hidden{{ /image }}" id="js-add-image">Add image</p>
+    <p class="text-center add-image-button {{ #image }}hidden{{ /image }}" id="js-add-image">Add image</p>
   </a>
   <input type="file" class="hidden" id="js-image-uploader">
-  <hr>
 
   <div class="categories-container" id="js-categories-container">
     {{ #categories }}
@@ -31,7 +29,16 @@
   </div>
   <hr>
 
-  <div class="text-center">
+  <div class="alert alert-success submission-notification hidden" id="js-submission-success" role="alert">
+    <span class="glyphicon glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+    <span>Data was submitted successfully</span>
+  </div>
+  <div class="alert alert-danger submission-notification hidden" id="js-submission-error" role="alert">
+    <span class="glyphicon glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+    <span>Submission error: </span><span id="js-submission-error-message"></span>
+  </div>
+
+  <div class="text-center submit-container">
     <button type="submit" class="btn btn-primary button-submit">
       <img src="../img/icons/cropped-faviocn-32x32.png" class="submit-icon" height="25">
       Post to Healthcare Guys

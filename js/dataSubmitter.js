@@ -2,11 +2,12 @@
   'use strict';
 
   function getData() {
-    var categories = [];
+    var categories = '';
     $('.js-category-input:checked').each(function() {
       var categoryId = $(this).val();
-      categories.push(categoryId);
+      categories = categories + categoryId + ',';
     });
+    categories = categories.slice(0, -1);
 
     return {
       'url': $('#js-url-input').val(),
@@ -22,7 +23,7 @@
     var dfd = $.Deferred();
 
     $.ajax({
-      url: 'https://news-devl.healthcareguys.com/wp-json/addpost/v1/addpost',
+      url: 'https://news-devl.healthcareguys.com/wp-json/api/wp/v2/post',
       method: 'POST',
       data: JSON.stringify({
         data: data,
@@ -33,13 +34,14 @@
         withCredentials: true
       }
     }).done(function(response) {
+      response = JSON.parse(response);
       if (response.status === 'success') {
         dfd.resolve();
       } else {
-        dfd.reject();
+        dfd.reject(JSON.parse(response).message);
       }
     }).fail(function() {
-      dfd.reject();
+      dfd.reject('Unknown error');
     });
 
     return dfd.promise();
@@ -52,9 +54,12 @@
     Auth.getToken().done(function(token) {
       var data = getData();
       submitData(data, token).done(function() {
-        Status.showSuccess();
-      }).fail(function() {
-        Status.showError();
+        $('#js-submission-success').removeClass('hidden');
+        $('#js-submission-error').addClass('hidden');
+      }).fail(function(message) {
+        $('#js-submission-error').removeClass('hidden');
+        $('#js-submission-error-message').html(message);
+        $('#js-submission-success').addClass('hidden');
       }).always(function () {
         Loader.hide();
       });
