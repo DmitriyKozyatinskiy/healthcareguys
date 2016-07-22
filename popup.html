@@ -6,29 +6,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Healthcare Guys</title>
   <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/jstree/jstree.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 
-<div class="container hidden">
-  <div class="dropdown pull-right">
-    <button class="btn btn-default dropdown-toggle" type="button" id="navigation-dropdown" data-toggle="dropdown">
-      Dropdown
-      <span class="caret"></span>
-    </button>
-    <ul class="dropdown-menu" aria-labelledby="navigation-dropdown">
-      <li><a href="#content" class="js-navigation-button">Content</a></li>
-      <li><a href="#share" class="js-navigation-button">Share</a></li>
-      <li><a href="#visuals" class="js-navigation-button">Visuals</a></li>
-      <li><a href="#links" class="js-navigation-button">Links</a></li>
-      <li><a href="#scheduling" class="js-navigation-button">Scheduling</a></li>
-    </ul>
-  </div>
-</div>
-
 <div id="js-spinner" class="spinner-container hidden"></div>
 
-<main id="js-main"></main>
+<ul class="nav nav-tabs navigation-tabs" id="js-tabs">
+  <li role="tab" class="active js-tabs-switch-container">
+    <a href="#js-content-container" class="tab-switcher js-tab-switcher" data-toggle="tab" aria-controls="js-content-container">Content</a>
+  </li>
+  <li role="tab" class="js-tabs-switch-container">
+    <a href="#js-share-container" class="tab-switcher js-tab-switcher" data-toggle="tab"  aria-controls="js-share-container">Share</a>
+  </li>
+  <li role="tab" class="js-tabs-switch-container">
+    <a href="#js-purpose-container" class="tab-switcher js-tab-switcher" data-toggle="tab"  aria-controls="js-purpose-container">Purpose</a>
+  </li>
+</ul>
+
+<main id="js-main">
+  <form id="js-login-form"></form>
+  <form class="content-form tab-content" id="js-content-form"></form>
+</main>
 
 <hr>
 <div class="feedback-container">
@@ -40,6 +40,7 @@
 <script src="js/libs/mustache.js"></script>
 <script src="js/libs/bootstrap.js"></script>
 <script src="js/libs/spin.js"></script>
+<script src="js/libs/jstree.js"></script>
 <script src="js/main.js"></script>
 <script src="js/spinner.js"></script>
 <script src="js/statusIcons.js"></script>

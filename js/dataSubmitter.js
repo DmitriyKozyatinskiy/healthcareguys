@@ -1,20 +1,32 @@
 ;(function(){
   'use strict';
 
-  function getData() {
-    var categories = '';
+  var noTitleErrorMessage = 'Title should not be empty';
+  var noCategoryErrorMessage = 'Select at least one category';
+
+  function getContentData() {
+    var categories = [];
     $('.js-category-input:checked').each(function() {
       var categoryId = $(this).val();
-      categories = categories + categoryId + ',';
+      categories.push(categoryId);
     });
-    categories = categories.slice(0, -1);
+    var tags = [];
+    $('.js-tag-input:checked').each(function() {
+      var tagId = $(this).val();
+      tags.push(tagId);
+    });
 
     return {
       'url': $('#js-url-input').val(),
       'title': $('#js-title-input').val(),
       'description': $('#js-description-input').val(),
       'image-url': $('#js-image').attr('src'),
+      'tweet-content': $('#js-tweet-content').val(),
+      'share-content': $('#js-share-content').val(),
       'category': categories,
+      'hashtag': tags,
+      'purpose': $('#js-purpose-list-container').jstree('get_bottom_checked'),
+      'personas': $('#js-persona-list-container').jstree('get_bottom_checked'),
       'post-type': 'wpri_submit'
     }
   }
@@ -47,22 +59,49 @@
     return dfd.promise();
   }
 
-  $(document).on('submit', '#js-content-form', function(event) {
-    event.preventDefault();
+  function handleDataSubmissionProcess() {
+    var data = getContentData();
+    console.log(data);
+    var errorMessage = '';
+
+    if (!data.title && !data.category.length) {
+      errorMessage = noTitleErrorMessage + '; ' + noCategoryErrorMessage;
+    } else if (!data.title) {
+      errorMessage = noTitleErrorMessage;
+    } else if (!data.category.length) {
+      errorMessage = noCategoryErrorMessage;
+    }
+
+    if (errorMessage) {
+      showSubmissionStatus('error', errorMessage);
+      return;
+    }
 
     Loader.show();
     Auth.getToken().done(function(token) {
-      var data = getData();
       submitData(data, token).done(function() {
-        $('#js-submission-success').removeClass('hidden');
-        $('#js-submission-error').addClass('hidden');
+        showSubmissionStatus('success');
       }).fail(function(message) {
-        $('#js-submission-error').removeClass('hidden');
-        $('#js-submission-error-message').html(message);
-        $('#js-submission-success').addClass('hidden');
+        showSubmissionStatus('error', message);
       }).always(function () {
         Loader.hide();
       });
     });
+  }
+
+  function showSubmissionStatus(status, message) {
+    if (status == 'success') {
+      $('#js-submission-success').removeClass('hidden');
+      $('#js-submission-error').addClass('hidden');
+    } else {
+      $('#js-submission-error').removeClass('hidden');
+      $('#js-submission-error-message').html(message);
+      $('#js-submission-success').addClass('hidden');
+    }
+  }
+
+  $(document).on('submit', '#js-content-form', function(event) {
+    event.preventDefault();
+    handleDataSubmissionProcess();
   });
 }());

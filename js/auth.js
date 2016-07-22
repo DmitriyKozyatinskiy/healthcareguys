@@ -1,7 +1,9 @@
 var Auth = (function () {
   'use strict';
 
-  var $main = $('#js-main');
+  var $loginForm = $('#js-login-form');
+  var $contentForm = $('#js-content-form');
+  var $tabs = $('#js-tabs');
 
   function isSignedIn() {
     var dfd = $.Deferred();
@@ -15,7 +17,6 @@ var Auth = (function () {
       }
     }).done(function (response) {
       response = JSON.parse(response);
-      console.log('RESPONSE!: ', response);
       if (response.status === 'success') {
         saveToken(response.token).done(function (token) {
           dfd.resolve(token);
@@ -46,7 +47,6 @@ var Auth = (function () {
         withCredentials: true
       }
     }).done(function (response) {
-      console.log(response);
       response = JSON.parse(response);
       if (response.status === 'success') {
         saveToken(response.token).done(function (token) {
@@ -109,7 +109,9 @@ var Auth = (function () {
     var dfd = $.Deferred();
 
     $.get('../html/auth.html').done(function (template) {
-      $main.html(template);
+      $tabs.addClass('hidden');
+      $loginForm.html(template);
+      $contentForm.empty();
       dfd.resolve();
     }).fail(function () {
       dfd.reject();

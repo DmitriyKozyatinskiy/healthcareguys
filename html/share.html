@@ -1,0 +1,39 @@
+<div id="js-share-container" class="tab-pane fade">
+  <div class="form-group textarea-editable-container">
+  <textarea id="js-tweet-content" class="form-control textarea-editable textarea-editable-tweet textarea-editable-first"
+            placeholder="Tweet content" rows="4">{{ tweet_content }}</textarea>
+  </div>
+  <div class="form-group textarea-editable-container">
+  <textarea id="js-share-content" class="form-control textarea-editable textarea-editable-share"
+            placeholder="Share content" rows="7">{{ share_content }}</textarea>
+  </div>
+
+  <div class="list-container" id="js-tags-container">
+    {{ #tags }}
+    <p>
+    <div class="checkbox">
+      <label for="tag-{{ id }}">
+        <input type="checkbox" value="{{ id }}" id="tag-{{ id }}" class="js-tag-input">#{{{ name }}}
+      </label>
+    </div>
+    </p>
+    {{ /tags }}
+  </div>
+  <hr>
+
+  <div class="alert alert-success submission-notification hidden" id="js-submission-success" role="alert">
+    <span class="glyphicon glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+    <span>Data was submitted successfully</span>
+  </div>
+  <div class="alert alert-danger submission-notification hidden" id="js-submission-error" role="alert">
+    <span class="glyphicon glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+    <span id="js-submission-error-message"></span>
+  </div>
+
+  <div class="text-center submit-container">
+    <button type="submit" class="btn btn-primary button-submit">
+      <img src="../img/icons/cropped-faviocn-32x32.png" class="submit-icon" height="25">
+      Post to Healthcare Guys
+    </button>
+  </div>
+</div>
