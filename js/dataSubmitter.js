@@ -1,8 +1,9 @@
 ;(function(){
   'use strict';
 
+  var MAX_CATEGORIES_NUMBER = 5;
   var noTitleErrorMessage = 'Title should not be empty';
-  var noCategoryErrorMessage = 'Select at least one category';
+  var categoriesErrorMessage = 'You must select from 1 to 5 categories';
 
   function getContentData() {
     var categories = [];
@@ -16,19 +17,31 @@
       tags.push(tagId);
     });
 
-    return {
+    var $image = $('#js-image');
+    var imageType = $image.attr('data-type');
+
+    var data = {
       'url': $('#js-url-input').val(),
       'title': $('#js-title-input').val(),
       'description': $('#js-description-input').val(),
-      'image-url': $('#js-image').attr('src'),
+      'image-url': '',
+      'category': categories,
+      'image': '',
       'tweet-content': $('#js-tweet-content').val(),
       'share-content': $('#js-share-content').val(),
-      'category': categories,
       'hashtag': tags,
       'purpose': $('#js-purpose-list-container').jstree('get_bottom_checked'),
       'personas': $('#js-persona-list-container').jstree('get_bottom_checked'),
       'post-type': 'wpri_submit'
+    };
+
+    if (imageType == 'url') {
+      data['image-url'] = $image.attr('src');
+    } else {
+      data['image'] = $image.attr('src');
     }
+
+    return data;
   }
 
   function submitData(data, token) {
@@ -37,11 +50,11 @@
     $.ajax({
       url: 'https://news-devl.healthcareguys.com/wp-json/api/wp/v2/post',
       method: 'POST',
-      data: JSON.stringify({
+      contentType : 'application/json',
+      data:JSON.stringify({
         data: data,
         token: token
       }),
-      contentType: 'application/json',
       xhrFields: {
         withCredentials: true
       }
@@ -60,16 +73,15 @@
   }
 
   function handleDataSubmissionProcess() {
-    var data = getContentData();
-    console.log(data);
     var errorMessage = '';
+    var data = getContentData();
 
-    if (!data.title && !data.category.length) {
-      errorMessage = noTitleErrorMessage + '; ' + noCategoryErrorMessage;
+    if (!data.title && (!data.category.length || data.category.length > MAX_CATEGORIES_NUMBER)) {
+      errorMessage = noTitleErrorMessage + '; ' + categoriesErrorMessage;
     } else if (!data.title) {
       errorMessage = noTitleErrorMessage;
-    } else if (!data.category.length) {
-      errorMessage = noCategoryErrorMessage;
+    } else if (!data.category.length || data.category.length > MAX_CATEGORIES_NUMBER) {
+      errorMessage = categoriesErrorMessage;
     }
 
     if (errorMessage) {
@@ -91,12 +103,12 @@
 
   function showSubmissionStatus(status, message) {
     if (status == 'success') {
-      $('#js-submission-success').removeClass('hidden');
-      $('#js-submission-error').addClass('hidden');
+      $('.js-submission-success').removeClass('hidden');
+      $('.js-submission-error').addClass('hidden');
     } else {
-      $('#js-submission-error').removeClass('hidden');
-      $('#js-submission-error-message').html(message);
-      $('#js-submission-success').addClass('hidden');
+      $('.js-submission-error').removeClass('hidden');
+      $('.js-submission-error-message').html(message);
+      $('.js-submission-success').addClass('hidden');
     }
   }
 

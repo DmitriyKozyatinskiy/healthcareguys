@@ -9,7 +9,7 @@
             placeholder="Description" rows="6 ">{{ description }}</textarea>
   </div>
   <a href="#" id="js-image-container" class="thumbnail image-container">
-    <img src="{{ image }}" id="js-image" class="image-holder {{ ^image }}hidden{{ /image }}" height="100" alt="Click to add image">
+    <img src="{{ image }}" id="js-image" class="image-holder {{ ^image }}hidden{{ /image }}" height="100" alt="Click to add image" data-type="url">
     <p class="text-center add-image-button {{ #image }}hidden{{ /image }}" id="js-add-image">Add image</p>
   </a>
   <input type="file" class="hidden" id="js-image-uploader">
@@ -27,13 +27,13 @@
   </div>
   <hr>
 
-  <div class="alert alert-success submission-notification hidden" id="js-submission-success" role="alert">
+  <div class="alert alert-success submission-notification hidden js-submission-success" role="alert">
     <span class="glyphicon glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
     <span>Data was submitted successfully</span>
   </div>
-  <div class="alert alert-danger submission-notification hidden" id="js-submission-error" role="alert">
+  <div class="alert alert-danger submission-notification hidden js-submission-error" role="alert">
     <span class="glyphicon glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
-    <span id="js-submission-error-message"></span>
+    <span class="js-submission-error-message"></span>
   </div>
 
   <div class="text-center submit-container">

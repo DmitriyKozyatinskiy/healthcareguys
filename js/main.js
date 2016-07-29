@@ -115,6 +115,8 @@ function handleImageUpdate() {
   var file = this.files[0];
   var fileReader = new FileReader();
 
+  $('#js-image').attr('data-type', 'base64');
+
   fileReader.onload = function (event) {
     $('#js-image').attr('src', event.target.result).removeClass('hidden');
     $('#js-add-image').remove();

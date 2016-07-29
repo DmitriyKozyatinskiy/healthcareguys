@@ -119,6 +119,7 @@ hr {
 .submission-notification {
     margin: 10px;
     padding: 8px;
+    font-size: 12px;
 }
 
 .tab-switcher {
