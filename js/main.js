@@ -21,6 +21,15 @@ $(function () {
         Auth.showSignInForm();
         Loader.hide();
       });
+    })
+    .on('change', '.js-category-input', function (event) {
+      var $categories = $('.js-category-input');
+      var checkedCategoriesNumber = $categories.filter(':checked').length;
+      if (checkedCategoriesNumber >= 5) {
+        $categories.filter(':not(:checked)').prop('disabled', true);
+      } else {
+        $categories.prop('disabled', false);
+      }
     });
 
   setInterface();
