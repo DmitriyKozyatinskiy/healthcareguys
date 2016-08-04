@@ -24,10 +24,7 @@
         title: title ||  $('title').text(),
         description: description || location.href,
         image: image || null,
-        categories: list.data.submit_cat,
-        tags: list.data.submit_tag,
-        purposes: list.data.purpose,
-        personas: list.data.persona
+        categories: list.data.submit_cat
       });
     });
     return dfd.promise();

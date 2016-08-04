@@ -47,13 +47,7 @@ function setInterface() {
       $loginForm.empty();
       $contentForm.empty();
       setContent('content', data).done(function () {
-        setContent('share', data).done(function () {
-          setContent('purpose', data).always(function () {
-            $('#js-purpose-list-container').jstree(generateTreeJSON(data.purposes));
-            $('#js-persona-list-container').jstree(generateTreeJSON(data.personas));
-            Loader.hide();
-          });
-        });
+        Loader.hide();
       });
     });
   }).fail(function () {

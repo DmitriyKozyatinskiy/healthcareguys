@@ -11,37 +11,15 @@
       var categoryId = $(this).val();
       categories.push(categoryId);
     });
-    var tags = [];
-    $('.js-tag-input:checked').each(function() {
-      var tagId = $(this).val();
-      tags.push(tagId);
-    });
 
-    var $image = $('#js-image');
-    var imageType = $image.attr('data-type');
-
-    var data = {
+    return {
       'url': $('#js-url-input').val(),
       'title': $('#js-title-input').val(),
       'description': $('#js-description-input').val(),
-      'image-url': '',
+      'image-url': $('#js-image').attr('src'),
       'category': categories,
-      'image': '',
-      'tweet-content': $('#js-tweet-content').val(),
-      'share-content': $('#js-share-content').val(),
-      'hashtag': tags,
-      'purpose': $('#js-purpose-list-container').jstree('get_bottom_checked'),
-      'personas': $('#js-persona-list-container').jstree('get_bottom_checked'),
       'post-type': 'wpri_submit'
     };
-
-    if (imageType == 'url') {
-      data['image-url'] = $image.attr('src');
-    } else {
-      data['image'] = $image.attr('src');
-    }
-
-    return data;
   }
 
   function submitData(data, token) {
@@ -60,10 +38,11 @@
       }
     }).done(function(response) {
       response = JSON.parse(response);
+      
       if (response.status === 'success') {
-        dfd.resolve();
+        dfd.resolve(response.message);
       } else {
-        dfd.reject(JSON.parse(response).message);
+        dfd.reject(response.message);
       }
     }).fail(function() {
       dfd.reject('Unknown error');
