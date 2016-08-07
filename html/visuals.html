@@ -1,0 +1,116 @@
+<div id="js-visuals-container" class="tab-pane fade form-horizontal">
+  <div class="container">
+    <div class="row visuals-default-image-wrapper">
+      <div class="col-xs-4 visuals-default-image-text-container"><strong>Default image</strong></div>
+      <div class="col-xs-5">
+        <span id="js-visuals-default-image-container" class="thumbnail image-container visuals-default-image-container">
+          <img src="{{ image }}" id="js-visuals-default-image" class="image-holder {{ ^image }} hidden {{ /image }}" height="100">
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="js-thumbnail-select" class="col-xs-5 control-label visuals-label">
+        Thumbnail image
+        <span class="help-block js-visuals-image-name-container hidden">
+          <span class="js-visuals-image-name"></span>
+          <span class="bg-primary badge visuals-image-remove js-visuals-image-remove" role="button">X</span>
+        </span>
+      </label>
+      <div class="col-xs-3">
+        <button class="btn btn-primary js-visuals-image-upload-button" type="button">Upload</button>
+        <input type="file" class="hidden js-visuals-uploader" id="js-visuals-thumbnail-uploader" data-select-class="js-visuals-selector-thumb">
+      </div>
+      <div class="col-xs-4">
+        <select class="form-control js-visuals-select" id="js-thumbnail-select" disabled>
+          <option>--select--</option>
+          <option class="js-visuals-selector-web hidden" value="web">Use web image</option>
+          <option class="js-visuals-selector-tweet hidden" value="tweet">Use tweet image</option>
+          <option class="js-visuals-selector-share hidden" value="share">Use share image</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="js-web-select" class="col-xs-5 control-label visuals-label">
+        Web image
+        <span class="help-block js-visuals-image-name-container hidden">
+          <span class="js-visuals-image-name"></span>
+          <span class="bg-primary badge visuals-image-remove js-visuals-image-remove" role="button">X</span>
+        </span>
+      </label>
+      <div class="col-xs-3">
+        <button class="btn btn-primary js-visuals-image-upload-button" type="button">Upload</button>
+        <input type="file" class="hidden js-visuals-uploader" id="js-visuals-web-uploader" data-select-class="js-visuals-selector-web">
+      </div>
+      <div class="col-xs-4">
+        <select class="form-control js-visuals-select" id="js-web-select" disabled>
+          <option>--select--</option>
+          <option class="js-visuals-selector-thumb hidden" value="thumb">Use thumb image</option>
+          <option class="js-visuals-selector-tweet hidden" value="tweet">Use tweet image</option>
+          <option class="js-visuals-selector-share hidden" value="share">Use share image</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="js-tweet-image-select" class="col-xs-5 control-label visuals-label">
+        Tweet image
+        <span class="help-block js-visuals-image-name-container hidden">
+          <span class="js-visuals-image-name"></span>
+          <span class="bg-primary badge visuals-image-remove js-visuals-image-remove" role="button">X</span>
+        </span>
+      </label>
+      <div class="col-xs-3">
+        <button class="btn btn-primary js-visuals-image-upload-button" type="button">Upload</button>
+        <input type="file" class="hidden js-visuals-uploader" id="js-visuals-tweet-uploader" data-select-class="js-visuals-selector-tweet">
+      </div>
+      <div class="col-xs-4">
+        <select class="form-control js-visuals-select" id="js-tweet-image-select" disabled>
+          <option>--select--</option>
+          <option class="js-visuals-selector-thumb hidden" value="thumb">Use thumb image</option>
+          <option class="js-visuals-selector-web hidden" value="web">Use web image</option>
+          <option class="js-visuals-selector-share hidden" value="share">Use share image</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="js-share-image-select" class="col-xs-5 control-label visuals-label">
+        Share image
+        <span class="help-block js-visuals-image-name-container hidden">
+          <span class="js-visuals-image-name"></span>
+          <span class="bg-primary badge visuals-image-remove js-visuals-image-remove" role="button">X</span>
+        </span>
+      </label>
+      <div class="col-xs-3">
+        <button class="btn btn-primary js-visuals-image-upload-button" type="button">Upload</button>
+        <input type="file" class="hidden js-visuals-uploader" id="js-visuals-share-uploader" data-select-class="js-visuals-selector-share">
+      </div>
+      <div class="col-xs-4">
+        <select class="form-control js-visuals-select" id="js-share-image-select" disabled>
+          <option>--select--</option>
+          <option class="js-visuals-selector-thumb hidden" value="thumb">Use thumb image</option>
+          <option class="js-visuals-selector-web hidden" value="web">Use web image</option>
+          <option class="js-visuals-selector-tweet hidden" value="tweet">Use tweet image</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-success submission-notification hidden js-submission-success" role="alert">
+    <span class="glyphicon glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+    <span>Data was submitted successfully</span>
+  </div>
+  <div class="alert alert-danger submission-notification hidden js-submission-error" role="alert">
+    <span class="glyphicon glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+    <span class="js-submission-error-message"></span>
+  </div>
+
+  <div class="text-center submit-container">
+    <button type="submit" class="btn btn-primary button-submit">
+      <img src="../img/icons/cropped-faviocn-32x32.png" class="submit-icon" height="25">
+      <span class="submit-button-text">Post to Healthcare Guys</span>
+    </button>
+  </div>
+</div>

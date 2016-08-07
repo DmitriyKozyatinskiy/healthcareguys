@@ -1,11 +1,19 @@
 body {
-    width: 400px;
-    height: auto;
+    width: 450px;
     min-height: 100px;
 }
 
 main {
+    width: 401px;
     min-height: 100px;
+    float: left;
+    margin-bottom: -1px;
+    border-right: 1px solid #ddd;
+}
+
+main.is-login-form-shown {
+    width: 100%;
+    border-right: none;
 }
 
 hr {
@@ -13,22 +21,20 @@ hr {
     margin-bottom: 10px;
 }
 
-.navigation-tabs {
-    margin-bottom: -1px;
-    margin-left: -2px;
-    margin-top: -2px;
+.login-form {
+    padding: 10px 0;
 }
 
 .content-form {
     #padding-top: 10px;
 }
 
-.feedback-container {
+.feedback-container, .logout-container {
     text-align: center;
 }
 
-.feedback-container a {
-    margin: 0 10px 5px 10px;
+.logout-container {
+    margin-bottom: 10px;
 }
 
 .button-submit {
@@ -105,6 +111,7 @@ hr {
 }
 
 .textarea-editable-first {
+    margin-top: -1px;
     padding-top: 15px;
 }
 
@@ -124,4 +131,56 @@ hr {
 
 .tab-switcher {
     border-radius: 0 !important;
+}
+
+.visuals-default-image-wrapper {
+    margin: 15px 0;
+}
+
+.visuals-default-image-container {
+    padding: 0;
+    border: none;
+}
+
+.visuals-default-image-text-container {
+    padding: 35px 0 0 0;
+}
+
+.visuals-label {
+}
+
+.visuals-image-remove {
+    background-color: #337ab7;
+}
+
+.submit-button-text {
+    vertical-align: text-top;
+}
+
+.tab-container {
+    width: 50px;
+    height: 100%;
+    float: right;
+    margin: -1px -1px 0 0;
+}
+
+.tab-button {
+    width: 50px;
+    height: 50px;
+    border-left: none;
+    border-radius: 0 !important;
+    background-color: #fff !important;
+    border-color: #ddd !important;
+    font-size: 25px;
+    text-align: center;
+}
+
+.tab-button.active {
+    margin-left: -1px;
+    border-right: none;
+    color: #555 !important;
+}
+
+.tab-icon {
+    vertical-align: text-top;
 }

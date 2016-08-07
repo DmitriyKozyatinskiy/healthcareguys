@@ -1,8 +1,18 @@
 $(function () {
   $(document)
+    .on('click', '.js-tab-button', function(event) {
+      var $tabButton = $(this);
+      $('.js-tab-button').removeClass('active');
+      $tabButton.addClass('active');
+      event.preventDefault();
+    })
     .on('change', '#js-image-uploader', handleImageUpdate)
     .on('click', '#js-image-container', function () {
       $('#js-image-uploader').trigger('click');
+    })
+    .on('change', '.js-visuals-uploader', handleVisualsImageUpload)
+    .on('click', '.js-visuals-image-upload-button', function() {
+      $(this).parent().find('.js-visuals-uploader').trigger('click');
     })
     .on('submit', '#js-login-form', function (event) {
       var $loginFailedMessage = $('#js-wrong-credentials');
@@ -30,7 +40,9 @@ $(function () {
       } else {
         $categories.prop('disabled', false);
       }
-    });
+    })
+    .on('click', '.js-visuals-image-remove', handleVisualsImageRemove)
+    .on('change', '.js-visuals-select', handleVisualsSelectorChange);
 
   setInterface();
 });
@@ -38,26 +50,31 @@ $(function () {
 var $loginForm = $('#js-login-form');
 var $contentForm = $('#js-content-form');
 var $tabs = $('#js-tabs');
+var $footer = $('#js-footer');
+var $main = $('#js-main');
 
 function setInterface() {
   Loader.show();
   Auth.isSignedIn().done(function () {
     requestData().done(function (data) {
+      $main.removeClass('is-login-form-shown');
       $tabs.removeClass('hidden');
-      $loginForm.empty();
+      $footer.removeClass('hidden');
+      $loginForm.addClass('hidden').empty();
       $contentForm.empty();
       setContent('content', data).done(function () {
         setContent('share', data).done(function () {
           setContent('purpose', data).always(function () {
-            $('#js-purpose-list-container').jstree(generateTreeJSON(data.purposes));
-            $('#js-persona-list-container').jstree(generateTreeJSON(data.personas));
-            Loader.hide();
+            setContent('visuals', data).always(function () {
+              $('#js-purpose-list-container').jstree(generateTreeJSON(data.purposes));
+              $('#js-persona-list-container').jstree(generateTreeJSON(data.personas));
+              Loader.hide();
+            });
           });
         });
       });
     });
   }).fail(function () {
-    $tabs.addClass('hidden');
     Auth.showSignInForm().always(function () {
       Loader.hide();
     });
@@ -80,8 +97,8 @@ function setContent(dataType, data) {
 function requestData(dataType) {
   var dfd = $.Deferred();
 
-  chrome.tabs.query({active: true, currentWindow: true}, function (tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {dataRequired: true, dataType: dataType}, function (response) {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, { dataRequired: true, dataType: dataType }, function (response) {
       if (response) {
         dfd.resolve(response);
       } else {
@@ -128,6 +145,7 @@ function handleImageUpdate() {
 
   fileReader.onload = function (event) {
     $('#js-image').attr('src', event.target.result).removeClass('hidden');
+    $('#js-visuals-default-image').attr('src', event.target.result).removeClass('hidden');
     $('#js-add-image').remove();
     dfd.resolve();
   };
@@ -136,5 +154,43 @@ function handleImageUpdate() {
   return dfd.promise();
 }
 
+function handleVisualsImageUpload() {
+  var dfd = $.Deferred();
+  var file = this.files[0];
+  var $fileInput = $(this);
+  var fileReader = new FileReader();
 
+  fileReader.onload = function (event) {
+    var fileName = $fileInput.val().split(/(\\|\/)/g).pop();
+    var className = '.' + $fileInput.attr('data-select-class');
 
+    $fileInput.attr('data-src', event.target.result);
+    $('.js-visuals-select').removeAttr('disabled');
+    $(className).removeClass('hidden');
+    var $groupContainer = $fileInput.closest('.form-group');
+    $groupContainer.find('.js-visuals-image-name').html(fileName);
+    $groupContainer.find('.js-visuals-image-name-container').removeClass('hidden');
+    
+    dfd.resolve();
+  };
+
+  fileReader.readAsDataURL(file);
+}
+
+function handleVisualsImageRemove() {
+  var $removeButton = $(this);
+  var $groupContainer = $removeButton.closest('.form-group');
+  var $fileInput = $groupContainer.find('.js-visuals-uploader');
+  var className = '.' + $fileInput.attr('data-select-class');
+  $fileInput.attr('data-src', '').val('');
+  $groupContainer.find('.js-visuals-image-name').empty();
+  $groupContainer.find('.js-visuals-image-name-container').addClass('hidden');
+  $(className).removeAttr('selected').addClass('hidden');
+}
+
+function handleVisualsSelectorChange() {
+  var $select = $(this);
+  var $groupContainer = $select.closest('.form-group');
+  var $removeButton = $groupContainer.find('.js-visuals-image-remove');
+  handleVisualsImageRemove.call($removeButton.get(0));
+}

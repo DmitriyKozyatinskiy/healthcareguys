@@ -4,6 +4,8 @@ var Auth = (function () {
   var $loginForm = $('#js-login-form');
   var $contentForm = $('#js-content-form');
   var $tabs = $('#js-tabs');
+  var $footer = $('#js-footer');
+  var $main = $('#js-main');
 
   function isSignedIn() {
     var dfd = $.Deferred();
@@ -110,7 +112,9 @@ var Auth = (function () {
 
     $.get('../html/auth.html').done(function (template) {
       $tabs.addClass('hidden');
-      $loginForm.html(template);
+      $footer.addClass('hidden');
+      $main.addClass('is-login-form-shown');
+      $loginForm.removeClass('hidden').html(template);
       $contentForm.empty();
       dfd.resolve();
     }).fail(function () {

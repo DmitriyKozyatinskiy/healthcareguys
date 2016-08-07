@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Healthcare Guys</title>
   <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/font-awesome.css" rel="stylesheet">
   <link href="css/jstree/jstree.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 </head>
@@ -13,27 +14,44 @@
 
 <div id="js-spinner" class="spinner-container hidden"></div>
 
-<ul class="nav nav-tabs navigation-tabs" id="js-tabs">
-  <li role="tab" class="active js-tabs-switch-container">
-    <a href="#js-content-container" class="tab-switcher js-tab-switcher" data-toggle="tab" aria-controls="js-content-container">Content</a>
-  </li>
-  <li role="tab" class="js-tabs-switch-container">
-    <a href="#js-share-container" class="tab-switcher js-tab-switcher" data-toggle="tab"  aria-controls="js-share-container">Share</a>
-  </li>
-  <li role="tab" class="js-tabs-switch-container">
-    <a href="#js-purpose-container" class="tab-switcher js-tab-switcher" data-toggle="tab"  aria-controls="js-purpose-container">Purpose</a>
-  </li>
-</ul>
+<div class="wrapper clearfix">
+  <main id="js-main" class="is-login-form-shown">
+    <form id="js-login-form" class="login-form"></form>
+    <form class="content-form tab-content" id="js-content-form"></form>
 
-<main id="js-main">
-  <form id="js-login-form"></form>
-  <form class="content-form tab-content" id="js-content-form"></form>
-</main>
+    <div id="js-footer" class="hidden">
+      <hr>
+      <div class="feedback-container">
+        <a href="#" target="_blank">Love HealthcareGuys.com?</a>
+      </div>
+      <hr>
+      <div class="logout-container">
+        <a href="#" class="help-block" id="js-logout-button">
+          <strong>
+            <span class="glyphicon glyphicon-log-out" role="button"></span>
+            Logout
+          </strong>
+        </a>
+      </div>
+    </div>
+  </main>
 
-<hr>
-<div class="feedback-container">
-  <a href="#" class="pull-left">Love HealthcareGuys.com?</a>
-  <a href="#" class="pull-right" id="js-logout-button">Logout</a>
+  <div class="tab-container hidden" id="js-tabs">
+    <div class="list-group">
+      <a href="#js-content-container" class="list-group-item active text-center tab-button js-tab-button" data-toggle="tab"  aria-controls="js-content-container">
+        <i class="fa fa-pencil-square-o tab-icon" role="button"></i>
+      </a>
+      <a href="#js-share-container" class="list-group-item text-center tab-button js-tab-button" data-toggle="tab" aria-controls="js-share-container">
+        <i class="fa fa-share-alt tab-icon" role="button"></i>
+      </a>
+      <a href="#js-purpose-container" class="list-group-item text-center tab-button js-tab-button" data-toggle="tab" aria-controls="js-purpose-container">
+        <i class="fa fa-calendar tab-icon" role="button"></i>
+      </a>
+      <a href="#js-visuals-container" class="list-group-item text-center tab-button js-tab-button" data-toggle="tab" aria-controls="js-visuals-container">
+        <i class="fa fa-picture-o tab-icon" role="button"></i>
+      </a>
+    </div>
+  </div>
 </div>
 
 <script src="js/libs/jquery.js"></script>
