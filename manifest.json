@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
   "icons": {
-    "16": "img/icons/cropped-faviocn-32x32.png",
-    "48": "img/icons/cropped-faviocn-32x32.png",
-    "128": "img/icons/cropped-faviocn-32x32.png"
+    "16": "img/icons/icon16.png",
+    "48": "img/icons/icon48.png",
+    "128": "img/icons/icon128.png"
   },
   "name": "HealthCareGuys",
   "description": "HealthCareGuys",
