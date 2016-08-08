@@ -23,10 +23,10 @@
       </div>
       <div class="col-xs-4">
         <select class="form-control js-visuals-select" id="js-thumbnail-select" disabled>
-          <option>--select--</option>
-          <option class="js-visuals-selector-web hidden" value="web">Use web image</option>
-          <option class="js-visuals-selector-tweet hidden" value="tweet">Use tweet image</option>
-          <option class="js-visuals-selector-share hidden" value="share">Use share image</option>
+          <option class="js-visuals-option js-visuals-selector-none" value="">--select--</option>
+          <option class="js-visuals-option js-visuals-selector-web hidden" value="web">Use web image</option>
+          <option class="js-visuals-option js-visuals-selector-tweet hidden" value="tweet">Use tweet image</option>
+          <option class="js-visuals-option js-visuals-selector-share hidden" value="share">Use share image</option>
         </select>
       </div>
     </div>
@@ -45,16 +45,16 @@
       </div>
       <div class="col-xs-4">
         <select class="form-control js-visuals-select" id="js-web-select" disabled>
-          <option>--select--</option>
-          <option class="js-visuals-selector-thumb hidden" value="thumb">Use thumb image</option>
-          <option class="js-visuals-selector-tweet hidden" value="tweet">Use tweet image</option>
-          <option class="js-visuals-selector-share hidden" value="share">Use share image</option>
+          <option class="js-visuals-option js-visuals-selector-none" value="">--select--</option>
+          <option class="js-visuals-option js-visuals-selector-thumb hidden" value="thumb">Use thumb image</option>
+          <option class="js-visuals-option js-visuals-selector-tweet hidden" value="tweet">Use tweet image</option>
+          <option class="js-visuals-option js-visuals-selector-share hidden" value="share">Use share image</option>
         </select>
       </div>
     </div>
 
     <div class="form-group">
-      <label for="js-tweet-image-select" class="col-xs-5 control-label visuals-label">
+      <label for="js-tweet-select" class="col-xs-5 control-label visuals-label">
         Tweet image
         <span class="help-block js-visuals-image-name-container hidden">
           <span class="js-visuals-image-name"></span>
@@ -66,17 +66,17 @@
         <input type="file" class="hidden js-visuals-uploader" id="js-visuals-tweet-uploader" data-select-class="js-visuals-selector-tweet">
       </div>
       <div class="col-xs-4">
-        <select class="form-control js-visuals-select" id="js-tweet-image-select" disabled>
-          <option>--select--</option>
-          <option class="js-visuals-selector-thumb hidden" value="thumb">Use thumb image</option>
-          <option class="js-visuals-selector-web hidden" value="web">Use web image</option>
-          <option class="js-visuals-selector-share hidden" value="share">Use share image</option>
+        <select class="form-control js-visuals-select" id="js-tweet-select" disabled>
+          <option class="js-visuals-option js-visuals-selector-none" value="">--select--</option>
+          <option class="js-visuals-option js-visuals-selector-thumb hidden" value="thumb">Use thumb image</option>
+          <option class="js-visuals-option js-visuals-selector-web hidden" value="web">Use web image</option>
+          <option class="js-visuals-option js-visuals-selector-share hidden" value="share">Use share image</option>
         </select>
       </div>
     </div>
 
     <div class="form-group">
-      <label for="js-share-image-select" class="col-xs-5 control-label visuals-label">
+      <label for="js-share-select" class="col-xs-5 control-label visuals-label">
         Share image
         <span class="help-block js-visuals-image-name-container hidden">
           <span class="js-visuals-image-name"></span>
@@ -88,11 +88,11 @@
         <input type="file" class="hidden js-visuals-uploader" id="js-visuals-share-uploader" data-select-class="js-visuals-selector-share">
       </div>
       <div class="col-xs-4">
-        <select class="form-control js-visuals-select" id="js-share-image-select" disabled>
-          <option>--select--</option>
-          <option class="js-visuals-selector-thumb hidden" value="thumb">Use thumb image</option>
-          <option class="js-visuals-selector-web hidden" value="web">Use web image</option>
-          <option class="js-visuals-selector-tweet hidden" value="tweet">Use tweet image</option>
+        <select class="form-control js-visuals-select" id="js-share-select" disabled>
+          <option class="js-visuals-option js-visuals-selector-none" value="">--select--</option>
+          <option class="js-visuals-option js-visuals-selector-thumb hidden" value="thumb">Use thumb image</option>
+          <option class="js-visuals-option js-visuals-selector-web hidden" value="web">Use web image</option>
+          <option class="js-visuals-option js-visuals-selector-tweet hidden" value="tweet">Use tweet image</option>
         </select>
       </div>
     </div>
@@ -100,7 +100,7 @@
 
   <div class="alert alert-success submission-notification hidden js-submission-success" role="alert">
     <span class="glyphicon glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
-    <span>Data was submitted successfully</span>
+    <span class="js-submission-success-message">Data was submitted successfully</span>
   </div>
   <div class="alert alert-danger submission-notification hidden js-submission-error" role="alert">
     <span class="glyphicon glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
@@ -109,7 +109,7 @@
 
   <div class="text-center submit-container">
     <button type="submit" class="btn btn-primary button-submit">
-      <img src="../img/icons/cropped-faviocn-32x32.png" class="submit-icon" height="25">
+      <img src="../img/icons/icon32.png" class="submit-icon" height="25">
       <span class="submit-button-text">Post to Healthcare Guys</span>
     </button>
   </div>

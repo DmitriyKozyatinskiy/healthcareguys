@@ -165,12 +165,17 @@ function handleVisualsImageUpload() {
     var className = '.' + $fileInput.attr('data-select-class');
 
     $fileInput.attr('data-src', event.target.result);
-    $('.js-visuals-select').removeAttr('disabled');
     $(className).removeClass('hidden');
     var $groupContainer = $fileInput.closest('.form-group');
     $groupContainer.find('.js-visuals-image-name').html(fileName);
     $groupContainer.find('.js-visuals-image-name-container').removeClass('hidden');
-    
+    $groupContainer.find('.js-visuals-select').prop('disabled', true).attr('data-image', true);
+    $groupContainer.find('.js-visuals-option').prop('selected', false);
+    $groupContainer.find('.js-visuals-selector-none').prop('selected', true);
+    $('.js-visuals-select').filter(function() {
+      return !$(this).attr('data-image');
+    }).removeAttr('disabled');
+
     dfd.resolve();
   };
 
@@ -185,6 +190,7 @@ function handleVisualsImageRemove() {
   $fileInput.attr('data-src', '').val('');
   $groupContainer.find('.js-visuals-image-name').empty();
   $groupContainer.find('.js-visuals-image-name-container').addClass('hidden');
+  $groupContainer.find('.js-visuals-select').removeAttr('data-image').prop('disabled', false);
   $(className).removeAttr('selected').addClass('hidden');
 }
 

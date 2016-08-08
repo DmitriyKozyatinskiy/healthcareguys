@@ -29,6 +29,14 @@
       'hashtag': tags,
       'purpose': $('#js-purpose-list-container').jstree('get_bottom_checked'),
       'personas': $('#js-persona-list-container').jstree('get_bottom_checked'),
+      'thumb-image': $('#js-visuals-thumbnail-uploader').attr('data-src') || '',
+      'set-thumb-image': $('#js-thumbnail-select').val() || '',
+      'web-image': $('#js-visuals-web-uploader').attr('data-src') || '',
+      'set-web-image': $('#js-web-select').val() || '',
+      'share-image': $('#js-visuals-share-uploader').attr('data-src') || '',
+      'set-share-image': $('#js-share-select').val() || '',
+      'tweet-image': $('#js-visuals-tweet-uploader').attr('data-src') || '',
+      'set-tweet-image': $('#js-tweet-select').val() || '',
       'post-type': 'wpri_submit'
     };
   }
@@ -65,6 +73,7 @@
   function handleDataSubmissionProcess() {
     var errorMessage = '';
     var data = getContentData();
+    console.log('DATA: ', data);
 
     if (!data.title && (!data.category.length || data.category.length > MAX_CATEGORIES_NUMBER)) {
       errorMessage = noTitleErrorMessage + '; ' + categoriesErrorMessage;
@@ -81,8 +90,8 @@
 
     Loader.show();
     Auth.getToken().done(function(token) {
-      submitData(data, token).done(function() {
-        showSubmissionStatus('success');
+      submitData(data, token).done(function(message) {
+        showSubmissionStatus('success', message);
       }).fail(function(message) {
         showSubmissionStatus('error', message);
       }).always(function () {
@@ -94,6 +103,9 @@
   function showSubmissionStatus(status, message) {
     if (status == 'success') {
       $('.js-submission-success').removeClass('hidden');
+      if (message) {
+        $('.js-submission-success-message').html(message);
+      }
       $('.js-submission-error').addClass('hidden');
     } else {
       $('.js-submission-error').removeClass('hidden');

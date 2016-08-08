@@ -25,7 +25,7 @@
         description: description || location.href,
         image: image || null,
         categories: list.data.submit_cat,
-        tags: list.data.submit_tag,
+        tags: list.data.hashtag,
         purposes: list.data.purpose,
         personas: list.data.persona
       });
