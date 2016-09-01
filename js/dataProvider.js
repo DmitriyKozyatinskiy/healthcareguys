@@ -11,8 +11,8 @@
     return dfd.promise();
   }
 
-  function getData() {
-    var dfd = $.Deferred();
+  function getData() {    
+    var dfd = $.Deferred();    
     getTaxonomiesList().done(function(list) {
       var url = $('[property="og:url"]').attr('content');
       var title = $('[property="og:title"]').attr('content');

@@ -19,9 +19,13 @@ var Auth = (function () {
       }
     }).done(function (response) {
       response = JSON.parse(response);
+      console.log(response);
       if (response.status === 'success') {
-        saveToken(response.token).done(function (token) {
-          dfd.resolve(token);
+          saveToken(response.token).done(function (token) {
+          dfd.resolve(token);   
+          chrome.storage.sync.set({ 'uname': response.results.uname }, function(uname) {
+            dfd.resolve(uname)
+          });                 
         });
       } else {
         dfd.reject();
@@ -66,7 +70,6 @@ var Auth = (function () {
 
   function saveToken(token) {
     var dfd = $.Deferred();
-
     chrome.storage.sync.set({ 'token': token }, function() {
       dfd.resolve(token)
     });
@@ -109,7 +112,6 @@ var Auth = (function () {
 
   function showSignInForm() {
     var dfd = $.Deferred();
-
     $.get('../html/auth.html').done(function (template) {
       $tabs.addClass('hidden');
       $footer.addClass('hidden');

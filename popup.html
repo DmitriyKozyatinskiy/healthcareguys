@@ -17,27 +17,11 @@
 <div class="wrapper clearfix">
   <main id="js-main" class="is-login-form-shown">
     <form id="js-login-form" class="login-form"></form>
-    <form class="content-form tab-content" id="js-content-form"></form>
-
-    <div id="js-footer" class="hidden">
-      <hr>
-      <div class="feedback-container">
-        <a href="#" target="_blank">Love HealthcareGuys.com?</a>
-      </div>
-      <hr>
-      <div class="logout-container">
-        <a href="#" class="help-block" id="js-logout-button">
-          <strong>
-            <span class="glyphicon glyphicon-log-out" role="button"></span>
-            Logout
-          </strong>
-        </a>
-      </div>
-    </div>
+    <form class="content-form tab-content" id="js-content-form"></form>   
   </main>
 
   <div class="tab-container hidden" id="js-tabs">
-    <div class="list-group">
+    <div class="list-group list-default-height">
       <a href="#js-content-container" class="list-group-item active text-center tab-button js-tab-button" data-toggle="tab"  aria-controls="js-content-container">
         <i class="fa fa-pencil-square-o tab-icon" role="button"></i>
       </a>
@@ -45,11 +29,26 @@
         <i class="fa fa-share-alt tab-icon" role="button"></i>
       </a>
       <a href="#js-purpose-container" class="list-group-item text-center tab-button js-tab-button" data-toggle="tab" aria-controls="js-purpose-container">
-        <i class="fa fa-calendar tab-icon" role="button"></i>
+        <i class="fa fa-bullseye tab-icon" role="button"></i>
       </a>
       <a href="#js-visuals-container" class="list-group-item text-center tab-button js-tab-button" data-toggle="tab" aria-controls="js-visuals-container">
         <i class="fa fa-picture-o tab-icon" role="button"></i>
       </a>
+      <a href="#js-links-container" class="list-group-item text-center tab-button js-tab-button" data-toggle="tab" aria-controls="js-links-container">
+        <i class="fa fa-link tab-icon" role="button"></i>
+      </a>
+      <a href="#js-feedback-container" class="list-group-item text-center tab-button js-tab-button" data-toggle="tab" aria-controls="js-feedback-container">
+        <i class="fa fa-envelope tab-icon" role="button"></i>
+      </a>
+    </div>
+     <div id="js-footer" class="hidden">   
+      <div class="logout-container">
+        <a href="#" class="" id="js-logout-button">
+          <span class="round-span-logout">
+             <i class="glyphicon glyphicon-log-out icon-flipped" aria-hidden="true" role="button"></i>
+          </span>         
+        </a>       
+      </div>
     </div>
   </div>
 </div>
@@ -64,5 +63,9 @@
 <script src="js/statusIcons.js"></script>
 <script src="js/auth.js"></script>
 <script src="js/dataSubmitter.js"></script>
+
+<script src="telemetry_agent/dist/agent.js"></script>
+<script src="telemetry_agent/dist/agent_config.js"></script>
+<script src="telemetry_agent/dist/agent_support.js"></script>
 </body>
 </html>

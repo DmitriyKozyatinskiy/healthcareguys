@@ -1,7 +1,7 @@
 $(function () {
   $(document)
     .on('click', '.js-tab-button', function(event) {
-      var $tabButton = $(this);
+      var $tabButton = $(this);      
       $('.js-tab-button').removeClass('active');
       $tabButton.addClass('active');
       event.preventDefault();
@@ -14,7 +14,7 @@ $(function () {
     .on('click', '.js-visuals-image-upload-button', function() {
       $(this).parent().find('.js-visuals-uploader').trigger('click');
     })
-    .on('submit', '#js-login-form', function (event) {
+    .on('submit', '#js-login-form', function (event) {      
       var $loginFailedMessage = $('#js-wrong-credentials');
       event.preventDefault();
       Loader.show();
@@ -43,7 +43,6 @@ $(function () {
     })
     .on('click', '.js-visuals-image-remove', handleVisualsImageRemove)
     .on('change', '.js-visuals-select', handleVisualsSelectorChange);
-
   setInterface();
 });
 
@@ -52,7 +51,6 @@ var $contentForm = $('#js-content-form');
 var $tabs = $('#js-tabs');
 var $footer = $('#js-footer');
 var $main = $('#js-main');
-
 function setInterface() {
   Loader.show();
   Auth.isSignedIn().done(function () {
@@ -66,9 +64,17 @@ function setInterface() {
         setContent('share', data).done(function () {
           setContent('purpose', data).always(function () {
             setContent('visuals', data).always(function () {
-              $('#js-purpose-list-container').jstree(generateTreeJSON(data.purposes));
-              $('#js-persona-list-container').jstree(generateTreeJSON(data.personas));
-              Loader.hide();
+             setContent('feedback', data).always(function () {
+                setContent('links', data).always(function () {
+                  $('#js-purpose-list-container').jstree(generateTreeJSON(data.purposes));
+                  $('#js-persona-list-container').jstree(generateTreeJSON(data.personas));
+				          $('.list-container p').remove();
+                  chrome.storage.sync.get('uname', function(uname) {                  
+                  $('.name-label').html('as '+uname.uname);
+                  });                  
+                  Loader.hide();
+                });
+              });
             });
           });
         });
@@ -83,20 +89,16 @@ function setInterface() {
 
 function setContent(dataType, data) {
   var dfd = $.Deferred();
-
   $.get('../html/' + dataType + '.html', function (html) {
     var renderedTemplate = Mustache.render(html, data);
     $contentForm.append($(renderedTemplate));
-
     dfd.resolve();
   });
-
   return dfd.promise();
 }
 
 function requestData(dataType) {
   var dfd = $.Deferred();
-
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     chrome.tabs.sendMessage(tabs[0].id, { dataRequired: true, dataType: dataType }, function (response) {
       if (response) {
@@ -106,10 +108,8 @@ function requestData(dataType) {
       }
     });
   });
-
   return dfd.promise();
 }
-
 function generateTreeJSON(data) {
   var treeData = {
     core: {

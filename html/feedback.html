@@ -1,0 +1,45 @@
+<div id="js-feedback-container" class="tab-pane fade">
+    <div class="default-height top-cm-pad">
+        <div id="w-feedback">
+            <div class="form-group textarea-editable-container">
+                <input id="js-fed-name" class="form-control clear-marg" placeholder="Name" />
+            </div>
+            <div class="form-group textarea-editable-container">
+                <input id="js-fed-email" class="form-control" placeholder="Email" />
+            </div>
+            <div class="form-group ">
+                <select class="form-control list-header" id="js-fed-support-type">
+                    <option value="0">Support Type</option>
+                    <option value="Report A Problem">Report A Problem</option>
+                    <option value="Request a Feature">Request a Feature</option>
+                    <option value="Ask A Question">Ask A Question</option>
+                    <option value="Give Praise">Give Praise</option>
+                    <option value="Share An Idea">Share An Idean</option>
+                </select>
+            </div>
+            <div class="form-group textarea-editable-container">
+                <input id="js-fed-subject" class="form-control" placeholder="Subject" rows="1" />
+            </div>
+            <div class="form-group textarea-editable-container">
+                <textarea id="js-fed-description" class="form-control textarea-editable textarea-fed" placeholder="Description" rows="10"></textarea>
+            </div>
+           
+        </div>
+    </div>
+    <div class="submit-container">       
+        <div class="alert alert-success submission-notification hidden js-submission-success" role="alert">
+            <span class="glyphicon glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+            <span class="js-submission-success-message">Data was submitted successfully</span>
+        </div>
+        <div class="alert alert-danger submission-notification hidden js-submission-error" role="alert" id="fed-message">
+            <span class="glyphicon glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
+            <span class="js-submission-error-message">Enter a valid email address</span>
+        </div> 
+        <button type="submit" class="btn btn-primary button-submit" id="js-feedback">
+        <img src="../img/icons/icon32x32.png" class="submit-icon" height="25">
+        <span class="submit-button-text ">Send Feedback</span>
+        </button>
+        <span class="name-label"></span>
+        <div class="clearfix"></div>
+    </div>
+</div>

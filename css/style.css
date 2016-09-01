@@ -29,17 +29,20 @@ hr {
     #padding-top: 10px;
 }
 
-.feedback-container, .logout-container {
+.feedback-container {
     text-align: center;
 }
 
 .logout-container {
     margin-bottom: 10px;
+    padding-top: 18px;
+    position: absolute;
+    bottom: 0;
 }
 
 .button-submit {
     width: 100%;
-    #background-color: #A8C5E7;
+    .top-cm-pad{padding-top: 10px !important}.top-cm-pad{padding-top: 10px !important}#background-color: #A8C5E7;
 }
 
 .image-holder {
@@ -56,7 +59,10 @@ hr {
 }
 
 .submit-container {
-    margin: 0 10px;
+   padding:10px;
+   border-top:1px solid #eee;
+   height:51px;
+
 }
 
 .image-container {
@@ -72,15 +78,17 @@ hr {
     float: left;
 }
 
-.list-header {
+h4.list-header {
     margin-left: 10px;
+    font-size: 14px !important;
+    font-weight: bold !important;
 }
 
 .list-container {
     margin-top: 10px;
     margin-left: 10px;
     #max-height: 120px;
-    max-height: 90px;
+   
     overflow-y: auto;
 }
 
@@ -124,7 +132,7 @@ hr {
 }
 
 .submission-notification {
-    margin: 10px;
+   /* margin: 10px;*/
     padding: 8px;
     font-size: 12px;
 }
@@ -155,6 +163,7 @@ hr {
 
 .submit-button-text {
     vertical-align: text-top;
+    padding:0 0 0 9px;
 }
 
 .tab-container {
@@ -183,4 +192,143 @@ hr {
 
 .tab-icon {
     vertical-align: text-top;
+}
+.tab-pane h4{
+    font-size: 14px !important;
+    font-weight: bold !important;
+    margin-top:0px !important;
+    
+}
+
+#w-feedback textarea,select{
+    margin-bottom:10px;
+}
+#js-fed-support-type{
+    color:#999 !important;
+    border-radius: 0 !important;
+    border-color: #eee !important;
+    padding: 0 6px !important;
+    border-top:none !important;
+}
+#js-links-container textarea,#js-links-container input{
+    width: 88% !important;
+    float:left;
+    margin-left:10px;
+    border-color:#eee !important;
+    margin-top: 0px !important;
+    margin-bottom: 15px;
+}
+#js-links-container span{    
+   
+}
+#js-links-container span i{
+    color:#fff
+}
+#w-feedback{
+    padding: 0 10px 0 10px;
+}
+#w-feedback input,select,textarea{
+    margin: 10px 0 0 0;
+    border-color: #eee !important
+}
+#w-feedback textarea{
+    border: 1px solid #eee !important;
+}
+.round-span{
+    display:block;
+    text-align: center;  
+    padding: 7px 0 0 0px;   
+    width: 30px;
+    border-radius: 50%;
+    height: 30px;   
+    float:left;
+    background: #92d050;
+}
+.round-span-lk-ht-text{
+     margin: 3px 4px 0 4px;
+}
+.round-span-lk-ht-textarea{
+     margin: 12px 4px 0 4px;
+}
+.round-span i{   
+    font-size:14px !important; 
+}
+.icon-flipped{
+    -webkit-transform: scaleX(-1);
+}
+.round-span-logout{
+    margin: 0;
+    display: inline-block;
+    width: 34px;
+    border-radius: 50%;
+    padding: 6px 0 0 6px; 
+    height: 34px;       
+    background: #5b9bd5;
+}
+.round-span-logout i{
+    color:#fff !important;
+    font-size:19px;
+    font-weight: normal !important; 
+}
+ .logout-container{
+    margin-left: 10px;
+ }
+ .nm-label{
+    font-size: 13px;
+    color:#999;
+    position: relative;
+    top: 1px;
+    margin:0 0 0 4px;
+}
+.checkbox input{
+    padding: 3px 6px !important;
+    margin-bottom: 6px !important;
+}
+#link-container-height{
+    height:240px;
+}
+.default-height{
+    height:460px;
+}
+.list-default-height {
+    height:400px;
+}
+.submit-container button{   
+   height:30px !important;
+   padding: 0 0 0 1px !important;
+   width:52% !important;
+   text-align:left !important;
+}
+.js-tab-button.active{
+    color:#5b9bd5 !important;
+}
+.clear-marg{
+    margin-top: 0px !important;
+    padding-top: 0px !important
+}
+.top-cm-pad{
+    padding-top: 10px !important
+}
+.list-cat-height{
+    height: 135px !important;
+}
+.list-hash-height{
+    height: 270px !important;
+}
+#js-visuals-container select{
+    margin:0px;
+}
+#js-visuals-container label{
+    font-weight:normal;
+    padding-top:7px;
+}
+.remove-border{
+    border: none !important;
+}
+#link-container-height h4{
+    padding-left: 12px !important;
+    font-weight: normal !important;
+}
+.normal{
+    font-weight: normal !important;
 }

@@ -1,0 +1,1465 @@
+/* ========================================================
+*
+*  NetspectiveEMS Feedback Widget - Flat & Responsive Admin Template
+*
+* ========================================================
+*
+* File: netspective-feedback-widget.css
+* Description: General template styles, including bootstrap components
+* Version: 1.0
+*
+* ======================================================== */
+
+.telemetry-agent-feedback-widget-modal *,
+.telemetry-agent-feedback-widget-modal *:before,
+.telemetry-agent-feedback-widget-modal *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.clearfix { *zoom: 1 }
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    content: "";
+    line-height: 0;
+}
+.clearfix:after { clear: both }
+/* # Widget Label Position
+================================================== */
+.telemetryAgentFeedbackLabel {
+    background-color: #840C08;
+    color: #FFFFFF;
+    display: block;
+    font-family: verdana;
+    padding: 2px 10px 3px;
+    font-size: 17px;
+    display: block !important;
+    text-decoration: none !important;
+    text-shadow: 0 1px 0 #000000;
+    text-transform: capitalize;
+    cursor: pointer;
+    -webkit-backface-visibility:hidden;
+}
+/*.telemetryAgentFeedbackLabel .iconholder {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 100px;
+    height: 25px;
+    text-align: center;
+    width: 25px;
+}*/
+.telemetryAgentFeedbackLabel .iconholder {
+    background: url('../images/help.png') repeat scroll 0 0 rgba(0, 0, 0, 0);
+    /*border-radius: 100px;*/
+    height: 26px;
+    text-align: center;
+    width: 32px;
+}
+
+.telemetryAgentFeedbackLabel .iconholder .icon-question-sign {
+    color: #000000 !important;
+    font-family: serif !important;
+    font-size: inherit !important;
+    font-style: normal !important;
+    margin: 0 !important;
+	display:none !important;
+}
+.telemetryAgentFeedbackLabel .iconholder .icon-question-sign:before {
+    /*content: "?";*/
+}
+/*.telemetryAgentFeedbackLabel .iconholder .icon-question-sign{
+    color: #FFFFFF; 
+}*/
+.telemetryAgentFeedbackLabel:hover { text-decoration: none }
+.telemetryAgentFeedbackLabel.centerLeft {
+    left: 0;
+    position: fixed;
+    right: auto;
+    top: 30%;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+    -webkit-transform-origin: 0% 100% 0;
+    -moz-transform-origin: 0% 100% 0;
+    /*-ms-transform-origin: 0% 100% 0;*/
+    -ms-transform-origin:14% 0%;
+    -o-transform-origin: 0% 100% 0;
+    transform-origin: 0% 100% 0;
+    /*filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);*/
+}
+.telemetryAgentFeedbackLabel.centerLeft:after {
+	-webkit-transform: rotate(-90deg);
+	-moz-transform: rotate(-90deg);
+	-ms-transform: rotate(-90deg);
+	-o-transform: rotate(-90deg);
+	transform: rotate(-90deg);
+}
+.telemetryAgentFeedbackLabel.centerLeft .iconholder{
+    float: left;
+    margin: 0 5px 0 -5px;
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+.telemetryAgentFeedbackLabel.centerRight {
+    left: auto;
+    position: fixed;
+    right: 0;
+    top: 30%;
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    -ms-transform-origin: 100% 100%;
+    -o-transform-origin: 100% 100%;
+    transform-origin: 100% 100%;
+    /*filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);*/
+}
+.telemetryAgentFeedbackLabel.centerRight:after {
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-ms-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+.telemetryAgentFeedbackLabel.centerRight .iconholder{
+    float: right;
+    margin: 0 -5px 0 5px;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+.telemetryAgentFeedbackLabel.topRight {
+    left: auto;
+    position: fixed;
+    right: 0;
+    top: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+  
+.telemetryAgentFeedbackLabel.topRight .iconholder{
+    float: left;
+    margin: 0 5px 0 -5px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+.telemetryAgentFeedbackLabel.topRight:before {
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+.telemetryAgentFeedbackLabel.bottomRight {
+    left: auto;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+  
+.telemetryAgentFeedbackLabel.bottomRight .iconholder{
+    float: left;
+    margin: 0 5px 0 -5px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+.telemetryAgentFeedbackLabel.bottomRight:before {
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+.telemetryAgentFeedbackLabel.topLeft {
+    right: auto;
+    position: fixed;
+    left: 0;
+    top: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+
+.telemetryAgentFeedbackLabel.topLeft .iconholder{
+    float: left;
+    margin: 0 5px 0 -5px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+.telemetryAgentFeedbackLabel.topLeft:before {
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+.telemetryAgentFeedbackLabel.bottomLeft {
+    right: auto;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+
+.telemetryAgentFeedbackLabel.bottomLeft .iconholder{
+    float: left;
+    margin: 0 5px 0 -5px;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+}
+.telemetryAgentFeedbackLabel.bottomLeft:before {
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-ms-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+}
+.clr{
+    clear: both;
+}
+/* # Modals
+================================================== */
+
+
+.telemetry-agent-feedback-widget-modal { background-color: rgba(0, 0, 0, 0.5); bottom: 0; display: none; font: inherit; left: 0; overflow-x: auto; overflow-y: scroll; position: fixed; right: 0; top: 0; z-index: 9999; }
+
+
+
+.telemetry-agent-feedback-widget-modal input,
+.telemetry-agent-feedback-widget-modal button,
+.telemetry-agent-feedback-widget-modal select,
+.telemetry-agent-feedback-widget-modal textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+.telemetry-agent-feedback-widget-modal .widgetIcon {
+    float: left;
+    margin-top: -5px;
+    padding-right: 5px;
+}
+.telemetry-agent-feedback-widget-modal .feedback-modal-content {
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    border-bottom-color: rgba(0, 0, 0, 0.4);
+}
+.telemetry-agent-feedback-widget-modal .feedback-modal-header { background-color: #f9f9f9 }
+.telemetry-agent-feedback-widget-modal .feedback-modal-header .telemetry-agent-feedback-close {
+    margin-top: 5px;
+    font-size: 15px !important;
+}
+.telemetry-agent-feedback-widget-modal .feedback-modal-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: #555555;
+}
+.telemetry-agent-feedback-widget-modal .feedback-modal-footer { background-color: #f9f9f9 }
+/* # Forms
+================================================== */
+/* * * * * * * * * * * *
+ * General
+ * * * * * * * * * * * */
+.telemetry-agent-feedback-modal-open { overflow: hidden }
+.fade {
+    opacity: 0;
+    -webkit-transition: opacity .15s linear;
+    transition: opacity .15s linear;
+}
+.telemetry-agent-feedback-backdrop { bottom: 0; left: 0; opacity: 0.5; position: fixed; right: 17px; top: 0; z-index: 1030; }
+.telemetry-agent-feedback-backdrop.fade {
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+.telemetry-agent-feedback-backdrop.in {
+    opacity: .5;
+    filter: alpha(opacity=50);
+}
+.telemetry-agent-feedback-widget-modal.fade.in { opacity: 1 }
+.telemetry-agent-feedback-widget-modal.fade .telemetry-agent-feedback-modal-container {
+    -webkit-transform: translate(0, -25%);
+    -ms-transform: translate(0, -25%);
+    transform: translate(0, -25%);
+    -webkit-transition: -webkit-transform .3s ease-out;
+    -moz-transition: -moz-transform .3s ease-out;
+    -o-transition: -o-transform .3s ease-out;
+    transition: transform .3s ease-out;
+}
+.telemetry-agent-feedback-widget-modal.in .telemetry-agent-feedback-modal-container {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+.telemetry-agent-feedback-widget-modal .telemetry-agent-feedback-modal-container {
+    z-index: 1050;
+    left: 28%;
+    width: 600px;
+    position:absolute;
+    padding: 10px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.telemetry-agent-feedback-widget-modal .feedback-modal-content {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    background-clip: padding-box;
+}
+.telemetry-agent-feedback-widget-modal .feedback-modal-header {
+    min-height: 16.428571429px;
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.telemetry-agent-feedback-widget-modal .feedback-modal-header .telemetry-agent-feedback-close { margin-top: -2px }
+.telemetry-agent-feedback-widget-modal .telemetry-agent-feedback-close {
+    float: right;
+    font-size: 21px;
+    font-weight: bold;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .2;
+    filter: alpha(opacity=20);
+}
+.telemetry-agent-feedback-widget-modal form { margin: 0 5px }
+.telemetry-agent-feedback-widget-modal label,
+.telemetry-agent-feedback-widget-modal input,
+.telemetry-agent-feedback-widget-modal button,
+.telemetry-agent-feedback-widget-modal select,
+.telemetry-agent-feedback-widget-modal textarea { font-size: 13px !important }
+.telemetry-agent-feedback-widget-modal label { font-weight: 600 }
+.telemetry-agent-feedback-widget-modal textarea,
+.telemetry-agent-feedback-widget-modal input[type="text"],
+.telemetry-agent-feedback-widget-modal input[type="password"],
+.telemetry-agent-feedback-widget-modal input[type="datetime"],
+.telemetry-agent-feedback-widget-modal input[type="datetime-local"],
+.telemetry-agent-feedback-widget-modal input[type="date"],
+.telemetry-agent-feedback-widget-modal input[type="month"],
+.telemetry-agent-feedback-widget-modal input[type="time"],
+.telemetry-agent-feedback-widget-modal input[type="week"],
+.telemetry-agent-feedback-widget-modal input[type="number"],
+.telemetry-agent-feedback-widget-modal input[type="email"],
+.telemetry-agent-feedback-widget-modal input[type="url"],
+.telemetry-agent-feedback-widget-modal input[type="search"],
+.telemetry-agent-feedback-widget-modal input[type="tel"],
+.telemetry-agent-feedback-widget-modal input[type="color"],
+.telemetry-agent-feedback-widget-modal .uneditable-input {
+    -webkit-appearance: none !important;
+    color: #555555;
+    padding: 6px 6px !important;
+    font-weight: normal;
+    vertical-align: top;
+    background-color: #ffffff;
+    background-image: none !important;
+    filter: none !important;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.telemetry-agent-feedback-widget-modal textarea:focus,
+.telemetry-agent-feedback-widget-modal input[type="text"]:focus,
+.telemetry-agent-feedback-widget-modal input[type="password"]:focus,
+.telemetry-agent-feedback-widget-modal input[type="datetime"]:focus,
+.telemetry-agent-feedback-widget-modal input[type="datetime-local"]:focus,
+.telemetry-agent-feedback-widget-modal input[type="date"]:focus,
+.telemetry-agent-feedback-widget-modal input[type="month"]:focus,
+.telemetry-agent-feedback-widget-modal input[type="time"]:focus,
+.telemetry-agent-feedback-widget-modal input[type="week"]:focus,
+.telemetry-agent-feedback-widget-modal input[type="number"]:focus,
+.telemetry-agent-feedback-widget-modal input[type="email"]:focus,
+.telemetry-agent-feedback-widget-modal input[type="url"]:focus,
+.telemetry-agent-feedback-widget-modal input[type="search"]:focus,
+.telemetry-agent-feedback-widget-modal input[type="tel"]:focus,
+.telemetry-agent-feedback-widget-modal input[type="color"]:focus,
+.telemetry-agent-feedback-widget-modal .uneditable-input:focus {
+    border-color: #4d7496;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(0, 0, 0, 0.1);
+}
+.telemetry-agent-feedback-widget-modal select,
+.telemetry-agent-feedback-widget-modal textarea,
+.telemetry-agent-feedback-widget-modal input[type="text"],
+.telemetry-agent-feedback-widget-modal input[type="password"],
+.telemetry-agent-feedback-widget-modal input[type="datetime"],
+.telemetry-agent-feedback-widget-modal input[type="datetime-local"],
+.telemetry-agent-feedback-widget-modal input[type="date"],
+.telemetry-agent-feedback-widget-modal input[type="month"],
+.telemetry-agent-feedback-widget-modal input[type="time"],
+.telemetry-agent-feedback-widget-modal input[type="week"],
+.telemetry-agent-feedback-widget-modal input[type="number"],
+.telemetry-agent-feedback-widget-modal input[type="email"],
+.telemetry-agent-feedback-widget-modal input[type="url"],
+.telemetry-agent-feedback-widget-modal input[type="search"],
+.telemetry-agent-feedback-widget-modal input[type="tel"],
+.telemetry-agent-feedback-widget-modal input[type="color"],
+.telemetry-agent-feedback-widget-modal .uneditable-input {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.telemetry-agent-feedback-widget-modal .form-control {
+    height: 32px;
+    font-size: 13px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.telemetry-agent-feedback-widget-modal select.form-control { padding: 4px !important }
+.telemetry-agent-feedback-widget-modal select.form-control,
+.telemetry-agent-feedback-widget-modal textarea.form-control { padding: 0 5px }
+.telemetry-agent-feedback-widget-modal select.form-control:focus,
+.telemetry-agent-feedback-widget-modal textarea.form-control:focus {
+    border-color: #4d7496;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 3px rgba(0, 0, 0, 0.1);
+}
+/* * * * * * * * * * * *
+ * Sizing
+ * * * * * * * * * * * */
+.telemetry-agent-feedback-widget-modal .input-xxlarge { width: 465px }
+.telemetry-agent-feedback-widget-modal .multiple { width: 100% }
+.telemetry-agent-feedback-widget-modal .form-control.input-small {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    height: 30px;
+}
+/* Height Sizing */
+.telemetry-agent-feedback-widget-modal .input-sm {
+    height: 26px;
+    font-size: 12px !important;
+}
+.telemetry-agent-feedback-widget-modal .input-lg {
+    height: 45px;
+    font-size: 16px !important;
+}
+/* BS2 backward compatibility sizes */
+.telemetry-agent-feedback-widget-modal .input-width-mini { width: 60px !important }
+.telemetry-agent-feedback-widget-modal .input-width-small { width: 90px !important }
+.telemetry-agent-feedback-widget-modal .input-width-medium { width: 150px !important }
+.telemetry-agent-feedback-widget-modal .input-width-large { width: 93% !important; }
+.telemetry-agent-feedback-widget-modal .input-width-xlarge { width: 270px !important }
+.telemetry-agent-feedback-widget-modal .input-width-xxlarge { width: 530px !important }
+.telemetry-agent-feedback-widget-modal .input-block-level {
+    display: block;
+    width: 100%;
+}
+/* * * * * * * * * * * *
+ * Textarea
+ * * * * * * * * * * * */
+.telemetry-agent-feedback-widget-modal textarea {
+    min-height: 97px;
+    /* min-width: 272px; */
+}
+.telemetry-agent-feedback-widget-modal textarea {
+    border-color: #cccccc;
+    /*max-width: 100%;
+    min-width: 100%;*/
+    overflow: auto;
+    width: 93% !important;
+	position:static !important;
+    
+}
+.telemetry-agent-feedback-widget-modal textarea.auto {
+    -webkit-transition: height 0.2s;
+    -moz-transition: height 0.2s;
+    -o-transition: height 0.2s;
+    transition: height 0.2s;
+}
+.telemetry-agent-feedback-widget-modal textarea.col { resize: vertical }
+.telemetry-agent-feedback-widget-modal input,
+.telemetry-agent-feedback-widget-modal textarea {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+/* * * * * * * * * * * *
+ * Selects
+ * * * * * * * * * * * */
+.telemetry-agent-feedback-widget-modal .multiple {
+    padding: 8px 10px;
+    height: 150px !important;
+    font-size: 12px;
+    border: 1px solid #DADADA;
+}
+/* * * * * * * * * * * *
+ * File Input
+ * * * * * * * * * * * */
+.telemetry-agent-feedback-widget-modal input[type="file"] {
+    height: auto;
+    line-height: normal;
+    margin-top: 5px;
+}
+/* * * * * * * * * * * *
+ * Checkboxes and Radios
+ * * * * * * * * * * * */
+.telemetry-agent-feedback-widget-modal .checkbox,
+.telemetry-agent-feedback-widget-modal .radio { font-weight: normal }
+.telemetry-agent-feedback-widget-modal .next-row {
+    display: block;
+    margin-top: 10px;
+}
+/* * * * * * * * * * * *
+ * Disabled States
+ * * * * * * * * * * * */
+.telemetry-agent-feedback-widget-modal input[disabled],
+.telemetry-agent-feedback-widget-modal select[disabled],
+.telemetry-agent-feedback-widget-modal textarea[disabled],
+.telemetry-agent-feedback-widget-modal input[readonly],
+.telemetry-agent-feedback-widget-modal select[readonly],
+.telemetry-agent-feedback-widget-modal textarea[readonly] {
+    cursor: not-allowed;
+    background-color: #f9f9f9;
+    color: #adadad;
+}
+.telemetry-agent-feedback-widget-modal .help-block,
+.telemetry-agent-feedback-widget-modal .help-inline { color: #adadad }
+/* * * * * * * * * * * *
+ * Icons
+ * * * * * * * * * * * */
+.telemetry-agent-feedback-widget-modal .control-label > i { margin-right: 6px }
+.telemetry-agent-feedback-widget-modal .controls { position: relative }
+.telemetry-agent-feedback-widget-modal .field-icon {
+    position: absolute;
+    top: 9px;
+    right: 25px;
+    display: block;
+    font-size: 14px;
+    line-height: 1;
+}
+.telemetry-agent-feedback-widget-modal .input-icon > input { padding-left: 30px !important }
+.telemetry-agent-feedback-widget-modal .input-icon > i {
+    color: #d1d1d1;
+    display: block !important;
+    position: absolute !important;
+    z-index: 1;
+    margin: 8px 2px 4px 10px;
+    width: 16px;
+    height: 16px;
+    font-size: 16px;
+    text-align: center;
+}
+.telemetry-agent-feedback-widget-modal .feedback-form .telemetry-agent-feedback-form-group {
+    padding-left: 0;
+    padding-right: 0;
+}
+.telemetry-agent-feedback-widget-modal .feedback-form .control-label { padding-top: 7px }
+.telemetry-agent-feedback-widget-modal img {
+    border: 0;
+    vertical-align: middle;
+}
+.telemetry-agent-feedback-widget-modal a { text-decoration: none }
+.telemetry-agent-feedback-widget-modal .btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.428571429;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.telemetry-agent-feedback-widget-modal .btn:focus {
+    outline: thin dotted #333;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+.telemetry-agent-feedback-widget-modal .btn:hover,
+.telemetry-agent-feedback-widget-modal .btn:focus {
+    color: #333;
+    text-decoration: none;
+}
+.telemetry-agent-feedback-widget-modal .btn:active,
+.btn.active {
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.telemetry-agent-feedback-widget-modal .btn.disabled,
+.telemetry-agent-feedback-widget-modal .btn[disabled],
+.telemetry-agent-feedback-widget-modal fieldset[disabled] .btn {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: .65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.telemetry-agent-feedback-widget-modal .btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+.telemetry-agent-feedback-widget-modal .btn-default:hover,
+.btn-default:focus,
+.btn-default:active,
+.btn-default.active,
+.open .dropdown-toggle.btn-default {
+    color: #333;
+    background-color: #ebebeb;
+    border-color: #adadad;
+}
+.telemetry-agent-feedback-widget-modal .btn,
+.telemetry-agent-feedback-widget-modal .ui-state-default,
+.telemetry-agent-feedback-widget-modal .ui-widget-content .ui-state-default,
+.telemetry-agent-feedback-widget-modal .ui-widget-header .ui-state-default,
+.telemetry-agent-feedback-widget-modal .ColVis_MasterButton,
+.telemetry-agent-feedback-widget-modal .fc-state-default {
+    background-color: #f3f3f3;
+    background-image: none;
+    filter: none;
+    border: 0;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    padding: 6px 13px;
+    text-shadow: none;
+    font-size: 14px;
+    font-weight: normal;
+    color: #333333;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px solid #d9d9d9;
+    border: 1px solid rgba(0, 0, 0, 0.13);
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    position: relative;
+    z-index: 1;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+.telemetry-agent-feedback-widget-modal .btn:hover,
+.telemetry-agent-feedback-widget-modal .ui-state-default:hover,
+.telemetry-agent-feedback-widget-modal .ui-widget-content .ui-state-default:hover,
+.telemetry-agent-feedback-widget-modal .ui-widget-header .ui-state-default:hover,
+.telemetry-agent-feedback-widget-modal .ColVis_MasterButton:hover,
+.telemetry-agent-feedback-widget-modal .fc-state-default:hover,
+.telemetry-agent-feedback-widget-modal .btn:focus,
+.telemetry-agent-feedback-widget-modal .ui-state-default:focus,
+.telemetry-agent-feedback-widget-modal .ui-widget-content .ui-state-default:focus,
+.telemetry-agent-feedback-widget-modal .ui-widget-header .ui-state-default:focus,
+.telemetry-agent-feedback-widget-modal .ColVis_MasterButton:focus,
+.telemetry-agent-feedback-widget-modal .fc-state-default:focus {
+    color: #333333;
+    background-color: #f8f8f8;
+    border-color: rgba(0, 0, 0, 0.13);
+}
+.telemetry-agent-feedback-widget-modal .btn:active,
+.telemetry-agent-feedback-widget-modal .ui-state-default:active,
+.telemetry-agent-feedback-widget-modal .ui-widget-content .ui-state-default:active,
+.telemetry-agent-feedback-widget-modal .ui-widget-header .ui-state-default:active,
+.telemetry-agent-feedback-widget-modal .ColVis_MasterButton:active,
+.telemetry-agent-feedback-widget-modal .fc-state-default:active,
+.telemetry-agent-feedback-widget-modal .btn.active,
+.telemetry-agent-feedback-widget-modal .ui-state-default.active,
+.telemetry-agent-feedback-widget-modal .ui-widget-content .ui-state-default.active,
+.telemetry-agent-feedback-widget-modal .ui-widget-header .ui-state-default.active,
+.telemetry-agent-feedback-widget-modal .ColVis_MasterButton.active,
+.telemetry-agent-feedback-widget-modal .fc-state-default.active {
+    background-color: #e6e6e6;
+    border-color: rgba(0, 0, 0, 0.13);
+    border-top: 1px solid #a6a6a6;
+}
+.telemetry-agent-feedback-widget-modal .btn.disabled,
+.telemetry-agent-feedback-widget-modal .ui-state-default.disabled,
+.telemetry-agent-feedback-widget-modal .ui-widget-content .ui-state-default.disabled,
+.telemetry-agent-feedback-widget-modal .ui-widget-header .ui-state-default.disabled,
+.telemetry-agent-feedback-widget-modal .ColVis_MasterButton.disabled,
+.telemetry-agent-feedback-widget-modal .fc-state-default.disabled,
+.telemetry-agent-feedback-widget-modal .btn.btn[disabled],
+.telemetry-agent-feedback-widget-modal .ui-state-default.btn[disabled],
+.telemetry-agent-feedback-widget-modal .ui-widget-content .ui-state-default.btn[disabled],
+.telemetry-agent-feedback-widget-modal .ui-widget-header .ui-state-default.btn[disabled],
+.telemetry-agent-feedback-widget-modal .ColVis_MasterButton.btn[disabled],
+.telemetry-agent-feedback-widget-modal .fc-state-default.btn[disabled] {
+    background-color: #f3f3f3;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-top: 1px solid rgba(0, 0, 0, 0.13);
+}
+.telemetry-agent-feedback-widget-modal .btn.disabled:hover,
+.telemetry-agent-feedback-widget-modal .ui-state-default.disabled:hover,
+.telemetry-agent-feedback-widget-modal .ui-widget-content .ui-state-default.disabled:hover,
+.telemetry-agent-feedback-widget-modal .ui-widget-header .ui-state-default.disabled:hover,
+.telemetry-agent-feedback-widget-modal .ColVis_MasterButton.disabled:hover,
+.telemetry-agent-feedback-widget-modal .fc-state-default.disabled:hover,
+.telemetry-agent-feedback-widget-modal .btn.btn[disabled]:hover,
+.telemetry-agent-feedback-widget-modal .ui-state-default.btn[disabled]:hover,
+.telemetry-agent-feedback-widget-modal .ui-widget-content .ui-state-default.btn[disabled]:hover,
+.telemetry-agent-feedback-widget-modal .ui-widget-header .ui-state-default.btn[disabled]:hover,
+.telemetry-agent-feedback-widget-modal .ColVis_MasterButton.btn[disabled]:hover,
+.telemetry-agent-feedback-widget-modal .fc-state-default.btn[disabled]:hover { cursor: not-allowed }
+.telemetry-agent-feedback-widget-modal .btn .caret,
+.telemetry-agent-feedback-widget-modal .ui-state-default .caret,
+.telemetry-agent-feedback-widget-modal .ui-widget-content .ui-state-default .caret,
+.telemetry-agent-feedback-widget-modal .ui-widget-header .ui-state-default .caret,
+.telemetry-agent-feedback-widget-modal .ColVis_MasterButton .caret,
+.telemetry-agent-feedback-widget-modal .fc-state-default .caret {
+    border-top-color: #333333;
+    margin-top: 0;
+    margin-left: 3px;
+    vertical-align: middle;
+}
+.btn + .caret,
+.telemetry-agent-feedback-widget-modal .ui-state-default + .caret,
+.telemetry-agent-feedback-widget-modal .ui-widget-content .ui-state-default + .caret,
+.telemetry-agent-feedback-widget-modal .ui-widget-header .ui-state-default + .caret,
+.telemetry-agent-feedback-widget-modal .ColVis_MasterButton + .caret,
+.telemetry-agent-feedback-widget-modal .fc-state-default + .caret,
+.telemetry-agent-feedback-widget-modal .btn + .dropdown-toggle .caret,
+.telemetry-agent-feedback-widget-modal .ui-state-default + .dropdown-toggle .caret,
+.telemetry-agent-feedback-widget-modal .ui-widget-content .ui-state-default + .dropdown-toggle .caret,
+.telemetry-agent-feedback-widget-modal .ui-widget-header .ui-state-default + .dropdown-toggle .caret,
+.telemetry-agent-feedback-widget-modal .ColVis_MasterButton + .dropdown-toggle .caret,
+.telemetry-agent-feedback-widget-modal .fc-state-default + .dropdown-toggle .caret { margin-left: 0px }
+/* * * * * * * * * * * *
+ * Sizes
+ * * * * * * * * * * * */
+.telemetry-agent-feedback-widget-modal .btn-lg {
+    padding: 10px 15px;
+    font-size: 14px;
+}
+.telemetry-agent-feedback-widget-modal .btn-sm {
+    padding: 4px 9px;
+    font-size: 12px;
+}
+.telemetry-agent-feedback-widget-modal .btn-xs {
+    padding: 0px 10px;
+    font-size: 11px;
+}
+/* * * * * * * * * * * *
+ * States
+ * * * * * * * * * * * */
+.telemetry-agent-feedback-widget-modal .btn-primary {
+    color: #ffffff;
+    background-color: #3968c6;
+    z-index: 2;
+}
+.telemetry-agent-feedback-widget-modal .btn-primary:hover,
+.telemetry-agent-feedback-widget-modal .btn-primary:focus {
+    color: #ffffff;
+    background-color: #4d77cc;
+}
+.telemetry-agent-feedback-widget-modal .btn-primary:active,
+.telemetry-agent-feedback-widget-modal .btn-primary.active {
+    background-color: #335eb2;
+    border-top: 1px solid #1c3463;
+}
+.telemetry-agent-feedback-widget-modal .btn-primary.disabled,
+.telemetry-agent-feedback-widget-modal .btn-primary.btn[disabled] {
+    background-color: #3968c6;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.telemetry-agent-feedback-widget-modal .btn-primary .caret { border-top-color: #ffffff }
+.telemetry-agent-feedback-widget-modal .btn-group.open .btn-primary.dropdown-toggle { background-color: #335eb2 }
+.telemetry-agent-feedback-widget-modal .btn-info {
+    color: #ffffff;
+    background-color: #2f96b4;
+    z-index: 2;
+}
+.telemetry-agent-feedback-widget-modal .btn-info:hover,
+.telemetry-agent-feedback-widget-modal .btn-info:focus {
+    color: #ffffff;
+    background-color: #34a7c8;
+}
+.telemetry-agent-feedback-widget-modal .btn-info:active,
+.telemetry-agent-feedback-widget-modal .btn-info.active {
+    background-color: #2a85a0;
+    border-top: 1px solid #15424f;
+}
+.telemetry-agent-feedback-widget-modal .btn-info.disabled,
+.telemetry-agent-feedback-widget-modal .btn-info.btn[disabled] {
+    background-color: #2f96b4;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.telemetry-agent-feedback-widget-modal .btn-info .caret { border-top-color: #ffffff }
+.telemetry-agent-feedback-widget-modal .btn-group.open .btn-info.dropdown-toggle { background-color: #2a85a0 }
+.telemetry-agent-feedback-widget-modal .btn-warning {
+    color: #ffffff;
+    background-color: #f89406;
+    z-index: 2;
+}
+.telemetry-agent-feedback-widget-modal .btn-warning:hover,
+.telemetry-agent-feedback-widget-modal .btn-warning:focus {
+    color: #ffffff;
+    background-color: #fa9f1e;
+}
+.telemetry-agent-feedback-widget-modal .btn-warning:active,
+.telemetry-agent-feedback-widget-modal .btn-warning.active {
+    background-color: #df8505;
+    border-top: 1px solid #7c4a03;
+}
+.telemetry-agent-feedback-widget-modal .btn-warning.disabled,
+.telemetry-agent-feedback-widget-modal .btn-warning.btn[disabled] {
+    background-color: #f89406;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.telemetry-agent-feedback-widget-modal .btn-warning .caret { border-top-color: #ffffff }
+.telemetry-agent-feedback-widget-modal .btn-group.open .btn-warning.dropdown-toggle { background-color: #df8505 }
+.telemetry-agent-feedback-widget-modal .btn-danger {
+    color: #ffffff;
+    background-color: #bd362f;
+    z-index: 2;
+}
+.telemetry-agent-feedback-widget-modal .btn-danger:hover,
+.telemetry-agent-feedback-widget-modal .btn-danger:focus {
+    color: #ffffff;
+    background-color: #ce3f38;
+}
+.telemetry-agent-feedback-widget-modal .btn-danger:active,
+.telemetry-agent-feedback-widget-modal .btn-danger.active {
+    background-color: #a9302a;
+    border-top: 1px solid #571916;
+}
+.telemetry-agent-feedback-widget-modal .btn-danger.disabled,
+.telemetry-agent-feedback-widget-modal .btn-danger.btn[disabled] {
+    background-color: #bd362f;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.telemetry-agent-feedback-widget-modal .btn-danger .caret { border-top-color: #ffffff }
+.telemetry-agent-feedback-widget-modal .btn-group.open .btn-danger.dropdown-toggle { background-color: #a9302a }
+.telemetry-agent-feedback-widget-modal .btn-inverse {
+    color: #ffffff;
+    background-color: #555555;
+    z-index: 2;
+}
+.telemetry-agent-feedback-widget-modal .btn-inverse:hover,
+.telemetry-agent-feedback-widget-modal .btn-inverse:focus {
+    color: #ffffff;
+    background-color: #626262;
+}
+.telemetry-agent-feedback-widget-modal .btn-inverse:active,
+.telemetry-agent-feedback-widget-modal .btn-inverse.active {
+    background-color: #484848;
+    border-top: 1px solid #151515;
+}
+.telemetry-agent-feedback-widget-modal .btn-inverse.disabled,
+.telemetry-agent-feedback-widget-modal .btn-inverse.btn[disabled] {
+    background-color: #555555;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.telemetry-agent-feedback-widget-modal .btn-inverse .caret { border-top-color: #ffffff }
+.telemetry-agent-feedback-widget-modal .btn-group.open .btn-inverse.dropdown-toggle { background-color: #484848 }
+.telemetry-agent-feedback-widget-modal .btn-success {
+    color: #ffffff;
+    background-color: #51a351;
+    z-index: 2;
+}
+.telemetry-agent-feedback-widget-modal .btn-success:hover,
+.telemetry-agent-feedback-widget-modal .btn-success:focus {
+    color: #ffffff;
+    background-color: #5eaf5e;
+}
+.telemetry-agent-feedback-widget-modal .btn-success:active,
+.telemetry-agent-feedback-widget-modal .btn-success.active {
+    background-color: #499249;
+    border-top: 1px solid #274e27;
+}
+.telemetry-agent-feedback-widget-modal .btn-success.disabled,
+.telemetry-agent-feedback-widget-modal .btn-success.btn[disabled] {
+    background-color: #51a351;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.telemetry-agent-feedback-widget-modal .btn-success .caret { border-top-color: #ffffff }
+.telemetry-agent-feedback-widget-modal .btn-group.open .btn-success.dropdown-toggle { background-color: #499249 }
+.telemetry-agent-feedback-widget-modal .btn-facebook {
+    color: #ffffff;
+    background-color: #3b5998;
+    z-index: 2;
+}
+.telemetry-agent-feedback-widget-modal .btn-facebook:hover,
+.telemetry-agent-feedback-widget-modal .btn-facebook:focus {
+    color: #ffffff;
+    background-color: #4264aa;
+}
+.telemetry-agent-feedback-widget-modal .btn-facebook:active,
+.telemetry-agent-feedback-widget-modal .btn-facebook.active {
+    background-color: #344e86;
+    border-top: 1px solid #17233c;
+}
+.telemetry-agent-feedback-widget-modal .btn-facebook.disabled,
+.telemetry-agent-feedback-widget-modal .btn-facebook.btn[disabled] {
+    background-color: #3b5998;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.telemetry-agent-feedback-widget-modal .btn-facebook .caret { border-top-color: #ffffff }
+.telemetry-agent-feedback-widget-modal .btn-group.open .btn-facebook.dropdown-toggle { background-color: #344e86 }
+.telemetry-agent-feedback-widget-modal .btn-twitter {
+    color: #ffffff;
+    background-color: #00acee;
+    z-index: 2;
+}
+.telemetry-agent-feedback-widget-modal .btn-twitter:hover,
+.telemetry-agent-feedback-widget-modal .btn-twitter:focus {
+    color: #ffffff;
+    background-color: #09bbff;
+}
+.telemetry-agent-feedback-widget-modal .btn-twitter:active,
+.telemetry-agent-feedback-widget-modal .btn-twitter.active {
+    background-color: #009ad5;
+    border-top: 1px solid #00506f;
+}
+.telemetry-agent-feedback-widget-modal .btn-twitter.disabled,
+.telemetry-agent-feedback-widget-modal .btn-twitter.btn[disabled] {
+    background-color: #00acee;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.telemetry-agent-feedback-widget-modal .btn-twitter .caret { border-top-color: #ffffff }
+.telemetry-agent-feedback-widget-modal .btn-group.open .btn-twitter.dropdown-toggle { background-color: #009ad5 }
+.telemetry-agent-feedback-widget-modal .btn-google-plus {
+    color: #ffffff;
+    background-color: #d14836;
+    z-index: 2;
+}
+.telemetry-agent-feedback-widget-modal .btn-google-plus:hover,
+.telemetry-agent-feedback-widget-modal .btn-google-plus:focus {
+    color: #ffffff;
+    background-color: #d65b4b;
+}
+.telemetry-agent-feedback-widget-modal .btn-google-plus:active,
+.telemetry-agent-feedback-widget-modal .btn-google-plus.active {
+    background-color: #c13e2c;
+    border-top: 1px solid #6e2319;
+}
+.telemetry-agent-feedback-widget-modal .btn-google-plus.disabled,
+.telemetry-agent-feedback-widget-modal .btn-google-plus.btn[disabled] {
+    background-color: #d14836;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.telemetry-agent-feedback-widget-modal .btn-google-plus .caret { border-top-color: #ffffff }
+.telemetry-agent-feedback-widget-modal .btn-group.open .btn-google-plus.dropdown-toggle { background-color: #c13e2c }
+/* * * * * * * * * * * *
+ * Button Groups
+ * * * * * * * * * * * */
+.telemetry-agent-feedback-widget-modal .btn-group > .btn:first-child,
+.telemetry-agent-feedback-widget-modal .btn-group > .btn:last-child {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+.telemetry-agent-feedback-widget-modal .btn-group > .btn i { margin-right: 3px }
+.telemetry-agent-feedback-widget-modal .btn-group > .dropdown-toggle {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+}
+/* * * * * * * * * * * *
+ * Dropdown Toggles
+ * * * * * * * * * * * */
+.telemetry-agent-feedback-widget-modal .btn-group > .btn + .dropdown-toggle {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+.telemetry-agent-feedback-widget-modal .btn:active,
+.telemetry-agent-feedback-widget-modal .btn.active,
+.telemetry-agent-feedback-widget-modal .btn-group.open .dropdown-toggle,
+.telemetry-agent-feedback-widget-modal .btn-group > .btn + .dropdown-toggle:active {
+    border-top: 1px solid rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.13) inset;
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.13) inset;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.13) inset;
+}
+/* * * * * * * * * * * *
+ * Icon Buttons
+ * * * * * * * * * * * */
+.telemetry-agent-feedback-widget-modal .btn-icon {
+    margin: 10px 0px;
+    padding: 10px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.telemetry-agent-feedback-widget-modal .btn-icon:hover {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.telemetry-agent-feedback-widget-modal .btn-icon:active {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+.telemetry-agent-feedback-widget-modal .btn-icon i { margin: 0 }
+/* * * * * * * * * * * *
+ * Badges
+ * * * * * * * * * * * */
+.telemetry-agent-feedback-widget-modal .btn .label {
+    position: absolute;
+    font-size: 11px !important;
+    font-weight: 300;
+    top: -5px;
+    right: -5px;
+    padding: 3px 7px 3px 7px;
+    color: white !important;
+    text-shadow: none;
+    border-width: 0;
+    border-style: solid;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+/* Caret for Dropups */
+.telemetry-agent-feedback-widget-modal .dropup .btn .caret { border-bottom-color: #333333 }
+/* * * * * * * * * * * *
+ * Demo Only
+ * * * * * * * * * * * */
+.telemetry-agent-feedback-widget-modal .btn-toolbar-demo .btn { margin: 3px }
+.capitalize-text { text-transform: capitalize }
+.telemetry-agent-feedback-widget-modal .feedback_thumb_image{
+    font-size: 12px;
+    color: #333333;
+}
+.telemetry-agent-feedback-widget-modal .feedback_thumb_image img.captureImage { 
+    min-height: 160px;
+    width: 200px;
+}
+.telemetry-agent-feedback-widget-modal .captureImage {
+    border: 8px solid #DDDDDD;
+}
+
+.telemetry-agent-feedback-widget-modal .prelative {
+    position: relative;
+}
+.telemetry-agent-feedback-widget-modal .pabsolute {
+    position: absolute;
+}
+.telemetryAgentFeedbackLabel .fLeft,.telemetry-agent-feedback-widget-modal .fLeft { float: left }
+.telemetry-agent-feedback-widget-modal .removeImage {  
+    color: #840C08;
+    font-size: 25px !important;
+    opacity: 1;
+    position: absolute;
+    right: -10px;
+    top: -10px; 
+}
+.telemetry-agent-feedback-widget-modal .feedback-modal-title {
+   /* background: url("../img/logo30.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    padding: 5px 34px;*/
+}
+.telemetry-agent-feedback-widget-modal .telemetry-agent-feedback-close:hover,
+.telemetry-agent-feedback-widget-modal .telemetry-agent-feedback-close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    opacity: .5;
+    filter: alpha(opacity=50);
+}
+.telemetry-agent-feedback-widget-modal button.telemetry-agent-feedback-close {
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+}
+.telemetry-agent-feedback-widget-modal .feedback-modal-title {
+    margin: 0;
+    line-height: 1.428571429;
+    font:inherit; 
+    font-weight: 600;
+    text-align: center;
+}
+.telemetry-agent-feedback-widget-modal .telemetry-agent-feedback-modal-body {
+    position: relative;
+    padding: 20px;
+    font:inherit; 
+}
+.telemetry-agent-feedback-widget-modal .feedback-modal-footer {
+    padding: 19px 20px 20px;
+    margin-top: 15px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+    font:inherit; 
+}
+.telemetry-agent-feedback-widget-modal .feedback-modal-footer:before,
+.telemetry-agent-feedback-widget-modal .feedback-modal-footer:after {
+    display: table;
+    content: " ";
+}
+.telemetry-agent-feedback-widget-modal .feedback-modal-footer:after { clear: both }
+.telemetry-agent-feedback-widget-modal .feedback-modal-footer:before,
+.telemetry-agent-feedback-widget-modal .feedback-modal-footer:after {
+    display: table;
+    content: " ";
+}
+.telemetry-agent-feedback-widget-modal .feedback-modal-footer:after { clear: both }
+.telemetry-agent-feedback-widget-modal .feedback-modal-footer .btn+.btn {
+    margin-bottom: 0;
+    margin-left: 5px;
+}
+.telemetry-agent-feedback-widget-modal .feedback-modal-footer .btn-group .btn+.btn { margin-left: -1px }
+.telemetry-agent-feedback-widget-modal .feedback-modal-footer .btn-block+.btn-block { margin-left: 0 }
+.telemetry-agent-feedback-widget-modal .telemetry-agent-feedback-form-group {
+    margin-bottom: 15px;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.telemetry-agent-feedback-widget-modal .feedback-form .telemetry-agent-telemetry-agent-feedback-form-group:before,
+.telemetry-agent-feedback-widget-modal .feedback-form .telemetry-agent-feedback-form-group:after {
+    display: table;
+    content: " ";
+}
+.telemetry-agent-feedback-widget-modal .feedback-form .telemetry-agent-feedback-form-group:after { clear: both }
+.telemetry-agent-feedback-widget-modal .feedback-form .control-label {
+    text-align: right;
+    display: inline-block;
+    width: 25%;
+    font:inherit; 
+}
+.telemetry-agent-feedback-widget-modal .form-control {
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    line-height: 1.428571429;
+    color: #555;
+    vertical-align: middle;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.telemetry-agent-feedback-widget-modal .form-control:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+.telemetry-agent-feedback-widget-modal .form-control[disabled],
+.telemetry-agent-feedback-widget-modal .form-control[readonly],
+.telemetry-agent-feedback-widget-modal fieldset[disabled] .form-control {
+    cursor: not-allowed;
+    background-color: #eee;
+}
+.telemetry-agent-feedback-widget-modal .col {
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+    float: left;
+}
+.telemetry-agent-feedback-widget-modal .coloffset-25 { margin-left: 25% }
+.telemetry-agent-feedback-widget-modal .col-75 { width: 75%  !important;}
+.telemetry-agent-feedback-widget-modal .col-100 { width: 100% }
+.telemetry-agent-feedback-widget-modal .feedback-form .control-label,
+.telemetry-agent-feedback-widget-modal .feedback-form .radio,
+.telemetry-agent-feedback-widget-modal .feedback-form .checkbox,
+.telemetry-agent-feedback-widget-modal .feedback-form .radio-inline,
+.telemetry-agent-feedback-widget-modal .feedback-form .checkbox-inline {
+    padding-top: 7px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+/************/
+.telemetry-agent-feedback-widget-modal .btn-file {
+    overflow:hidden;
+    position:relative;
+    vertical-align:middle;
+    height: 26px;
+}
+.telemetry-agent-feedback-widget-modal .btn-file>input {
+    position:absolute;
+    top:0;
+    right:0;
+    margin:0;
+    opacity:0;
+    filter:alpha(opacity=0); 
+    font-size:23px;
+    height:100%;
+    direction:ltr;
+    cursor:pointer
+}
+.telemetry-agent-feedback-widget-modal .telemetry-agent-fileinput-filename {
+    vertical-align:middle;
+    display:inline-block;
+    overflow:hidden;
+    font-size: 12px;
+} 
+.telemetry-agent-feedback-widget-modal .telemetry-agent-feedback-attachment{
+    display: none;
+}
+.telemetry-agent-feedback-widget-modal .telemetry-agent-fileinput {
+    display: inline-block;
+    margin-bottom: 9px;
+}
+.telemetry-agent-feedback-widget-modal .telemetry-agent-fileinput .telemetry-agent-fileinput-exists {
+    display: none;
+}
+
+a.telemetry-agent-fileinput-exists{
+    opacity: .5;
+    filter: alpha(opacity=50);
+    position: absolute;
+    right: -15px;
+    top: 0;
+}
+
+/******Alert*****/
+
+.telemetry-agent-feedback-widget-modal .telemetry-agent-feedback-error.alert-danger {
+    background-color: #F2DEDE;
+    border-color: #EED3D7;
+    color: #B94A48;
+}
+.telemetry-agent-feedback-widget-modal .telemetry-agent-feedback-error.alert-success {
+    background-color: #DFF0D8;
+    border-color: #D6E9C6;
+    color: #468847;
+}
+.telemetry-agent-feedback-widget-modal .telemetry-agent-feedback-error.alert {
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 15px;
+}
+ 
+.telemetry-agent-feedback-widget-modal .telemetry-agent-feedback-close:after, .telemetry-agent-feedback-widget-modal .alert .telemetry-agent-feedback-close:after{
+    content: "";
+}
+.close-icon{
+    background: url('../images/close.png') no-repeat  scroll right center ;
+    border: 0 none;
+    cursor: pointer;
+    height: 16px;
+    width: 16px;
+}
+.cirlce-close-icon{
+    background: url('../images/close-circle.png') no-repeat  scroll right center  !important;
+    border: 0 none;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+}
+#telemetryAgentInsertFeedbackForm .btn-default {
+  color: #333333 !important;
+}
+
+.refresh-icon{
+    background: url('../images/refresh.png') no-repeat  scroll right center ;
+    border: 0 none;
+    cursor: pointer;
+    height: 24px;
+    width: 24px;
+}
+.clip-icon{
+    background: url('../images/clip.png') no-repeat  scroll left center ;
+    border: 0 none;
+    cursor: pointer;
+    height: 16px;
+    width: auto;
+    padding-left: 18px;
+}
+.refresh-block{
+    margin-left: 5px;
+    padding: 0px !important;
+}
+
+.telemetry-agent-feedback-widget-modal .error{
+    font-weight: normal;
+    color: #cd0000;
+}
+.telemetry-agent-feedback-widget-modal label.error{
+     font-weight: normal;
+     font-size: 12px !important;
+    display: inline-block !important;
+}
+.telemetry-agent-feedback-widget-modal .error,.telemetry-agent-feedback-widget-modal input.error{ 
+    color: #cd0000;
+}
+.telemetry-agent-feedback-widget-modal .loader-pleasewait{ 
+    background: url('../images/loading.gif') no-repeat  scroll left center ;
+    border: 0 none;
+    height: 32px;
+    left: 43%;
+    display: none;
+    position: absolute;
+    top: 50%;
+    width: 32px;
+    z-index: 9999;
+}
+.telemetry-agent-feedback-widget-modal .fade-block{ 
+    background: none repeat scroll 0 0 #000000;
+    display: none;
+    height: 100%;
+    margin: inherit;
+    opacity: 0.1;
+    position: absolute;
+    width: 100%;
+    z-index: 9;
+
+}
+@media (max-width:768px) { 
+    .telemetry-agent-feedback-widget-modal .feedback-form .control-label { text-align: right }
+    .telemetry-agent-feedback-widget-modal .telemetry-agent-feedback-modal-container {
+        right: auto;
+        left: 11%;
+        width: 600px;
+        position:absolute;
+    }
+}
+@media (max-width:767px) { 
+    .telemetry-agent-feedback-widget-modal .telemetry-agent-feedback-modal-container {
+        right: auto;
+        left: 11%;
+        width: 80%;
+        position:absolute;
+    }
+    .telemetry-agent-feedback-widget-modal .feedback-form .control-label{
+        text-align: left;
+        width: 100%;
+    }
+    .telemetry-agent-feedback-widget-modal .col-75{
+        width: 100%;
+    }
+}
+@media (min-width:769px) and (max-width:1024px) { 
+    .telemetry-agent-feedback-widget-modal .telemetry-agent-feedback-modal-container {
+        right: auto;
+		left: 21%;
+		position:absolute;
+        width: 600px;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+    .telemetry-agent-feedback-widget-modal .feedback-modal-content {
+        -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    }
+}
+
+.telemetry-agent-feedback-widget-modal .telemetry-agent-feedback-form-group.grey {
+    font-size: 14px;
+    color: #6E6E6E;
+    text-align: center;
+}
+.telemetry-agent-feedback-widget-modal .telemetry-agent-feedback-form-group.red {
+    color: #fe0000;
+    font-size: 12px;
+    font-style: italic;
+    text-align: center;
+}
+.feedback-welcome-txt{
+    font-weight: bold !important;
+    margin-bottom: 0 !important;
+}
+#captchaText{
+    background-image: url("../images/captcha.jpeg") !important;
+    border: medium none;
+    color: #000000;
+
+    float: left;
+    font-family: Comic Sans MS;
+    font-size: 21px !important;
+    font-weight: bold;
+    height: 100px;
+    margin-bottom: 20px;
+    
+    text-align: center;
+
+    width: 200px;
+    z-index: 999 !important;
+    overflow: visible !important;
+}
+#refreshButton{
+    cursor: pointer;
+    float: left;
+    height: 24px;
+    margin-left: 14px;
+    margin-top: 40px;
+    width: 24px;
+}
+#captchaTextValue{
+    margin-bottom: 20px;
+    width: 375px !important;
+}   
+#captchaTextValue label{
+    margin-left: 30px !important;
+}
