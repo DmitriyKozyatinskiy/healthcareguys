@@ -12,19 +12,32 @@
             <p class="text-center add-image-button {{ #image }}hidden{{ /image }}" id="js-add-image">Add image</p>
         </a>
         <input type="file" class="hidden" id="js-image-uploader">
-        <div class="list-container list-cat-height" id="js-categories-container">
-            {{ #categories }}
-            <p>
-            <div class="checkbox">
-                <label for="category-{{ id }}">
-                <input type="checkbox" value="{{ id }}" id="category-{{ id }}" class="js-category-input">{{{ name }}}
-                </label>
+        <div class="pull-down js-expandable-container">
+            <div class="list-container list-cat-height" id="js-categories-container">
+                {{ #categories }}
+                <p>
+                <div class="checkbox">
+                    <label for="category-{{ id }}">
+                        <input type="checkbox" value="{{ id }}" id="category-{{ id }}" class="js-category-input">{{{ name }}}
+                    </label>
+                </div>
+                </p>
+                {{ /categories }}
             </div>
-            </p>
-            {{ /categories }}
-        </div>       
+            <div class="list-size-controller-container">
+                <span class="glyphicon glyphicon-chevron-up js-list-toggler" role="button"></span>
+            </div>
+        </div>
     </div>
-    <div class=" submit-container">       
+    <div class="submit-container">
+        <div class="loading-container hidden js-loading-container">
+            <div id="js-spinner" class="loading">
+                <div class="bullet"></div>
+                <div class="bullet"></div>
+                <div class="bullet"></div>
+                <div class="bullet"></div>
+            </div>
+        </div>
         <div class="alert alert-success submission-notification hidden js-submission-success" role="alert">
             <span class="glyphicon glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
             <span class="js-submission-success-message">Data was submitted successfully</span>
@@ -33,11 +46,10 @@
             <span class="glyphicon glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
             <span class="js-submission-error-message"></span>
         </div>
-        <button type="submit" class="btn btn-primary button-submit">
-        <img src="../img/icons/icon32x32.png" class="submit-icon" height="25">
-        <span class="submit-button-text">Post to Healthcare Guys</span>
+        <button type="submit" class="btn btn-primary button-submit js-submit-button">
+            <img src="../img/icons/icon32x32.png" class="submit-icon" height="25">
+            <span class="submit-button-text">Post to Healthcare Guys</span>
         </button>
-        <span class="name-label"></span>
-        <div class="clearfix"></div>
+        <span class="js-name-label"></span>
     </div>
 </div>

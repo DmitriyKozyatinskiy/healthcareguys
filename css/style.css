@@ -42,7 +42,6 @@ hr {
 
 .button-submit {
     width: 100%;
-    .top-cm-pad{padding-top: 10px !important}.top-cm-pad{padding-top: 10px !important}#background-color: #A8C5E7;
 }
 
 .image-holder {
@@ -60,9 +59,7 @@ hr {
 
 .submit-container {
    padding:10px;
-   border-top:1px solid #eee;
-   height:51px;
-
+   border-top:1px solid #CCCCCC;
 }
 
 .image-container {
@@ -86,7 +83,8 @@ h4.list-header {
 
 .list-container {
     margin-top: 10px;
-    margin-left: 10px;
+    padding-left: 10px;
+    border-top: 1px solid #CCCCCC;
     #max-height: 120px;
    
     overflow-y: auto;
@@ -163,7 +161,6 @@ h4.list-header {
 
 .submit-button-text {
     vertical-align: text-top;
-    padding:0 0 0 9px;
 }
 
 .tab-container {
@@ -278,7 +275,6 @@ h4.list-header {
     color:#999;
     position: relative;
     top: 1px;
-    margin:0 0 0 4px;
 }
 .checkbox input{
     padding: 3px 6px !important;
@@ -289,34 +285,34 @@ h4.list-header {
 }
 .default-height{
     height:460px;
+    position: relative;
 }
 .list-default-height {
     height:400px;
 }
 .submit-container button{   
-   height:30px !important;
-   padding: 0 0 0 1px !important;
-   width:52% !important;
-   text-align:left !important;
+   height: 30px !important;
+   padding: 0 0 0 3px;
+   width: 52% !important;
+   text-align: center;
 }
 .js-tab-button.active{
     color:#5b9bd5 !important;
 }
 .clear-marg{
     margin-top: 0px !important;
-    padding-top: 0px !important
 }
 .top-cm-pad{
     padding-top: 10px !important
 }
 .list-cat-height{
-    height: 135px !important;
+    max-height: 135px;
 }
 .list-hash-height{
-    height: 270px !important;
+    max-height: 290px !important; //270px
 }
 #js-visuals-container select{
-    margin:0px;
+    margin:0;
 }
 #js-visuals-container label{
     font-weight:normal;
@@ -331,4 +327,98 @@ h4.list-header {
 }
 .normal{
     font-weight: normal !important;
+}
+
+.list-size-controller-container {
+    width: 100%;
+    background-color: #F2F2F2;
+    text-align: center;
+}
+
+.pull-down {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.pull-down-expanded {
+    top: 0;
+    background-color: white;
+    z-index: 9999;
+    overflow: auto;
+}
+
+.pull-down-expanded .list-size-controller-container {
+    position: fixed;
+    bottom: 51px;
+    width: 383px;
+}
+
+
+.loading-container {
+    width: 100%;
+    height: 30px;
+    position: relative;
+}
+
+.loading {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
+.loading .bullet {
+    position: absolute;
+    padding: 5px;
+    border-radius: 50%;
+    background: #65a3ff;
+    -webkit-animation: animIn 1s ease-in-out 0s infinite;
+    animation: animIn 1s ease-in-out 0s infinite;
+}
+.loading .bullet:nth-child(1) {
+    -webkit-animation-delay: 0s;
+    animation-delay: 0s;
+}
+.loading .bullet:nth-child(2) {
+    -webkit-animation-delay: 0.15s;
+    animation-delay: 0.15s;
+}
+.loading .bullet:nth-child(3) {
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+}
+.loading .bullet:nth-child(4) {
+    -webkit-animation-delay: 0.45s;
+    animation-delay: 0.45s;
+}
+@-webkit-keyframes animIn {
+    0% {
+        -webkit-transform: translateX(-100px);
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateX(100px);
+        transform: translateX(100px);
+        opacity: 0;
+    }
+}
+@keyframes animIn {
+    0% {
+        -webkit-transform: translateX(-100px);
+        transform: translateX(-100px);
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateX(100px);
+        transform: translateX(100px);
+        opacity: 0;
+    }
 }

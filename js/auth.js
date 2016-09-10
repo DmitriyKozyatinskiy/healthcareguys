@@ -19,13 +19,11 @@ var Auth = (function () {
       }
     }).done(function (response) {
       response = JSON.parse(response);
-      console.log(response);
       if (response.status === 'success') {
-          saveToken(response.token).done(function (token) {
-          dfd.resolve(token);   
-          chrome.storage.sync.set({ 'uname': response.results.uname }, function(uname) {
-            dfd.resolve(uname)
-          });                 
+        saveToken(response.token).done(function () {
+          saveUserName(response.results.uname).done(function() {
+            dfd.resolve(response.results.uname);
+          });
         });
       } else {
         dfd.reject();
@@ -70,13 +68,10 @@ var Auth = (function () {
 
   function saveToken(token) {
     var dfd = $.Deferred();
+
     chrome.storage.sync.set({ 'token': token }, function() {
       dfd.resolve(token)
     });
-
-    // chrome.runtime.sendMessage({token: token}, function(token) {
-    //   dfd.resolve(token);
-    // });
 
     return dfd.promise();
   }
@@ -95,18 +90,36 @@ var Auth = (function () {
     var dfd = $.Deferred();
 
     $.ajax({
-      url: "https://news-devl.healthcareguys.com/wp-json/api/wp/v2/authentication/logout",
-      method: "POST",
+      url: 'https://news-devl.healthcareguys.com/wp-json/api/wp/v2/authentication/logout',
+      method: 'POST',
       contentType: 'application/json',
       xhrFields: {
         withCredentials: true
       }
     }).done(function() {
-      saveToken("").done(function () {
-        dfd.resolve();
+      saveToken('').done(function () {
+        saveUserName('').done(function () {
+          dfd.resolve();
+        });
       });
     });
 
+    return dfd.promise();
+  }
+
+  function saveUserName(username) {
+    var dfd = $.Deferred();
+    chrome.storage.sync.set({ 'username': username }, function() {
+      dfd.resolve(username);
+    });
+    return dfd.promise();
+  }
+
+  function getUserName() {
+    var dfd = $.Deferred();
+    chrome.storage.sync.get('username', function(username) {
+      dfd.resolve(username.username)
+    });
     return dfd.promise();
   }
 
@@ -122,7 +135,6 @@ var Auth = (function () {
     }).fail(function () {
       dfd.reject();
     });
-
     return dfd.promise();
   }
 
@@ -132,6 +144,7 @@ var Auth = (function () {
     getToken: getToken,
     saveToken: saveToken,
     isSignedIn: isSignedIn,
+    getUserName: getUserName,
     showSignInForm: showSignInForm
   }
 }());

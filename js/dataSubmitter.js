@@ -73,33 +73,35 @@
     }
 
     function handleDataSubmissionProcess() {
-        var errorMessage = {message:''};
-        var data = getContentData();
-        console.log('DATA: ', data);
+      var errorMessage = { message: '' };
+      var data = getContentData();
+      
+      $('.js-submission-error').addClass('hidden');
+      $('.js-submission-success').addClass('hidden');
 
-        if (!data.title && (!data.category.length || data.category.length > MAX_CATEGORIES_NUMBER)) {
-            errorMessage.message = noTitleErrorMessage + '; ' + categoriesErrorMessage;
-        } else if (!data.title) {
-            errorMessage.message = noTitleErrorMessage;
-        } else if (!data.category.length || data.category.length > MAX_CATEGORIES_NUMBER) {
-            errorMessage.message = categoriesErrorMessage;
-        }
+      if (!data.title && (!data.category.length || data.category.length > MAX_CATEGORIES_NUMBER)) {
+          errorMessage.message = noTitleErrorMessage + '; ' + categoriesErrorMessage;
+      } else if (!data.title) {
+          errorMessage.message = noTitleErrorMessage;
+      } else if (!data.category.length || data.category.length > MAX_CATEGORIES_NUMBER) {
+          errorMessage.message = categoriesErrorMessage;
+      }
 
-        if (errorMessage.message) {
-            showSubmissionStatus('error', errorMessage);
-            return;
-        }
+      if (errorMessage.message) {
+          showSubmissionStatus('error', errorMessage);
+          return;
+      }
 
-        Loader.show();
-        Auth.getToken().done(function(token) {
-            submitData(data, token).done(function(response) {                
-                showSubmissionStatus('success', response );
-            }).fail(function(response) {
-                showSubmissionStatus('error', response);
-            }).always(function() {
-                Loader.hide();
-            });
-        });
+      Loader.show();
+      Auth.getToken().done(function(token) {
+          submitData(data, token).done(function(response) {
+              showSubmissionStatus('success', response );
+          }).fail(function(response) {
+              showSubmissionStatus('error', response);
+          }).always(function() {
+              Loader.hide();
+          });
+      });
     }
 
     function showSubmissionStatus(status, response) {   
@@ -149,38 +151,37 @@
         };
     }
     function handleFeedbackSubmissionProcess(telemetryAgent) {
-       var errorMessage = '';    
         var data = getFeedbackData();
-        //chrome.extension.getBackgroundPage().console.log(telemetryAgent); 
-       // chrome.extension.getBackgroundPage().console.log(JSON.stringify(data));
-        telemetryAgent.supportWidget.widgetApiPost(data,function(){
-            $('.alert-success').removeClass('hidden');
-            Loader.hide(); 
 
-        });    
+        Loader.show();
+        telemetryAgent.supportWidget.widgetApiPost(data, function(){
+            $('.alert-success').removeClass('hidden');
+            Loader.hide();
+        });
     }
-    function validateEmail(email) {
-        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
+
+    function isValidEmail(email) {
+        var emailValidationRegexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return emailValidationRegexp.test(email);
     }
+
     $(document).on('submit', '#js-content-form', function(event) {
         event.preventDefault();
         handleDataSubmissionProcess();
-    });
-    
-    $(document).on('click', '#js-feedback', function(event) {       
-        Loader.show();   
-        if(validateEmail($('#js-fed-email').val())){
-            $("#fed-message").addClass("hidden");
-            var errorMessage = '';
+    }).on('click', '#js-feedback', function(event) {
+        var name  = $('#js-fed-name').val().trim();
+        var email = $('#js-fed-email').val().trim();
+
+        if (isValidEmail()) {
+            $('#fed-message').addClass('hidden');
             var userDetails = {
-                "name": $.trim($('#js-fed-name').val()),
-                "email": $.trim($('#js-fed-email').val()),
-                "account": "PrescribeWell",
-                "appVersion": '1.2+0001',
-                "role": "admin",
+                'name': name,
+                'email': email,
+                'account': 'PrescribeWell',
+                'appVersion': '1.2+0001',
+                'role': 'admin'
             };
-            var d = "NPS";
+            var d = 'NPS';
             var telemetryAgent = TelemetryAgent.getInstance({
                 apiKey: '25447ae7-a97c-325e-bc52-e75814b61b07',
                 releaseStage: d,
@@ -188,7 +189,7 @@
             });
             handleFeedbackSubmissionProcess(telemetryAgent);
         } else {
-            $("#fed-message").removeClass("hidden");
+            $('#fed-message').removeClass('hidden');
              Loader.hide(); 
         }         
         event.preventDefault();

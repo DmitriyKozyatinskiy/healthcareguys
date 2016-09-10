@@ -14,25 +14,31 @@ $(function () {
     .on('click', '.js-visuals-image-upload-button', function() {
       $(this).parent().find('.js-visuals-uploader').trigger('click');
     })
-    .on('submit', '#js-login-form', function (event) {      
+    .on('submit', '#js-login-form', function (event) {
       var $loginFailedMessage = $('#js-wrong-credentials');
+      $loginFailedMessage.addClass('hidden');
+
       event.preventDefault();
       Loader.show();
       Auth.signIn().done(function () {
         setInterface();
       }).fail(function () {
         $loginFailedMessage.removeClass('hidden');
+      }).always(function () {
         Loader.hide();
       });
     })
     .on('click', '#js-logout-button', function () {
-      Loader.show();
-      Auth.signOut().done(function () {
-        Auth.showSignInForm();
-        Loader.hide();
+      Auth.showSignInForm().always(function () {
+        var $loginButton = $('#js-sign-in-button');
+
+        $loginButton.prop('disabled', true);
+        Auth.signOut().done(function() {
+          $loginButton.prop('disabled', false);
+        });
       });
     })
-    .on('change', '.js-category-input', function (event) {
+    .on('change', '.js-category-input', function () {
       var $categories = $('.js-category-input');
       var checkedCategoriesNumber = $categories.filter(':checked').length;
       if (checkedCategoriesNumber >= 5) {
@@ -42,7 +48,20 @@ $(function () {
       }
     })
     .on('click', '.js-visuals-image-remove', handleVisualsImageRemove)
-    .on('change', '.js-visuals-select', handleVisualsSelectorChange);
+    .on('change', '.js-visuals-select', handleVisualsSelectorChange)
+    .on('click', '.js-list-toggler', function () {
+      var $button = $(this);
+      var $container = $(this).closest('.js-expandable-container');
+      $('.submission-notification').addClass('hidden');
+      if ($container.hasClass('pull-down-expanded')) {
+        $container.removeClass('pull-down-expanded').find('.list-container').addClass('list-cat-height');
+        $button.removeClass('glyphicon glyphicon-chevron-down').addClass('glyphicon glyphicon-chevron-up');
+      } else {
+        $container.addClass('pull-down-expanded').find('.list-container').removeClass('list-cat-height');
+        $button.removeClass('glyphicon glyphicon-chevron-up').addClass('glyphicon glyphicon-chevron-down');
+      }
+    });
+
   setInterface();
 });
 
@@ -51,40 +70,58 @@ var $contentForm = $('#js-content-form');
 var $tabs = $('#js-tabs');
 var $footer = $('#js-footer');
 var $main = $('#js-main');
+
 function setInterface() {
-  Loader.show();
-  Auth.isSignedIn().done(function () {
-    requestData().done(function (data) {
-      $main.removeClass('is-login-form-shown');
-      $tabs.removeClass('hidden');
-      $footer.removeClass('hidden');
-      $loginForm.addClass('hidden').empty();
-      $contentForm.empty();
-      setContent('content', data).done(function () {
-        setContent('share', data).done(function () {
-          setContent('purpose', data).always(function () {
-            setContent('visuals', data).always(function () {
-             setContent('feedback', data).always(function () {
-                setContent('links', data).always(function () {
-                  $('#js-purpose-list-container').jstree(generateTreeJSON(data.purposes));
-                  $('#js-persona-list-container').jstree(generateTreeJSON(data.personas));
-				          $('.list-container p').remove();
-                  chrome.storage.sync.get('uname', function(uname) {                  
-                  $('.name-label').html('as '+uname.uname);
-                  });                  
-                  Loader.hide();
+  // Loader.show();
+  requestData().done(function(data) {
+    requestTaxonomyList().done(function(list) {
+      data = extendData(data, list);
+      Auth.getToken().done(function(startToken) {
+        $contentForm.empty();
+        if (startToken) {
+          setContent('content', data).done(function() {
+            var $submitButton = $('.js-submit-button');
+            $loginForm.addClass('hidden').empty();
+            $main.removeClass('is-login-form-shown');
+            $tabs.removeClass('hidden').addClass('no-events');
+            $footer.removeClass('hidden');
+            $loginForm.addClass('hidden').empty();
+            $submitButton.prop('disabled', true);
+            Auth.isSignedIn().done(function (username) {
+              setContent('share', data).done(function () {
+                setContent('purpose', data).always(function () {
+                  setContent('visuals', data).always(function () {
+                    setContent('feedback', data).always(function () {
+                      setContent('links', data).always(function () {
+                        $tabs.removeClass('no-events');
+                        $submitButton.prop('disabled', false);
+                        $('#js-purpose-list-container').jstree(generateTreeJSON(data.purposes));
+                        $('#js-persona-list-container').jstree(generateTreeJSON(data.personas));
+                        $('.list-container p').remove();
+                        $('.js-name-label').html('as ' + username);
+                      });
+                    });
+                  });
                 });
               });
+            }).fail(function() {
+              Auth.showSignInForm();
             });
           });
-        });
+        } else {
+          Auth.showSignInForm();
+        }
       });
     });
-  }).fail(function () {
-    Auth.showSignInForm().always(function () {
-      Loader.hide();
-    });
   });
+}
+
+function extendData(data, list) {
+  data.categories = list.data.submit_cat;
+  data.tags = list.data.hashtag;
+  data.purposes = list.data.purpose;
+  data.personas = list.data.persona;
+  return data;
 }
 
 function setContent(dataType, data) {
@@ -97,6 +134,14 @@ function setContent(dataType, data) {
   return dfd.promise();
 }
 
+function requestTaxonomyList() {
+  var dfd = $.Deferred();
+  chrome.runtime.sendMessage({ requestTaxonomyList: true }, function(list) {
+    dfd.resolve(list);
+  });
+  return dfd.promise();
+}
+
 function requestData(dataType) {
   var dfd = $.Deferred();
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
@@ -104,12 +149,13 @@ function requestData(dataType) {
       if (response) {
         dfd.resolve(response);
       } else {
-        dfd.reject(response);
+        dfd.reject();
       }
     });
   });
   return dfd.promise();
 }
+
 function generateTreeJSON(data) {
   var treeData = {
     core: {

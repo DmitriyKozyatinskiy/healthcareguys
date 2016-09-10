@@ -6,20 +6,32 @@
         <div class="form-group textarea-editable-container">
             <textarea id="js-share-content" class="form-control textarea-editable textarea-editable-share normal" placeholder="Share content" rows="4">{{ share_content }}</textarea>
         </div>
-        <hr>
-        <div class="list-container list-hash-height" id="js-tags-container">
-            {{ #tags }}
-            <p>
-            <div class="checkbox">
-                <label for="tag-{{ id }}">
-                <input type="checkbox" value="{{ id }}" id="tag-{{ id }}" class="js-tag-input">{{{ name }}}
-                </label>
+        <div class="pull-down js-expandable-container">
+            <div class="list-container list-cat-height" id="js-tags-container">
+                {{ #tags }}
+                <p>
+                    <div class="checkbox">
+                        <label for="tag-{{ id }}">
+                        <input type="checkbox" value="{{ id }}" id="tag-{{ id }}" class="js-tag-input">{{{ name }}}
+                        </label>
+                    </div>
+                </p>
+                {{ /tags }}
             </div>
-            </p>
-            {{ /tags }}
-        </div>        
+            <div class="list-size-controller-container">
+                <span class="glyphicon glyphicon-chevron-up js-list-toggler" role="button"></span>
+            </div>
+        </div>
     </div>    
     <div class="submit-container">
+        <div class="loading-container hidden js-loading-container">
+            <div id="js-spinner" class="loading">
+                <div class="bullet"></div>
+                <div class="bullet"></div>
+                <div class="bullet"></div>
+                <div class="bullet"></div>
+            </div>
+        </div>
         <div class="alert alert-success submission-notification hidden js-submission-success" role="alert">
             <span class="glyphicon glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
             <span class="js-submission-success-message">Data was submitted successfully</span>
@@ -32,7 +44,6 @@
             <img src="../img/icons/icon32x32.png" class="submit-icon" height="25">
             <span class="submit-button-text">Post to Healthcare Guys</span>
         </button>
-        <span class="name-label"></span>
-        <div class="clearfix"></div>
+        <span class="js-name-label"></span>
     </div>
 </div>

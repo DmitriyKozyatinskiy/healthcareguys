@@ -1,6 +1,14 @@
 <div id="js-login-container" class="container">
   <fieldset>
     <legend>Sign in</legend>
+    <div class="loading-container hidden js-loading-container">
+      <div id="js-spinner" class="loading">
+        <div class="bullet"></div>
+        <div class="bullet"></div>
+        <div class="bullet"></div>
+        <div class="bullet"></div>
+      </div>
+    </div>
     <div class="alert alert-danger hidden" id="js-wrong-credentials" role="alert">Invalid credentials</div>
     <div class="form-group">
       <label for="js-username">Username</label>
@@ -10,6 +18,6 @@
       <label for="js-password">Password</label>
       <input class="form-control" id="js-password" type="password">
     </div>
-    <button type="submit" class="btn btn-primary pull-right">Sign in</button>
+    <button type="submit" class="btn btn-primary pull-right" id="js-sign-in-button">Sign in</button>
   </fieldset>
 </div>

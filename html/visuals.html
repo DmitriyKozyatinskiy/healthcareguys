@@ -96,7 +96,15 @@
         </div>
     </div>
     
-    <div class="submit-container">       
+    <div class="submit-container">
+        <div class="loading-container hidden js-loading-container">
+            <div id="js-spinner" class="loading">
+                <div class="bullet"></div>
+                <div class="bullet"></div>
+                <div class="bullet"></div>
+                <div class="bullet"></div>
+            </div>
+        </div>
         <div class="alert alert-success submission-notification hidden js-submission-success" role="alert">
             <span class="glyphicon glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
             <span class="js-submission-success-message">Data was submitted successfully</span>
@@ -109,7 +117,6 @@
         <img src="../img/icons/icon32x32.png" class="submit-icon" height="25">
         <span class="submit-button-text">Post to Healthcare Guys</span>
         </button>
-        <span class="name-label"></span>
-        <div class="clearfix"></div>
+        <span class="js-name-label"></span>
     </div>
 </div>
