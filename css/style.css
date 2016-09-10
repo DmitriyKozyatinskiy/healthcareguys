@@ -330,9 +330,10 @@ h4.list-header {
 }
 
 .list-size-controller-container {
-    width: 100%;
-    background-color: #F2F2F2;
+    width: 400px;
     text-align: center;
+    color: #AFAFAF;
+    background-color: #F2F2F2;
 }
 
 .pull-down {
@@ -343,6 +344,7 @@ h4.list-header {
 
 .pull-down-expanded {
     top: 0;
+    bottom: 20px;
     background-color: white;
     z-index: 9999;
     overflow: auto;
@@ -351,7 +353,7 @@ h4.list-header {
 .pull-down-expanded .list-size-controller-container {
     position: fixed;
     bottom: 51px;
-    width: 383px;
+    width: 400px;
 }
 
 

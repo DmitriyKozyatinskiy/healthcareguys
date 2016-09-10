@@ -2,21 +2,47 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8751ffe4-e92f-4d24-8ae9-eb67b949c7e5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/dist/agent_pagedata.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/dist/agent_problems.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/example/automatic.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/example/custom.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/example/error_warning_event_log.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/example/metadata.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/example/set_notify_release_stages.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/example/user_tracking.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/css/telemetry-feedback-widget.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/css/telemetry-nps-widget.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/images/captcha.jpeg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/images/captcha.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/images/category.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/images/clip.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/images/close-circle.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/images/close.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/images/free-sign-up.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/images/help.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/images/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/images/netspective-icon16.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/images/netspective-icon32.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/images/project.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/images/refresh.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/images/shopping_cart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/images/signup3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/images/support.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/js/jquery/jquery-1.10.2.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/js/jquery/jquery-1.11.0.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/js/jquery/jquery-1.7.2.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/js/jquery/jquery-ui.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/js/jquery/jquery.colorpicker.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/js/jquery/jquery.min.1.7.2.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/js/plugins/html2canvas/html2canvas.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/js/plugins/html2canvas/jquery.plugin.html2canvas.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/js/plugins/placeholder/jquery.placeholder.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/js/plugins/plupload/plupload.full.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/js/plugins/validation/additional-methods.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/includes/js/plugins/validation/jquery.validate.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/lib/jquery-1.10.2.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/telemetry_agent/version.txt" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/auth.html" afterPath="$PROJECT_DIR$/html/auth.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/content.html" afterPath="$PROJECT_DIR$/html/content.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/feedback.html" afterPath="$PROJECT_DIR$/html/feedback.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/links.html" afterPath="$PROJECT_DIR$/html/links.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/purpose.html" afterPath="$PROJECT_DIR$/html/purpose.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/share.html" afterPath="$PROJECT_DIR$/html/share.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/visuals.html" afterPath="$PROJECT_DIR$/html/visuals.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/auth.js" afterPath="$PROJECT_DIR$/js/auth.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/background.js" afterPath="$PROJECT_DIR$/js/background.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/dataProvider.js" afterPath="$PROJECT_DIR$/js/dataProvider.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/dataSubmitter.js" afterPath="$PROJECT_DIR$/js/dataSubmitter.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/main.js" afterPath="$PROJECT_DIR$/js/main.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/spinner.js" afterPath="$PROJECT_DIR$/js/spinner.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manifest.json" afterPath="$PROJECT_DIR$/manifest.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/popup.html" afterPath="$PROJECT_DIR$/popup.html" />
     </list>
@@ -39,11 +65,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-102">
-              <caret line="54" column="52" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="52" />
+            <state relative-caret-position="510">
+              <caret line="90" column="36" selection-start-line="90" selection-start-column="36" selection-end-line="90" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="popup.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/popup.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-490">
+              <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -64,16 +100,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
               <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="content.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/content.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="39" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -103,11 +129,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="links.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/links.html">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
+            <state relative-caret-position="494">
+              <caret line="355" column="14" selection-start-line="355" selection-start-column="14" selection-end-line="355" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -123,21 +149,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="feedback.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/html/feedback.html">
+      <file leaf-file-name="manifest.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/manifest.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="41" column="24" selection-start-line="41" selection-start-column="24" selection-end-line="41" selection-end-column="24" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dataSubmitter.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/js/dataSubmitter.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="77" column="6" selection-start-line="77" selection-start-column="6" selection-end-line="77" selection-end-column="6" />
+            <state relative-caret-position="30">
+              <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -173,13 +189,10 @@
         <option value="$PROJECT_DIR$/html/feedback.html" />
         <option value="$PROJECT_DIR$/js/dataProvider.js" />
         <option value="$PROJECT_DIR$/js/background.js" />
-        <option value="$PROJECT_DIR$/manifest.json" />
         <option value="$PROJECT_DIR$/html/content_empty.html" />
         <option value="$PROJECT_DIR$/html/content_preload.html" />
         <option value="$PROJECT_DIR$/html/content-preload.html" />
         <option value="$PROJECT_DIR$/js/auth.js" />
-        <option value="$PROJECT_DIR$/popup.html" />
-        <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/html/content.html" />
         <option value="$PROJECT_DIR$/js/spinner.js" />
         <option value="$PROJECT_DIR$/js/dataSubmitter.js" />
@@ -189,6 +202,9 @@
         <option value="$PROJECT_DIR$/html/visuals.html" />
         <option value="$PROJECT_DIR$/html/auth.html" />
         <option value="$PROJECT_DIR$/js/main.js" />
+        <option value="$PROJECT_DIR$/css/style.css" />
+        <option value="$PROJECT_DIR$/manifest.json" />
+        <option value="$PROJECT_DIR$/popup.html" />
       </list>
     </option>
   </component>
@@ -462,12 +478,12 @@
       <workItem from="1473501912116" duration="33000" />
       <workItem from="1473513017747" duration="5000" />
       <workItem from="1473518633437" duration="1019000" />
-      <workItem from="1473533818318" duration="12912000" />
+      <workItem from="1473533818318" duration="15017000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127025000" />
+    <option name="totallyTimeSpent" value="129130000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -480,9 +496,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16369048" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16369048" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -534,36 +550,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/js/libs/jquery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166617">
-          <caret line="9813" column="4" selection-start-line="9813" selection-start-column="4" selection-end-line="9813" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manifest.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/content.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -684,13 +670,6 @@
       </provider>
     </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.884/manager.js" />
-    <entry file="file://$PROJECT_DIR$/background.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/statusIcons.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -732,22 +711,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/agent.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/background.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/dataProvider.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -772,30 +735,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/manifest.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/popup.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-306">
-          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="365" column="11" selection-start-line="365" selection-start-column="11" selection-end-line="365" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/dataSubmitter.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="211">
@@ -808,14 +747,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="36" column="16" selection-start-line="36" selection-start-column="16" selection-end-line="36" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/html/no-data-found.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -882,8 +813,98 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102">
-          <caret line="54" column="52" selection-start-line="54" selection-start-column="52" selection-end-line="54" selection-end-column="52" />
+        <state relative-caret-position="510">
+          <caret line="90" column="36" selection-start-line="90" selection-start-column="36" selection-end-line="90" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/no-data-found.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="52" selection-start-line="0" selection-start-column="49" selection-end-line="0" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="355" column="14" selection-start-line="355" selection-start-column="14" selection-end-line="355" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/background.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/manifest.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/background.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/agent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telemetry_agent/dist/agent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-765">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telemetry_agent/dist/agent_problems.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-561">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telemetry_agent/dist/agent_support.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-19946">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <marker date="1473195064231" expanded="true" signature="7405:7448" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/telemetry_agent/version.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/popup.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-490">
+          <caret line="12" column="6" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
           <folding />
         </state>
       </provider>
