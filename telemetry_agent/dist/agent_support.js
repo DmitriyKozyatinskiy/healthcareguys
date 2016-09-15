@@ -184,24 +184,9 @@ var TelemetryAgentSupportWidget = (function() {
 
                         self.userSessionData = $.extend({}, self.userDefaultData, self.userData);
                         /******* LOAD WIDGET CSS *******/
-                        var widgetCSS = $("<link>", {
-                            rel: "stylesheet",
-                            type: "text/css",
-                            href: self.PLUGIN_URL + "/includes/css/telemetry-feedback-widget.css"
-                        });
-                        widgetCSS.appendTo('head');
+                       
 
-
-
-                        if (window.plupload === undefined) {
-                            /*** LOAD PLUPLOAD.FULL.MIN.JS ***/
-                            var jQueryPluploadJs = document.createElement('script');
-                            jQueryPluploadJs.setAttribute("type", "text/javascript");
-                            jQueryPluploadJs.setAttribute("src",
-                                self.PLUGIN_URL + "/includes/js/plugins/plupload/plupload.full.min.js");
-                            document.getElementsByTagName('head')[0].appendChild(jQueryPluploadJs);
-                        }
-
+                    
 
 
                         /*** LOAD JQUERY.VALIDATE JS ***/
@@ -441,33 +426,10 @@ var TelemetryAgentSupportWidget = (function() {
                                         .text(item));
                             });
 
-                            self.uploader = new plupload.Uploader({
-                                browse_button: 'telemetry-agent-widget-feedback-pickfiles', // you can pass in id...
-                                url: '*',
-                                chunk_size: '1mb',
-                                multi_selection: false,
-                                unique_names: true
-                            });
-                            self.uploader.bind('QueueChanged', function(up) {
-                                var files = this.files;
-                                if (files.length > 0) {
-                                    if (self.validateAttachment(files[files.length - 1])) {
-                                        self.files = files[files.length - 1];
-                                    }
-                                    if (files.length > 0) {
-                                        jQuery('.telemetry-agent-fileinput-new').hide();
-                                        jQuery('.telemetry-agent-fileinput-exists').show();
-                                    } else {
-                                        jQuery('.telemetry-agent-fileinput-new').show();
-                                        jQuery('.telemetry-agent-fileinput-exists').hide();
-                                    }
-                                    jQuery('.telemetry-agent-feedback-attachment-filename').html(files[files.length - 1].name);
-                                }
-                            });
+                            
+                          
 
-
-                            self.uploader.init();
-
+                           
                             if (self.options.supportWidgetIcon) {
                                 jQuery('#' + self.params.mainId).find('.feedback-modal-header').prepend(
                                     jQuery('<img />').attr({
@@ -511,20 +473,12 @@ var TelemetryAgentSupportWidget = (function() {
                             jQuery('#telemetry-agent-feedback-error-block').remove();
                             jQuery("#" + self.params.attachmentTextId).val('');
                             self.files = '';
-                            if (self.uploader != undefined) {
-                                jQuery.each(self.uploader.files, function(i, file) {
-                                    self.uploader.removeFile(file);
-                                });
-                            };
+                           
                         });
 
                         jQuery('body').delegate('a.telemetry-agent-feedback-close, button.close-btn', "click", function() {
                             self.files = '';
-                            if (self.uploader != undefined) {
-                                jQuery.each(self.uploader.files, function(i, file) {
-                                    self.uploader.removeFile(file);
-                                });
-                            };
+                            
                             jQuery(this).closest('#' + self.params.mainId).remove();
                             jQuery('.' + self.params.feedbackOverlayClass).remove();
                             jQuery('body').removeClass('telemetry-agent-feedback-modal-open');
@@ -546,12 +500,7 @@ var TelemetryAgentSupportWidget = (function() {
                     if (self.options.npsEnable) {
                         /******* LOAD WIDGET CSS *******/
 
-                        var widgetCSS = $("<link>", {
-                            rel: "stylesheet",
-                            type: "text/css",
-                            href: self.PLUGIN_URL + "/includes/css/telemetry-nps-widget.css"
-                        });
-                        widgetCSS.appendTo('head');
+                       
                         var score = '';
                         for (var i = 0; i <= 10; i++) {
                             score = score + '<div class="npsButton" id="' + i + '"><p>' + i + '</p></div>';
@@ -752,11 +701,7 @@ var TelemetryAgentSupportWidget = (function() {
                     jQuery('label[for=' + self.params.attachmentTextId + ']').remove();
                     jQuery("#" + self.params.attachmentTextId).val('');
                     self.files = '';
-                    if (self.uploader != undefined) {
-                        jQuery.each(self.uploader.files, function(i, file) {
-                            self.uploader.removeFile(file);
-                        });
-                    };
+                   
                 }, 0);
                 setTimeout(function() {
                     jQuery('.telemetry-agent-feedback-error-block').remove();
@@ -1038,38 +983,7 @@ var TelemetryAgentSupportWidget = (function() {
                     } catch (e) {
                         username = 'Anonymous';
                     }
-                    if (self.uploader != undefined) {
-                        if (self.uploader.files.length > 0) {
-                            self.uploader.bind('BeforeUpload', function(up, file) {
-                                up.setOption('url', self.uploadServiceUrl + '?repositoryId=cmis&scopeId=chemistry&path=support/docs/feedback&attachmentIds=[' + data.attachmentName + ']');
-                                up.setOption('multipart_params', {
-                                    apiKey: self.apiKey,
-                                    file: self.files
-                                });
-                                up.setOption('headers', {
-                                    OperatedBy: username,
-                                    ServiceId: config.settings.serviceId,
-                                    OrganizationId: config.microServiceParams.organizationId
-                                });
-                                up.refresh();
-                                up.trigger('UploadFile', file);
-                            });
-                            self.uploader.bind('FileUploaded', function(up, file, response) {
-
-                                if (response.results != undefined) {
-                                    if (response.results[0] == null || response.results[0] == '') {
-                                        jQuery('.' + self.params.feedbackBody).append('<div class="telemetry-agent-feedback-error alert alert-dismissable alert-danger"><button type="button" class="telemetry-agent-feedback-close"  aria-hidden="true">&times;</button><span>' + 'Attachment is not uploaded' + '</span></div>');
-
-                                    }
-                                }
-                                self.uploader.stop();
-                            });
-                            self.uploader.bind('UploadComplete', function(up, files) {
-                                self.uploader.stop();
-                            });
-                            self.uploader.start();
-                        }
-                    };
+                    
                     self.fetchPostData(self.END_POINT, 'POST', 'json', true, dataString, function(result) {
 
 

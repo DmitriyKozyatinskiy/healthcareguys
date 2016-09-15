@@ -169,28 +169,46 @@
         event.preventDefault();
         handleDataSubmissionProcess();
     }).on('click', '#js-feedback', function(event) {
+        
         var name  = $('#js-fed-name').val().trim();
-        var email = $('#js-fed-email').val().trim();
-
-        if (isValidEmail()) {
-            $('#fed-message').addClass('hidden');
-            var userDetails = {
-                'name': name,
-                'email': email,
-                'account': 'PrescribeWell',
-                'appVersion': '1.2+0001',
-                'role': 'admin'
-            };
-            var d = 'NPS';
-            var telemetryAgent = TelemetryAgent.getInstance({
-                apiKey: '25447ae7-a97c-325e-bc52-e75814b61b07',
-                releaseStage: d,
-                userData: userDetails
-            });
-            handleFeedbackSubmissionProcess(telemetryAgent);
+        var email = $('#js-fed-email').val().trim();        
+        if (isValidEmail(email)) {     
+            if ( $('#js-fed-name').val().match('^[a-zA-Z ]{3,50}$') ) {
+                if($('#js-fed-support-type').val() != 0){  
+                     if ( $('#js-fed-subject').val().match('^[a-zA-Z ]{3,50}$') ) {
+                        $('#fed-message').addClass('hidden');
+                        var userDetails = {
+                        'name': name,
+                        'email': email,
+                        'account': 'PrescribeWell',
+                        'appVersion': '1.2+0001',
+                        'role': 'admin'
+                        };
+                        var d = "Development";
+                        var telemetryAgent = TelemetryAgent.getInstance({
+                        apiKey: '59319ec5-d37d-3ff2-bcc5-dd3c21d24c76',
+                        releaseStage: d,
+                        userData: userDetails
+                        });
+                        handleFeedbackSubmissionProcess(telemetryAgent);
+                    }else{
+                        $('#fed-message').html("Enter a valid subject");               
+                        $('#fed-message').removeClass('hidden');
+                        Loader.hide(); 
+                    }
+                }else{
+                    $('#fed-message').html("Select the support type");               
+                    $('#fed-message').removeClass('hidden');
+                    Loader.hide(); 
+                }
+                } else {    
+                    $('#fed-message').html("Enter a valid name");               
+                    $('#fed-message').removeClass('hidden');
+                    Loader.hide(); 
+                }   
         } else {
             $('#fed-message').removeClass('hidden');
-             Loader.hide(); 
+            Loader.hide(); 
         }         
         event.preventDefault();
     });   

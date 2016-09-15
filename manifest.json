@@ -9,7 +9,7 @@
   "name": "Digital Health News",
   "short_name": "HealthCare Guys",
   "description": "HealthCare Guys",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "background": {
     "scripts": [
       "js/libs/jquery.js",
