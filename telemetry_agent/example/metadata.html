@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Include Dependency -->
+		<script src="../lib/jquery-1.10.2.min.js"></script>
+		<!-- Include Telemetry Agent Library -->
+		
+		<script src="../dist/agent_problems.js"></script>
+		<script src="../dist/agent.js"></script>
+		<script src="../dist/agent_config.js"></script>
+		<script type="text/javascript">
+		/**
+			*	Configure Telemetry Agent with your API KEY and Release Stage Name.
+		*  Release Stages are user defined. You can give your own Release Stages
+		*/
+		var UserDetails = {
+			"name":"Username",
+			"email":"username@telemetry.com",
+			"account":"Accountname",
+			"appVersion" :'1.2+0001',
+			"role" : "Admin"
+		};
+		
+		var TelemetryAgent = TelemetryAgent.getInstance({ 
+			apiKey: 'XXXX-XXXX-XXXX-XXXX-XXXX',
+			releaseStage: 'Development',
+			userData: UserDetails
+		});
+		/**
+		* Set Custom Metadata.
+		* User can set custom Meta data by calling setCustomMetaData().
+		* Metadata should be in object format.
+		*/
+		var customMetaData = {
+			"user" : {
+			"name" : "Username",
+			"email" : "username@telemetry.com"
+			}
+		};
+		// Pass your customMetaData to setCustomMetaData()
+		TelemetryAgent.problems.setCustomMetaData(customMetaData);
+		// Make an error. Here alert command is miss spelled.
+		alertt("This is an error");
+		
+		</script>
+		
+	</head>
+	<body>
+		<h1>Telemetry AgentJS Example</h1>
+		<p>This example shows automatic error notification using Telemetry Agent.</p>
+	</body>
+</html>

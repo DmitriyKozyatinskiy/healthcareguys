@@ -261,6 +261,7 @@ h4.list-header {
     padding: 6px 0 0 6px; 
     height: 34px;       
     background: #5b9bd5;
+    transform: rotate(180deg);
 }
 .round-span-logout i{
     color:#fff !important;
