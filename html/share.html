@@ -8,15 +8,16 @@
         </div>
         <div class="pull-down js-expandable-container">
             <div class="list-container list-cat-height" id="js-tags-container">
-                {{ #tags }}
-                <p>
-                    <div class="checkbox">
-                        <label for="tag-{{ id }}">
-                        <input type="checkbox" value="{{ id }}" id="tag-{{ id }}" class="js-tag-input">{{{ name }}}
-                        </label>
-                    </div>
-                </p>
-                {{ /tags }}
+                <!--{{ #tags }}-->
+                <!--<p>-->
+                    <!--<div class="checkbox">-->
+                        <!--<label for="tag-{{ id }}">-->
+                        <!--<input type="checkbox" value="{{ id }}" id="tag-{{ id }}" class="js-tag-input">{{{ name }}}-->
+                        <!--</label>-->
+                    <!--</div>-->
+                <!--</p>-->
+                <!--{{ /tags }}-->
+                <div class="tree-list-container" id="js-tags-list-container"></div>
             </div>
             <div class="list-size-controller-container">
                 <span class="glyphicon glyphicon-chevron-up js-list-toggler" role="button"></span>

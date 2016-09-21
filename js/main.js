@@ -60,6 +60,10 @@ $(function () {
         $container.addClass('pull-down-expanded').find('.list-container').removeClass('list-cat-height');
         $button.removeClass('glyphicon glyphicon-chevron-up').addClass('glyphicon glyphicon-chevron-down');
       }
+    })
+    .on('click', '.js-feedback-link', function (event) {
+      event.preventDefault();
+      $('#js-feedback-tab-button').trigger('click');
     });
 
   setInterface();
@@ -95,6 +99,7 @@ function setInterface() {
                       setContent('links', data).always(function () {
                         $tabs.removeClass('no-events');
                         $submitButton.prop('disabled', false);
+                        $('#js-tags-list-container').jstree(generateTreeJSON(data.tags));
                         $('#js-purpose-list-container').jstree(generateTreeJSON(data.purposes));
                         $('#js-persona-list-container').jstree(generateTreeJSON(data.personas));
                         $('.list-container p').remove();

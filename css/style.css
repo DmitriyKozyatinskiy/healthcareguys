@@ -130,9 +130,21 @@ h4.list-header {
 }
 
 .submission-notification {
-   /* margin: 10px;*/
+    /*margin: 10px;*/
     padding: 8px;
     font-size: 12px;
+}
+
+.link-top-info-panel {
+    margin: 0 10px 15px 10px;
+}
+
+.mb0 {
+    margin-bottom: 0 !important;
+}
+
+.mt10 {
+    margin-top: 10px;
 }
 
 .tab-switcher {
@@ -234,7 +246,7 @@ h4.list-header {
 .round-span{
     display:block;
     text-align: center;  
-    padding: 7px 0 0 0px;   
+    padding: 6px 0 0 0;
     width: 30px;
     border-radius: 50%;
     height: 30px;   
@@ -242,10 +254,10 @@ h4.list-header {
     background: #92d050;
 }
 .round-span-lk-ht-text{
-     margin: 3px 4px 0 4px;
+     margin: 1px 0 0 3px;
 }
 .round-span-lk-ht-textarea{
-     margin: 12px 4px 0 4px;
+     margin: 10px 0 0 3px;
 }
 .round-span i{   
     font-size:14px !important; 
@@ -281,9 +293,11 @@ h4.list-header {
     padding: 3px 6px !important;
     margin-bottom: 6px !important;
 }
-#link-container-height{
-    height:240px;
+
+.link-label {
+    margin-left: 10px;
 }
+
 .default-height{
     height:460px;
     position: relative;
@@ -322,10 +336,7 @@ h4.list-header {
 .remove-border{
     border: none !important;
 }
-#link-container-height h4{
-    padding-left: 12px !important;
-    font-weight: normal !important;
-}
+
 .normal{
     font-weight: normal !important;
 }

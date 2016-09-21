@@ -13,12 +13,6 @@
             categories.push(categoryId);
         });
 
-        var tags = [];
-        $('.js-tag-input:checked').each(function() {
-            var tagId = $(this).val();
-            tags.push(tagId);
-        });
-
         return {
             'url': $('#js-url-input').val(),
             'title': $('#js-title-input').val(),
@@ -27,7 +21,7 @@
             'category': categories,
             'tweet-content': $('#js-tweet-content').val(),
             'share-content': $('#js-share-content').val(),
-            'hashtag': tags,
+            'hashtag': $('#js-tags-list-container').jstree('get_bottom_checked'),
             'purpose': $('#js-purpose-list-container').jstree('get_bottom_checked'),
             'personas': $('#js-persona-list-container').jstree('get_bottom_checked'),
             'thumb-image': $('#js-visuals-thumbnail-uploader').attr('data-src') || '',
@@ -96,6 +90,7 @@
       Auth.getToken().done(function(token) {
           submitData(data, token).done(function(response) {
               showSubmissionStatus('success', response );
+              $('#js-links-tab-button').trigger('click');
           }).fail(function(response) {
               showSubmissionStatus('error', response);
           }).always(function() {
