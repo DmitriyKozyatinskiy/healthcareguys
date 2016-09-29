@@ -51,14 +51,15 @@ $(function () {
     .on('change', '.js-visuals-select', handleVisualsSelectorChange)
     .on('click', '.js-list-toggler', function () {
       var $button = $(this);
-      var $container = $(this).closest('.js-expandable-container');
+      var $icon = $button.find('.js-list-icon');
+      var $container = $button.closest('.js-expandable-container');
       $('.submission-notification').addClass('hidden');
       if ($container.hasClass('pull-down-expanded')) {
         $container.removeClass('pull-down-expanded').find('.list-container').addClass('list-cat-height');
-        $button.removeClass('glyphicon glyphicon-chevron-down').addClass('glyphicon glyphicon-chevron-up');
+        $icon.removeClass('glyphicon glyphicon-chevron-down').addClass('glyphicon glyphicon-chevron-up');
       } else {
         $container.addClass('pull-down-expanded').find('.list-container').removeClass('list-cat-height');
-        $button.removeClass('glyphicon glyphicon-chevron-up').addClass('glyphicon glyphicon-chevron-down');
+        $icon.removeClass('glyphicon glyphicon-chevron-up').addClass('glyphicon glyphicon-chevron-down');
       }
     })
     .on('click', '.js-feedback-link', function (event) {
@@ -104,6 +105,7 @@ function setInterface() {
                         $('#js-persona-list-container').jstree(generateTreeJSON(data.personas));
                         $('.list-container p').remove();
                         $('.js-name-label').html('as ' + username);
+                        setTooltips();
                       });
                     });
                   });
@@ -250,4 +252,16 @@ function handleVisualsSelectorChange() {
   var $groupContainer = $select.closest('.form-group');
   var $removeButton = $groupContainer.find('.js-visuals-image-remove');
   handleVisualsImageRemove.call($removeButton.get(0));
+}
+
+function setTooltips() {
+  $('.js-tooltip').each(function() {
+    var $item = $(this);
+    var text = $item.attr('data-title');
+    var placement = $item.attr('data-placement');
+    $item.tooltip({
+      title: text,
+      placement: placement
+    })
+  });
 }

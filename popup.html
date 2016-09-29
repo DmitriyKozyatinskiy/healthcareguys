@@ -14,34 +14,68 @@
 <div class="wrapper clearfix">
   <main id="js-main" class="is-login-form-shown">
     <form id="js-login-form" class="login-form"></form>
-    <form class="content-form tab-content" id="js-content-form"></form>   
+    <form class="content-form tab-content" id="js-content-form"></form>
   </main>
 
   <div class="tab-container hidden no-events" id="js-tabs">
     <div class="list-group list-default-height">
-      <a href="#js-content-container" class="list-group-item active text-center tab-button js-tab-button" data-toggle="tab"  aria-controls="js-content-container">
+        <a href="#js-content-container"
+           class="js-tooltip list-group-item active text-center tab-button js-tab-button"
+           data-toggle="tab"
+           aria-controls="js-content-container"
+           data-placement="left"
+           data-title="General information">
         <i class="fa fa-pencil-square-o tab-icon" role="button"></i>
       </a>
-      <a href="#js-share-container" class="list-group-item text-center tab-button js-tab-button" data-toggle="tab" aria-controls="js-share-container">
+      <a href="#js-share-container"
+         class="js-tooltip list-group-item text-center tab-button js-tab-button"
+         data-toggle="tab"
+         aria-controls="js-share-container"
+         data-placement="left"
+         data-title="Share">
         <i class="fa fa-share-alt tab-icon" role="button"></i>
       </a>
-      <a href="#js-purpose-container" class="list-group-item text-center tab-button js-tab-button" data-toggle="tab" aria-controls="js-purpose-container">
+      <a href="#js-purpose-container"
+         class="js-tooltip list-group-item text-center tab-button js-tab-button"
+         data-toggle="tab"
+         aria-controls="js-purpose-container"
+         data-placement="left"
+         data-title="Purpose">
         <i class="fa fa-bullseye tab-icon" role="button"></i>
       </a>
-      <a href="#js-visuals-container" class="list-group-item text-center tab-button js-tab-button" data-toggle="tab" aria-controls="js-visuals-container">
+      <a href="#js-visuals-container"
+         class="js-tooltip list-group-item text-center tab-button js-tab-button"
+         data-toggle="tab"
+         aria-controls="js-visuals-container"
+         data-placement="left"
+         data-title="Visuals">
         <i class="fa fa-picture-o tab-icon" role="button"></i>
       </a>
-      <a href="#js-links-container" class="list-group-item text-center tab-button js-tab-button" data-toggle="tab" aria-controls="js-links-container" id="js-links-tab-button">
+      <a href="#js-links-container"
+         class="js-tooltip list-group-item text-center tab-button js-tab-button"
+         data-toggle="tab"
+         aria-controls="js-links-container"
+         id="js-links-tab-button"
+         data-placement="left"
+         data-title="Links">
         <i class="fa fa-link tab-icon" role="button"></i>
       </a>
-      <a href="#js-feedback-container" class="list-group-item text-center tab-button js-tab-button" data-toggle="tab" aria-controls="js-feedback-container" id="js-feedback-tab-button">
+      <a href="#js-feedback-container"
+         class="js-tooltip list-group-item text-center tab-button js-tab-button"
+         data-toggle="tab"
+         aria-controls="js-feedback-container"
+         id="js-feedback-tab-button"
+         data-placement="left"
+         data-title="Feedback">
         <i class="fa fa-envelope tab-icon" role="button"></i>
       </a>
     </div>
      <div id="js-footer" class="hidden">   
       <div class="logout-container">
         <a href="#" class="" id="js-logout-button">
-          <span class="round-span-logout">
+          <span class="round-span-logout js-tooltip"
+                data-placement="top"
+                data-title="Logout">
              <i class="glyphicon glyphicon-log-out icon-flipped" role="button"></i>
           </span>         
         </a>       
