@@ -29,7 +29,9 @@ var Auth = (function () {
         dfd.reject();
       }
     }).fail(function () {
-      dfd.reject();
+      saveToken('').done(function () {
+        dfd.reject();
+      });
     });
 
     return dfd.promise();

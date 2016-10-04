@@ -89,7 +89,7 @@
       Loader.show();
       Auth.getToken().done(function(token) {
           submitData(data, token).done(function(response) {
-              showSubmissionStatus('success', response );
+              showSubmissionStatus('success', response);
               $('#js-links-tab-button').trigger('click');
           }).fail(function(response) {
               showSubmissionStatus('error', response);
