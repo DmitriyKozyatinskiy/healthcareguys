@@ -1,73 +1,91 @@
-$(function () {
-  $(document)
-    .on('click', '.js-tab-button', function(event) {
-      var $tabButton = $(this);      
-      $('.js-tab-button').removeClass('active');
-      $tabButton.addClass('active');
-      event.preventDefault();
-    })
-    .on('change', '#js-image-uploader', handleImageUpdate)
-    .on('click', '#js-image-container', function () {
-      $('#js-image-uploader').trigger('click');
-    })
-    .on('change', '.js-visuals-uploader', handleVisualsImageUpload)
-    .on('click', '.js-visuals-image-upload-button', function() {
-      $(this).parent().find('.js-visuals-uploader').trigger('click');
-    })
-    .on('submit', '#js-login-form', function (event) {
-      var $loginFailedMessage = $('#js-wrong-credentials');
-      $loginFailedMessage.addClass('hidden');
-
-      event.preventDefault();
-      Loader.show();
-      Auth.signIn().done(function () {
-        setInterface();
-      }).fail(function () {
-        $loginFailedMessage.removeClass('hidden');
-      }).always(function () {
-        Loader.hide();
-      });
-    })
-    .on('click', '#js-logout-button', function () {
-      Auth.showSignInForm().always(function () {
-        var $loginButton = $('#js-sign-in-button');
-
-        $loginButton.prop('disabled', true);
-        Auth.signOut().done(function() {
-          $loginButton.prop('disabled', false);
-        });
-      });
-    })
-    .on('change', '.js-category-input', function () {
-      var $categories = $('.js-category-input');
-      var checkedCategoriesNumber = $categories.filter(':checked').length;
-      if (checkedCategoriesNumber >= 5) {
-        $categories.filter(':not(:checked)').prop('disabled', true);
+function checkCurrentUrl() {
+  var dfd = $.Deferred();
+  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, {validateCurrentUrl: true}, function(isValid) {
+      if (isValid) {
+        dfd.resolve(tabs[0].id);
       } else {
-        $categories.prop('disabled', false);
+        dfd.reject(tabs[0].id);
       }
-    })
-    .on('click', '.js-visuals-image-remove', handleVisualsImageRemove)
-    .on('change', '.js-visuals-select', handleVisualsSelectorChange)
-    .on('click', '.js-list-toggler', function () {
-      var $button = $(this);
-      var $icon = $button.find('.js-list-icon');
-      var $container = $button.closest('.js-expandable-container');
-      $('.submission-notification').addClass('hidden');
-      if ($container.hasClass('pull-down-expanded')) {
-        $container.removeClass('pull-down-expanded').find('.list-container').addClass('list-cat-height');
-        $icon.removeClass('glyphicon glyphicon-chevron-down').addClass('glyphicon glyphicon-chevron-up');
-      } else {
-        $container.addClass('pull-down-expanded').find('.list-container').removeClass('list-cat-height');
-        $icon.removeClass('glyphicon glyphicon-chevron-up').addClass('glyphicon glyphicon-chevron-down');
-      }
-    })
-    .on('click', '.js-feedback-link', function (event) {
-      event.preventDefault();
-      $('#js-feedback-tab-button').trigger('click');
     });
+  });
+  return dfd.promise();
+}
 
-  setInterface();
+$(function () {
+  checkCurrentUrl().done(function(tabId) {
+    $(document)
+      .on('click', '.js-tab-button', function(event) {
+        var $tabButton = $(this);
+        $('.js-tab-button').removeClass('active');
+        $tabButton.addClass('active');
+        event.preventDefault();
+      })
+      .on('change', '#js-image-uploader', handleImageUpdate)
+      .on('click', '#js-image-container', function () {
+        $('#js-image-uploader').trigger('click');
+      })
+      .on('change', '.js-visuals-uploader', handleVisualsImageUpload)
+      .on('click', '.js-visuals-image-upload-button', function() {
+        $(this).parent().find('.js-visuals-uploader').trigger('click');
+      })
+      .on('submit', '#js-login-form', function (event) {
+        var $loginFailedMessage = $('#js-wrong-credentials');
+        $loginFailedMessage.addClass('hidden');
+
+        event.preventDefault();
+        Loader.show();
+        Auth.signIn().done(function () {
+          setInterface();
+        }).fail(function () {
+          $loginFailedMessage.removeClass('hidden');
+        }).always(function () {
+          Loader.hide();
+        });
+      })
+      .on('click', '#js-logout-button', function () {
+        Auth.showSignInForm().always(function () {
+          var $loginButton = $('#js-sign-in-button');
+
+          $loginButton.prop('disabled', true);
+          Auth.signOut().done(function() {
+            $loginButton.prop('disabled', false);
+          });
+        });
+      })
+      .on('change', '.js-category-input', function () {
+        var $categories = $('.js-category-input');
+        var checkedCategoriesNumber = $categories.filter(':checked').length;
+        if (checkedCategoriesNumber >= 5) {
+          $categories.filter(':not(:checked)').prop('disabled', true);
+        } else {
+          $categories.prop('disabled', false);
+        }
+      })
+      .on('click', '.js-visuals-image-remove', handleVisualsImageRemove)
+      .on('change', '.js-visuals-select', handleVisualsSelectorChange)
+      .on('click', '.js-list-toggler', function () {
+        var $button = $(this);
+        var $icon = $button.find('.js-list-icon');
+        var $container = $button.closest('.js-expandable-container');
+        $('.submission-notification').addClass('hidden');
+        if ($container.hasClass('pull-down-expanded')) {
+          $container.removeClass('pull-down-expanded').find('.list-container').addClass('list-cat-height');
+          $icon.removeClass('glyphicon glyphicon-chevron-down').addClass('glyphicon glyphicon-chevron-up');
+        } else {
+          $container.addClass('pull-down-expanded').find('.list-container').removeClass('list-cat-height');
+          $icon.removeClass('glyphicon glyphicon-chevron-up').addClass('glyphicon glyphicon-chevron-down');
+        }
+      })
+      .on('click', '.js-feedback-link', function (event) {
+        event.preventDefault();
+        $('#js-feedback-tab-button').trigger('click');
+      });
+
+    setInterface();
+  }).fail(function() {
+    window.close();
+  });
 });
 
 var $loginForm = $('#js-login-form');

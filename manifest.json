@@ -30,7 +30,8 @@
     ],
     "js": [
       "js/libs/jquery.js",
-      "js/dataProvider.js"
+      "js/dataProvider.js",
+      "js/urlValidator.js"
     ]
   }]
 }

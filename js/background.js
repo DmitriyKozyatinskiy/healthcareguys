@@ -11,15 +11,29 @@
 
   getTaxonomyList().done(function(list) {
     chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-      if (request.requestTaxonomyList)
+      if (request.requestTaxonomyList) {
         sendResponse(list);
-      });
+      }
+    });
   });
   
-  chrome.runtime.onMessage.addListener(function(data, sender, sendResponse) {
-    chrome.storage.sync.set({ 'token': data.token }, function() {
-      sendResponse(data.token);
-    });
+  chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    if (request.token) {
+      chrome.storage.sync.set({ 'token': request.token }, function() {
+        sendResponse(request.token);
+      });
+    } else if (request.disablePopup) {
+      chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        console.log(tabs);
+        chrome.browserAction.disable(tabs[0].id);
+      });
+    } else if (request.enablePopup) {
+      chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+        console.log(tabs);
+        console.log('id: ', sender.tab.id);
+        chrome.browserAction.enable(sender.tab.id);
+      });
+    }
     return true;
   });
 }());
