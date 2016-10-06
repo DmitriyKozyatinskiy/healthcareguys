@@ -53,6 +53,14 @@ $(function () {
           });
         });
       })
+      .on('click', '#js-registration-form-button', function (event) {
+        event.preventDefault();
+        Auth.showRegistrationForm();
+      })
+      .on('click', '#js-login-form-button', function (event) {
+        event.preventDefault();
+        Auth.showSignInForm();
+      })
       .on('change', '.js-category-input', function () {
         var $categories = $('.js-category-input');
         var checkedCategoriesNumber = $categories.filter(':checked').length;

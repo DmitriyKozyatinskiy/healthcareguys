@@ -1,6 +1,6 @@
-<div id="js-login-container" class="container">
+<div id="js-registration-container" class="container">
   <fieldset>
-    <legend>Sign in</legend>
+    <legend>Registration</legend>
     <div class="loading-container hidden js-loading-container">
       <div id="js-spinner" class="loading">
         <div class="bullet"></div>
@@ -9,15 +9,21 @@
         <div class="bullet"></div>
       </div>
     </div>
-    <div class="alert alert-danger hidden" id="js-wrong-credentials" role="alert">Invalid credentials</div>
     <div class="form-group">
-      <label for="js-username">Username</label>
-      <input class="form-control" id="js-username">
+      <label for="js-email">Email</label>
+      <input class="form-control" id="js-email" required>
     </div>
     <div class="form-group">
-      <label for="js-password">Password</label>
-      <input class="form-control" id="js-password" type="password">
+      <label for="js-first-name">First Name</label>
+      <input class="form-control" id="js-first-name" required>
     </div>
-    <button type="submit" class="btn btn-primary pull-right" id="js-sign-in-button">Sign in</button>
+    <div class="form-group">
+      <label for="js-last-name">Last Name</label>
+      <input class="form-control" id="js-last-name" required>
+    </div>
+    <a href="#" class="registration-form-button" id="js-login-form-button">Log in</a>
+    <span> | </span>
+    <a href="https://news.healthcareguys.com/wp-login.php?action=lostpassword" class="registration-form-button" target="_blank">Lost your password?</a>
+    <button type="submit" class="btn btn-primary pull-right" id="js-sign-in-button">Register</button>
   </fieldset>
 </div>

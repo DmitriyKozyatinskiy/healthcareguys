@@ -1,11 +1,12 @@
 var Auth = (function () {
   'use strict';
 
-  var $loginForm = $('#js-login-form');
-  var $contentForm = $('#js-content-form');
+  var $main = $('#js-main');
   var $tabs = $('#js-tabs');
   var $footer = $('#js-footer');
-  var $main = $('#js-main');
+  var $loginForm = $('#js-login-form');
+  var $contentForm = $('#js-content-form');
+  var $registrationForm = $('#js-registration-form');
 
   function isSignedIn() {
     var dfd = $.Deferred();
@@ -20,10 +21,8 @@ var Auth = (function () {
     }).done(function (response) {
       response = JSON.parse(response);
       if (response.status === 'success') {
-        saveToken(response.token).done(function () {
-          saveUserName(response.results.uname).done(function() {
-            dfd.resolve(response.results.uname);
-          });
+        $.when(saveToken(response.token), saveUserName(response.results.uname)).done(function(token, username) {
+          dfd.resolve(username);
         });
       } else {
         dfd.reject();
@@ -99,10 +98,8 @@ var Auth = (function () {
         withCredentials: true
       }
     }).done(function() {
-      saveToken('').done(function () {
-        saveUserName('').done(function () {
-          dfd.resolve();
-        });
+      $.when(saveToken(''), saveUserName('')).done(function() {
+        dfd.resolve();
       });
     });
 
@@ -125,14 +122,32 @@ var Auth = (function () {
     return dfd.promise();
   }
 
+  function hideContent() {
+    $tabs.addClass('hidden');
+    $footer.addClass('hidden');
+    $main.addClass('is-login-form-shown');
+    $contentForm.empty();
+  }
+
   function showSignInForm() {
     var dfd = $.Deferred();
     $.get('../html/auth.html').done(function (template) {
-      $tabs.addClass('hidden');
-      $footer.addClass('hidden');
-      $main.addClass('is-login-form-shown');
+      hideContent();
+      $registrationForm.addClass('hidden');
       $loginForm.removeClass('hidden').html(template);
-      $contentForm.empty();
+      dfd.resolve();
+    }).fail(function () {
+      dfd.reject();
+    });
+    return dfd.promise();
+  }
+
+  function showRegistrationForm() {
+    var dfd = $.Deferred();
+    $.get('../html/registration.html').done(function (template) {
+      hideContent();
+      $loginForm.addClass('hidden');
+      $registrationForm.removeClass('hidden').html(template);
       dfd.resolve();
     }).fail(function () {
       dfd.reject();
@@ -147,6 +162,7 @@ var Auth = (function () {
     saveToken: saveToken,
     isSignedIn: isSignedIn,
     getUserName: getUserName,
-    showSignInForm: showSignInForm
+    showSignInForm: showSignInForm,
+    showRegistrationForm: showRegistrationForm
   }
 }());
