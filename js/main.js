@@ -140,8 +140,8 @@ function setAdditionalTabsContent(data) {
   deferres.push(setContent('share', data));
   deferres.push(setContent('purpose', data));
   deferres.push(setContent('visuals', data));
-  deferres.push(setContent('feedback', data));
   deferres.push(setContent('links', data));
+  deferres.push(setContent('feedback', data));
   return deferres;
 }
 

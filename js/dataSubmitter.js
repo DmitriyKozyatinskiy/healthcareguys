@@ -2,8 +2,8 @@
   'use strict';
 
   var MAX_CATEGORIES_NUMBER = 5;
-  var noTitleErrorMessage = 'Title should not be empty';
-  var categoriesErrorMessage = 'You must select from 1 to 5 categories';
+  var NO_TITLE_ERROR_MESSAGE = 'Title should not be empty';
+  var CATEGORIES_ERROR_MESSAGE = 'You must select from 1 to 5 categories';
 
   function getContentData() {
     var categories = [];
@@ -73,11 +73,11 @@
     $('.js-submission-success').addClass('hidden');
 
     if (!data.title && (!data.category.length || data.category.length > MAX_CATEGORIES_NUMBER)) {
-      errorMessage.message = noTitleErrorMessage + '; ' + categoriesErrorMessage;
+      errorMessage.message = NO_TITLE_ERROR_MESSAGE + '; ' + CATEGORIES_ERROR_MESSAGE;
     } else if (!data.title) {
-      errorMessage.message = noTitleErrorMessage;
+      errorMessage.message = NO_TITLE_ERROR_MESSAGE;
     } else if (!data.category.length || data.category.length > MAX_CATEGORIES_NUMBER) {
-      errorMessage.message = categoriesErrorMessage;
+      errorMessage.message = CATEGORIES_ERROR_MESSAGE;
     }
 
     if (errorMessage.message) {

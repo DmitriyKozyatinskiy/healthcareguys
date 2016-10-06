@@ -2,10 +2,10 @@
     <div class="top-cm-pad">
         <div id="w-feedback">
             <div class="form-group textarea-editable-container">
-                <input id="js-fed-name" class="form-control clear-marg" placeholder="Name" />
+                <input id="js-fed-name" class="form-control clear-marg" placeholder="Name" required>
             </div>
             <div class="form-group textarea-editable-container">
-                <input id="js-fed-email" class="form-control" placeholder="Email" />
+                <input id="js-fed-email" class="form-control" placeholder="Email" required>
             </div>
             <select class="form-control feedback-type-select" id="js-fed-support-type">
                 <option disabled selected>Support Type</option>
@@ -16,12 +16,11 @@
                 <option value="Share An Idea">Share An Idea</option>
             </select>
             <div class="form-group textarea-editable-container">
-                <input id="js-fed-subject" class="form-control" placeholder="Subject" rows="1" />
+                <input id="js-fed-subject" class="form-control" placeholder="Subject" required>
             </div>
             <div class="form-group textarea-editable-container">
                 <textarea id="js-fed-description" class="form-control textarea-editable textarea-fed" placeholder="Description" rows="10"></textarea>
             </div>
-           
         </div>
     </div>
     <div class="submit-container">
@@ -40,7 +39,7 @@
         <div class="alert alert-danger submission-notification hidden js-feedback-submission-error" role="alert">
             <span class="glyphicon glyphicon glyphicon-remove text-danger" aria-hidden="true"></span>
             <span class="js-submission-error-message"></span>
-        </div> 
+        </div>
         <button type="button" class="btn btn-primary button-submit" id="js-feedback">
             <img src="../img/icons/icon32x32.png" class="submit-icon" height="25">
             <span class="submit-button-text ">Send Feedback</span>
