@@ -5,13 +5,14 @@
             <textarea id="js-title-input" class="form-control textarea-editable textarea-editable-title clear-marg top-cm-pad" placeholder="Title" rows="3">{{ title }}</textarea>
         </div>
         <div class="form-group textarea-editable-container">
-            <textarea id="js-description-input" class="form-control textarea-editable textarea-editable-description" placeholder="Description" rows="6 ">{{ description }}</textarea>
+            <textarea id="js-description-input" class="form-control textarea-editable textarea-editable-description textarea-disabled" placeholder="Description" rows="6">{{ description }}</textarea>
         </div>
+        <div class="auto-tags-container" id="js-auto-tags-container"></div>
         <a href="#" id="js-image-container" class="thumbnail image-container remove-border">
             <img src="{{ image }}" id="js-image" class="image-holder {{ ^image }}hidden{{ /image }}" height="100" alt="Click to add image" data-type="url">
             <p class="text-center add-image-button {{ #image }}hidden{{ /image }}" id="js-add-image">Add image</p>
         </a>
-        <input type="file" class="hidden" id="js-image-uploader">
+        <input type="file" class="hidden" id="js-image-uploader" accept=".jpg,.jpeg,.png,.gif">
         <div class="pull-down js-expandable-container">
             <div class="list-container list-cat-height" id="js-categories-container">
                 {{ #categories }}

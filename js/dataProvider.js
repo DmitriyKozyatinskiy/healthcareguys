@@ -1,17 +1,18 @@
 ;(function () {
   'use strict';
 
-  function getData() {    
+  function getData() {
     var url = $('[property="og:url"]').attr('content') || location.href;
     var title = $('[property="og:title"]').attr('content') || $('title').text();
-    var description = $('[property="og:description"]').attr('content') || formatUrl(location.href);
+    var description = $('[property="og:description"]').attr('content') || '';
     var image = $('[property="og:image"]').attr('content') || null;
 
     return {
       url: formatUrl(url),
       title: formatTitle(title),
       description: description,
-      image: image
+      image: image,
+      pageUrl: location.href
     };
   }
 

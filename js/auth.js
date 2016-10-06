@@ -70,21 +70,21 @@ var Auth = (function () {
 
   function saveToken(token) {
     var dfd = $.Deferred();
-
     chrome.storage.sync.set({ 'token': token }, function() {
       dfd.resolve(token)
     });
-
     return dfd.promise();
   }
 
   function getToken() {
     var dfd = $.Deferred();
-
     chrome.storage.sync.get('token', function(token) {
-      dfd.resolve(token.token)
+      if (token.token) {
+        dfd.resolve(token.token)
+      } else {
+        dfd.reject('')
+      }
     });
-
     return dfd.promise();
   }
 

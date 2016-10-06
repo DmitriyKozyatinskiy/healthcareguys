@@ -96,49 +96,84 @@ var $main = $('#js-main');
 
 function setInterface() {
   // Loader.show();
-  requestData().done(function(data) {
-    requestTaxonomyList().done(function(list) {
-      data = extendData(data, list);
-      Auth.getToken().done(function(startToken) {
-        $contentForm.empty();
-        if (startToken) {
-          setContent('content', data).done(function() {
-            var $submitButton = $('.js-submit-button');
-            $loginForm.addClass('hidden').empty();
-            $main.removeClass('is-login-form-shown');
-            $tabs.removeClass('hidden').addClass('no-events');
-            $footer.removeClass('hidden');
-            $loginForm.addClass('hidden').empty();
-            $submitButton.prop('disabled', true);
-            Auth.isSignedIn().done(function (username) {
-              setContent('share', data).done(function () {
-                setContent('purpose', data).always(function () {
-                  setContent('visuals', data).always(function () {
-                    setContent('feedback', data).always(function () {
-                      setContent('links', data).always(function () {
-                        $tabs.removeClass('no-events');
-                        $submitButton.prop('disabled', false);
-                        $('#js-tags-list-container').jstree(generateTreeJSON(data.tags));
-                        $('#js-purpose-list-container').jstree(generateTreeJSON(data.purposes));
-                        $('#js-persona-list-container').jstree(generateTreeJSON(data.personas));
-                        $('.list-container p').remove();
-                        $('.js-name-label').html('as ' + username);
-                        setTooltips();
-                      });
-                    });
-                  });
-                });
-              });
-            }).fail(function() {
-              Auth.showSignInForm();
-            });
+  $.when(requestData(), requestTaxonomyList()).done(function(data, list) {
+    data = extendData(data, list);
+    Auth.getToken().done(function(startToken) {
+      $contentForm.empty();
+      setContent('content', data).done(function() {
+        var $submitButton = $('.js-submit-button');
+        $loginForm.addClass('hidden').empty();
+        $main.removeClass('is-login-form-shown');
+        $tabs.removeClass('hidden').addClass('no-events');
+        $footer.removeClass('hidden');
+        $loginForm.addClass('hidden').empty();
+        $submitButton.prop('disabled', true);
+        Auth.isSignedIn().done(function (username) {
+          $.when.apply($, setAdditionalTabsContent(data)).done(function() {
+            $tabs.removeClass('no-events');
+            $submitButton.prop('disabled', false);
+            $('#js-tags-list-container').jstree(generateTreeJSON(data.tags));
+            $('#js-purpose-list-container').jstree(generateTreeJSON(data.purposes));
+            $('#js-persona-list-container').jstree(generateTreeJSON(data.personas));
+            $('.list-container p').remove();
+            $('.js-name-label').html('as ' + username);
+            setTooltips();
           });
-        } else {
+
+          $.when(getDescription(data)).done(function(description) {
+            data.description = description;
+            $('#js-description-input').val(description).removeClass('textarea-disabled');
+            setAutoTags(data);
+          });
+        }).fail(function() {
           Auth.showSignInForm();
-        }
+        });
       });
+    }).fail(function() {
+      Auth.showSignInForm();
     });
   });
+}
+
+function setAdditionalTabsContent(data) {
+  var deferres  = [];
+  deferres.push(setContent('share', data));
+  deferres.push(setContent('purpose', data));
+  deferres.push(setContent('visuals', data));
+  deferres.push(setContent('feedback', data));
+  deferres.push(setContent('links', data));
+  return deferres;
+}
+
+function setAutoTags(data) {
+  var dfd = $.Deferred();
+  var text = data.description || data.title;
+  AutoSummarization.generateTags(text).done(function(tags) {
+    var $tagContainer = $('#js-auto-tags-container');
+    tags.forEach(function(tag) {
+      var $tag = $('<span>', {
+        'html': tag,
+        'class': 'label label-info auto-tag'
+      });
+      $tagContainer.append($tag);
+    });
+    dfd.resolve(tags);
+  });
+  return dfd.promise();
+}
+
+function getDescription(data) {
+  var dfd = $.Deferred();
+  if (data.description) {
+    window.setTimeout(function() {
+      dfd.resolve(data.description);
+    }, 1);
+  } else {
+    AutoSummarization.generateSummary(data.pageUrl).done(function(description) {
+      dfd.resolve(description);
+    });
+  }
+  return dfd.promise();
 }
 
 function extendData(data, list) {

@@ -87,7 +87,7 @@
       }
 
       Loader.show();
-      Auth.getToken().done(function(token) {
+      Auth.getToken().always(function(token) {
           submitData(data, token).done(function(response) {
               showSubmissionStatus('success', response);
               $('#js-links-tab-button').trigger('click');
