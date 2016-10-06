@@ -230,13 +230,7 @@ h4.list-header {
 #w-feedback textarea,select{
     margin-bottom:10px;
 }
-#js-fed-support-type{
-    color:#999 !important;
-    border-radius: 0 !important;
-    border-color: #eee !important;
-    padding: 0 6px !important;
-    border-top:none !important;
-}
+
 #js-links-container textarea,#js-links-container input{
     width: 88% !important;
     float:left;
@@ -245,6 +239,11 @@ h4.list-header {
     margin-top: 0px !important;
     margin-bottom: 15px;
 }
+
+.feedback-type-select {
+    padding-left: 6px;
+}
+
 #js-links-container span{    
    
 }
