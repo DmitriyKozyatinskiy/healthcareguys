@@ -38,19 +38,19 @@
   function submitData(data, token) {
     var dfd = $.Deferred();
 
-    $.ajax({
-      url: 'https://news-devl.healthcareguys.com/wp-json/api/wp/v2/post',
-      method: 'POST',
-      contentType: 'application/json',
-      data: JSON.stringify({
-        data: data,
-        token: token
-      }),
-      xhrFields: {
-        withCredentials: true
-      }
-    }).done(function (response) {
-      response = JSON.parse(response);
+        $.ajax({
+            url: config.restUrl+'/wp-json/api/wp/v2/post',
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                data: data,
+                token: token
+            }),
+            xhrFields: {
+                withCredentials: true
+            }
+        }).done(function(response) {
+            response = JSON.parse(response);
 
       if (response.status === 'success') {
         dfd.resolve(response);
@@ -117,37 +117,33 @@
   }
 
   function getFeedbackData() {
-    var name = $('#js-fed-name').val().trim();
-    var email = $('#js-fed-email').val().trim();
+        return {
+            "feedbackUser": $.trim($('#js-fed-name').val()),
+            "feedbackUserEmail": $.trim($('#js-fed-email').val()),
+            "feedbackType": $.trim($('#js-fed-support-type').val()),
+            "feedbackSubject": $.trim($('#js-fed-subject').val()),
+            "feedbackDesc": $.trim($('#js-fed-description').val()),
+            "feedbackAttachment": "",
+            "supportTimeStamp": "",
+            "userAgent": "",
+            "feedbackData": {
+                "REQUEST_METHOD": "POST",
+                "CONTENT_TYPE": "application/json",
+                "HTTP_USER_AGENT": "",
+                "HTTP_REFERER": ""
+            }
 
-    return {
-      feedbackUser: name,
-      feedbackUserEmail: email,
-      feedbackType: $('#js-fed-support-type').val(),
-      feedbackSubject: $('#js-fed-subject').val().trim(),
-      feedbackDesc: $('#js-fed-description').val().trim(),
-      feedbackAttachment: '',
-      apiKey: '25447ae7-a97c-325e-bc52-e75814b61b07',
-      releaseStage: 'NPS',
-      userDetails: {
-        name: name,
-        email: email,
-        account: 'PrescribeWell',
-        appVersion: '1.2+0001',
-        role: 'admin'
-      },
-      supportTimeStamp: '',
-      userAgent: '',
-      feedbackData: {
-        REQUEST_METHOD: 'POST',
-        CONTENT_TYPE: 'application/json',
-        HTTP_USER_AGENT: '',
-        HTTP_REFERER: ''
-      }
-
-    };
+        };
   }
+  function handleFeedbackSubmissionProcess(telemetryAgent) {
+    var data = getFeedbackData();
 
+    Loader.show();
+    telemetryAgent.supportWidget.widgetApiPost(data, function(){
+        $('.alert-success').removeClass('hidden');
+        Loader.hide();
+    });
+    }
   function validateFeedback(data) {
     var emailValidationRegexp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var isValidEmail = emailValidationRegexp.test(data.feedbackUserEmail);
@@ -175,37 +171,15 @@
     event.preventDefault();
     handleDataSubmissionProcess();
   }).on('click', '#js-feedback', function () {
-    var data = getFeedbackData();
-    var telemetryAgent = TelemetryAgent.getInstance({
-      apiKey: '59319ec5-d37d-3ff2-bcc5-dd3c21d24c76',
-      releaseStage: 'Development',
-      userData: {
-        name: data.feedbackUser,
-        email: data.feedbackUserEmail,
-        account: 'PrescribeWell',
-        appVersion: '1.2+0001',
-        role: 'admin'
-      }
-    });
-    var $submissionError = $('.js-feedback-submission-error');
-    var $submissionSuccess = $('.js-feedback-submission-success');
-    var errorList = validateFeedback(data);
-
-    $submissionError.addClass('hidden');
-    $submissionSuccess.addClass('hidden');
-    if (errorList.length) {
-      var errorIcon = ' <span class="glyphicon glyphicon glyphicon-remove text-danger"></span> ';
-      var errorMessage = errorList.join(errorIcon).trim();
-      $submissionError.removeClass('hidden').find('.js-submission-error-message').html(errorMessage);
-      $submissionSuccess.addClass('hidden');
-    } else {
-      Loader.show();
-      telemetryAgent.supportWidget.widgetApiPost(data, function() {
-        Loader.hide();
-        $submissionError.addClass('hidden');
-        $submissionSuccess.removeClass('hidden');
-      });
-    }
+    if($('#js-fed-support-type').val() != 0){             
+            $('#fed-message').addClass('hidden');                                    
+            handleFeedbackSubmissionProcess(config.telemetryAgent);           
+      }else{
+          $('#fed-message').html("Select the support type");               
+          $('#fed-message').removeClass('hidden');
+          Loader.hide(); 
+      } 
+        event.preventDefault();
   });
 }());
 

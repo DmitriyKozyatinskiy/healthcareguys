@@ -14,6 +14,20 @@ function checkCurrentUrl() {
 
 $(function () {
   checkCurrentUrl().done(function(tabId) {
+  config = {
+    appVersion: '2.0.4',
+    appKey :'25447ae7-a97c-325e-bc52-e75814b61b07',
+    restUrl: 'https://news-devl.healthcareguys.com',
+    telemetryAgent:'',
+    userDetails :{
+                'name': '',
+                'email': '',
+                'account': 'Browser Extension',
+                'appVersion':'',
+                'role': 'admin'
+    },
+    releaseStage : 'Development'
+};
     $(document)
       .on('click', '.js-tab-button', function(event) {
         var $tabButton = $(this);
@@ -88,6 +102,18 @@ $(function () {
       .on('click', '.js-feedback-link', function (event) {
         event.preventDefault();
         $('#js-feedback-tab-button').trigger('click');
+	 }).on('click', '.lcopy', function(event){
+        var fieldname = $(this).attr('data-copy');   
+        var field = document.getElementById(fieldname);
+        if(field.value.length > 7 ) {
+          $('.l-fade').hide();
+          $(this).parent().find('.l-fade').show();  
+          field.focus();
+          field.setSelectionRange(0, field.value.length)
+          var copysuccess = copySelectionText(); 
+          setTimeout(function(){  
+	  	$('.l-fade').hide(); }, 500);
+       	}
       });
 
     setInterface();
@@ -101,7 +127,15 @@ var $contentForm = $('#js-content-form');
 var $tabs = $('#js-tabs');
 var $footer = $('#js-footer');
 var $main = $('#js-main');
-
+function copySelectionText(){
+    var copysuccess // var to check whether execCommand successfully executed
+    try{
+        copysuccess = document.execCommand("copy") // run command to copy selected text to clipboard
+    } catch(e){
+        copysuccess = false
+    }
+    return copysuccess
+}
 function setInterface() {
   // Loader.show();
   $.when(requestData(), requestTaxonomyList()).done(function(data, list) {
@@ -271,29 +305,41 @@ function handleImageUpdate() {
 function handleVisualsImageUpload() {
   var dfd = $.Deferred();
   var file = this.files[0];
-  var $fileInput = $(this);
-  var fileReader = new FileReader();
-
-  fileReader.onload = function (event) {
-    var fileName = $fileInput.val().split(/(\\|\/)/g).pop();
-    var className = '.' + $fileInput.attr('data-select-class');
-
-    $fileInput.attr('data-src', event.target.result);
-    $(className).removeClass('hidden');
-    var $groupContainer = $fileInput.closest('.form-group');
-    $groupContainer.find('.js-visuals-image-name').html(fileName);
-    $groupContainer.find('.js-visuals-image-name-container').removeClass('hidden');
-    $groupContainer.find('.js-visuals-select').prop('disabled', true).attr('data-image', true);
-    $groupContainer.find('.js-visuals-option').prop('selected', false);
-    $groupContainer.find('.js-visuals-selector-none').prop('selected', true);
-    $('.js-visuals-select').filter(function() {
-      return !$(this).attr('data-image');
-    }).removeAttr('disabled');
-
-    dfd.resolve();
-  };
-
-  fileReader.readAsDataURL(file);
+  fileSize = Math.round(file.size / 1024);
+  var extension = file.name.split('.').pop().toLowerCase();
+  var fileTypes = ['jpg', 'jpeg', 'png'];  //acceptable file types
+  var isSuccess = fileTypes.indexOf(extension) > -1;  //is extension in acceptable types 
+  if(fileSize < 1024) {   
+    if(isSuccess) {
+        var $fileInput = $(this);
+        var fileReader = new FileReader();
+        fileReader.onload = function (event) {
+        var fileName = $fileInput.val().split(/(\\|\/)/g).pop();
+        var className = '.' + $fileInput.attr('data-select-class');
+        $fileInput.attr('data-src', event.target.result);
+        $(className).removeClass('hidden');
+        var $groupContainer = $fileInput.closest('.form-group');
+        $groupContainer.find('.js-visuals-image-name').html(fileName);
+        $groupContainer.find('.js-visuals-image-name-container').removeClass('hidden');
+        $groupContainer.find('.js-visuals-select').prop('disabled', true).attr('data-image', true);
+        $groupContainer.find('.js-visuals-option').prop('selected', false);
+        $groupContainer.find('.js-visuals-selector-none').prop('selected', true);
+        $('.js-visuals-select').filter(function() {
+          return !$(this).attr('data-image');
+        }).removeAttr('disabled');
+        dfd.resolve();
+      };
+      fileReader.readAsDataURL(file);
+    }else{
+      $(".js-submission-error-message").html('Ony jpg and png file types are allowed');
+      $('.js-submission-error').removeClass('hidden');    
+      $('.js-submission-error').show();    
+    }
+  } else{
+    $(".js-submission-error-message").html('Filesize less than 1 MB is allowed');
+    $('.js-submission-error').removeClass('hidden');    
+    $('.js-submission-error').show();    
+  }
 }
 
 function handleVisualsImageRemove() {
