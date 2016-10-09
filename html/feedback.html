@@ -1,22 +1,20 @@
 <div id="js-feedback-container" class="tab-pane fade">
-    <div class="default-height top-cm-pad">
-        <div id="w-feedback">
-            <div class="form-group ">
-                <select class="form-control list-header" id="js-fed-support-type">
-                    <option value="0">Support Type</option>
-                    <option value="Report A Problem">Report a problem</option>
-                    <option value="Request a Feature">Request a feature</option>
-                    <option value="Ask A Question">Ask a question</option>
-                    <option value="Give Praise">Give praise</option>
-                    <option value="Share An Idea">Share an idea</option>
-                </select>
-            </div>
-            <div class="form-group textarea-editable-container">
-                <input id="js-fed-subject" class="form-control" placeholder="Subject">
-            </div>
-            <div class="form-group textarea-editable-container">
-                <textarea id="js-fed-description" class="form-control textarea-editable textarea-fed" placeholder="Description" rows="10"></textarea>
-            </div>
+    <div class="feedback-container">
+        <div class="form-group feedback-input-container">
+            <select id="js-fed-support-type" class="form-control feedback-input">
+                <option selected disabled>Support Type</option>
+                <option value="Report A Problem">Report a problem</option>
+                <option value="Request a Feature">Request a feature</option>
+                <option value="Ask A Question">Ask a question</option>
+                <option value="Give Praise">Give praise</option>
+                <option value="Share An Idea">Share an idea</option>
+            </select>
+        </div>
+        <div class="form-group feedback-input-container">
+            <input id="js-fed-subject" class="form-control feedback-input" placeholder="Subject">
+        </div>
+        <div class="form-group feedback-input-container">
+            <textarea id="js-fed-description" class="form-control feedback-input" placeholder="Description" rows="10"></textarea>
         </div>
     </div>
     <div class="submit-container">

@@ -2,10 +2,10 @@
     <div class="default-height"> 
         <input id="js-url-input" type="hidden" value="{{ url }}">
         <div class="form-group textarea-editable-container">
-            <textarea id="js-title-input" class="form-control textarea-editable textarea-editable-title clear-marg top-cm-pad" placeholder="Title" rows="3">{{ title }}</textarea>
+            <textarea id="js-title-input" class="form-control textarea-editable textarea-editable-title clear-marg top-cm-pad js-change-observer" placeholder="Title" rows="3">{{ title }}</textarea>
         </div>
         <div class="form-group textarea-editable-container">
-            <textarea id="js-description-input" class="form-control textarea-editable textarea-editable-description textarea-disabled" placeholder="Description" rows="6">{{ description }}</textarea>
+            <textarea id="js-description-input" class="form-control textarea-editable textarea-editable-description textarea-disabled js-change-observer" placeholder="Description" rows="6">{{ description }}</textarea>
         </div>
         <div class="auto-tags-container" id="js-auto-tags-container"></div>
         <a href="#" id="js-image-container" class="thumbnail image-container remove-border">

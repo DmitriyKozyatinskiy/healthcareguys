@@ -144,7 +144,12 @@ h4.list-header {
 }
 
 .textarea-editable-description {
+    margin-top: -1px;
+}
 
+.textarea-editable-share {
+    margin-top: -1px;
+    border-bottom: 1px solid #eee;
 }
 
 .no-events {
@@ -153,6 +158,7 @@ h4.list-header {
 
 .submission-notification {
     /*margin: 10px;*/
+    margin-bottom: 10px;
     padding: 8px;
     font-size: 12px;
 }
@@ -231,10 +237,6 @@ h4.list-header {
     
 }
 
-#w-feedback textarea,select{
-    margin-bottom:10px;
-}
-
 #js-links-container textarea,#js-links-container input{
     width: 88% !important;
     float:left;
@@ -254,16 +256,7 @@ h4.list-header {
 #js-links-container span i{
     color:#fff
 }
-#w-feedback{
-    padding: 0 10px 0 10px;
-}
-#w-feedback input,select,textarea{
-    margin: 10px 0 0 0;
-    border-color: #eee !important
-}
-#w-feedback textarea{
-    border: 1px solid #eee !important;
-}
+
 .round-span{
     display:block;
     text-align: center;  
@@ -273,6 +266,7 @@ h4.list-header {
     height: 30px;   
     float:left;
     background: #92d050;
+    cursor: pointer;
 }
 .round-span-lk-ht-text{
      margin: 1px 0 0 3px;
@@ -324,6 +318,28 @@ h4.list-header {
     height: 490px;
     position: relative;
 }
+
+.feedback-container {
+    min-height: 370px;
+}
+
+.feedback-input-container {
+    margin-bottom: 0;
+}
+
+.feedback-input {
+    margin-bottom: -1px;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
+    border-color: #eee;
+    resize: none;
+}
+
+.feedback-input:first-of-type {
+    border-top: none;
+}
+
 .list-default-height {
     height: 400px;
 }
@@ -459,8 +475,8 @@ h4.list-header {
         opacity: 0;
     }
 }
-.link-label{padding-left: 15px;}
-.l-fade { 
+
+.l-fade {
     display: none;
     position: absolute; 
     text-align: right;

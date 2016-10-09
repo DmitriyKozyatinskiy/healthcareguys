@@ -1,33 +1,20 @@
-function checkCurrentUrl() {
-  var dfd = $.Deferred();
-  chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {validateCurrentUrl: true}, function(isValid) {
-      if (isValid) {
-        dfd.resolve(tabs[0].id);
-      } else {
-        dfd.reject(tabs[0].id);
-      }
-    });
-  });
-  return dfd.promise();
-}
+var config = {
+  appVersion: '2.0.4',
+  appKey: '25447ae7-a97c-325e-bc52-e75814b61b07',
+  restUrl: 'https://news-devl.healthcareguys.com',
+  telemetryAgent: '',
+  userDetails: {
+    name: '',
+    email: '',
+    account: 'Browser Extension',
+    appVersion: '',
+    role: 'admin'
+  },
+  releaseStage: 'Development'
+};
 
 $(function () {
   checkCurrentUrl().done(function(tabId) {
-  config = {
-    appVersion: '2.0.4',
-    appKey :'25447ae7-a97c-325e-bc52-e75814b61b07',
-    restUrl: 'https://news-devl.healthcareguys.com',
-    telemetryAgent:'',
-    userDetails :{
-                'name': '',
-                'email': '',
-                'account': 'Browser Extension',
-                'appVersion':'',
-                'role': 'admin'
-    },
-    releaseStage : 'Development'
-};
     $(document)
       .on('click', '.js-tab-button', function(event) {
         var $tabButton = $(this);
@@ -102,19 +89,7 @@ $(function () {
       .on('click', '.js-feedback-link', function (event) {
         event.preventDefault();
         $('#js-feedback-tab-button').trigger('click');
-	 }).on('click', '.lcopy', function(event){
-        var fieldname = $(this).attr('data-copy');   
-        var field = document.getElementById(fieldname);
-        if(field.value.length > 7 ) {
-          $('.l-fade').hide();
-          $(this).parent().find('.l-fade').show();  
-          field.focus();
-          field.setSelectionRange(0, field.value.length)
-          var copysuccess = copySelectionText(); 
-          setTimeout(function(){  
-	  	$('.l-fade').hide(); }, 500);
-       	}
-      });
+	    }).on('click', '.js-copy-link-button', copyShortLink);
 
     setInterface();
   }).fail(function() {
@@ -127,20 +102,39 @@ var $contentForm = $('#js-content-form');
 var $tabs = $('#js-tabs');
 var $footer = $('#js-footer');
 var $main = $('#js-main');
-function copySelectionText(){
-    var copysuccess // var to check whether execCommand successfully executed
-    try{
-        copysuccess = document.execCommand("copy") // run command to copy selected text to clipboard
-    } catch(e){
-        copysuccess = false
-    }
-    return copysuccess
+
+function copyShortLink() {
+  var $button = $(this);
+  var input = $button.closest('.form-group').find('.js-short-link-input').get(0);
+  if (!input.value) {
+    return;
+  }
+  input.setSelectionRange(0, input.value.length);
+  document.execCommand('copy');
 }
+
+function checkCurrentUrl() {
+  var dfd = $.Deferred();
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    chrome.tabs.sendMessage(tabs[0].id, { validateCurrentUrl: true }, function(isValid) {
+      if (isValid) {
+        dfd.resolve(tabs[0].id);
+      } else {
+        dfd.reject(tabs[0].id);
+      }
+    });
+  });
+  return dfd.promise();
+}
+
 function setInterface() {
-  // Loader.show();
+  var authTokenDfd = Auth.getToken();
+  var isSignedInDfd = Auth.isSignedIn();
   $.when(requestData(), requestTaxonomyList()).done(function(data, list) {
-    data = extendData(data, list);
-    Auth.getToken().done(function(startToken) {
+    var storedLinksDfd = AutoSaver.getShortLinks(data.url);
+    var storedDataDfd = AutoSaver.getTemporaryData(data.url);
+    $.when(authTokenDfd, storedDataDfd).done(function(startToken, temporaryData) {
+      data = extendData(data, list, temporaryData);
       $contentForm.empty();
       setContent('content', data).done(function() {
         var $submitButton = $('.js-submit-button');
@@ -150,8 +144,14 @@ function setInterface() {
         $footer.removeClass('hidden');
         $loginForm.addClass('hidden').empty();
         $submitButton.prop('disabled', true);
-        Auth.isSignedIn().done(function (username) {
+        isSignedInDfd.done(function (username) {
           $.when.apply($, setAdditionalTabsContent(data)).done(function() {
+            storedLinksDfd.done(function(links) {
+              $('#js-clean-link').val(links.cleanURL);
+              $('#js-short-link').val(links.shortBadgedURL);
+              $('#js-badged-link').val(links.badgedURL);
+              $('#js-canonical-link').val(links.shortCanonicalURL);
+            });
             $tabs.removeClass('no-events');
             $submitButton.prop('disabled', false);
             $('#js-tags-list-container').jstree(generateTreeJSON(data.tags));
@@ -218,7 +218,13 @@ function getDescription(data) {
   return dfd.promise();
 }
 
-function extendData(data, list) {
+function extendData(data, list, temporaryData) {
+  if (temporaryData) {
+    data['title'] = temporaryData['title'];
+    data['description'] = temporaryData['description'];
+    data['tweet_content'] = temporaryData['tweet-content'];
+    data['share_content'] = temporaryData['share-content'];
+  }
   data.categories = list.data.submit_cat;
   data.tags = list.data.hashtag;
   data.purposes = list.data.purpose;
@@ -305,7 +311,7 @@ function handleImageUpdate() {
 function handleVisualsImageUpload() {
   var dfd = $.Deferred();
   var file = this.files[0];
-  fileSize = Math.round(file.size / 1024);
+  var fileSize = Math.round(file.size / 1024);
   var extension = file.name.split('.').pop().toLowerCase();
   var fileTypes = ['jpg', 'jpeg', 'png'];  //acceptable file types
   var isSuccess = fileTypes.indexOf(extension) > -1;  //is extension in acceptable types 

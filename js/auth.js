@@ -12,7 +12,7 @@ var Auth = (function () {
     var dfd = $.Deferred();
 
     $.ajax({
-      url: config.restUrl+'/wp-json/api/wp/v2/session',
+      url: window.config.restUrl + '/wp-json/api/wp/v2/session',
       method: 'POST',
       contentType: 'application/json',
       xhrFields: {
@@ -22,14 +22,7 @@ var Auth = (function () {
       response = JSON.parse(response);
       if (response.status === 'success') {
         $.when(saveToken(response.token), saveUserName(response.results.uname)).done(function(token, username) {
-	    config.userDetails.name = response.results.uname;
-            config.userDetails.email = response.results.email;
-            config.userDetails.appVersion = config.appVersion;         
-            config.telemetryAgent = TelemetryAgent.getInstance({
-            apiKey: config.appKey,
-            releaseStage: config.releaseStage,
-            userData: config.userDetails
-            });
+          updateConfig(response.results.uname, response.results.email);
           dfd.resolve(username);
         });
       } else {
@@ -52,7 +45,7 @@ var Auth = (function () {
     };
 
     $.ajax({
-      url: config.restUrl+'/wp-json/api/wp/v2/authentication/login',
+      url: window.config.restUrl + '/wp-json/api/wp/v2/authentication/login',
       method: 'POST',
       data: JSON.stringify(data),
       contentType: 'application/json',
@@ -63,21 +56,13 @@ var Auth = (function () {
       response = JSON.parse(response);
       if (response.status === 'success') {
         saveToken(response.token).done(function (token) {
+          updateConfig(response.uname, data.username);
+          config.telemetryAgent.pageData.setNotifyLogin(function( requestData ) {
+            requestData['statName'] = 'Login';
+            return requestData;
+          }, '');
           dfd.resolve(token);
         });
- 	      config.userDetails.name = response.uname;
-        config.userDetails.email = data.username;
-        config.userDetails.appVersion = config.appVersion;         
-        config.telemetryAgent = TelemetryAgent.getInstance({
-          apiKey: config.appKey,
-          releaseStage: config.releaseStage,
-          userData: config.userDetails
-        });
-        config.telemetryAgent.pageData.setNotifyLogin(function( requestData ) {
-            requestData['statName']='Login';
-            return requestData;
-          },'');      
-    
       } else {
         dfd.reject();
       }
@@ -86,6 +71,17 @@ var Auth = (function () {
     });
 
     return dfd.promise();
+  }
+
+  function updateConfig(name, email) {
+    config.userDetails.name = name;
+    config.userDetails.email = email;
+    config.userDetails.appVersion = config.appVersion;
+    config.telemetryAgent = TelemetryAgent.getInstance({
+      apiKey: config.appKey,
+      releaseStage: config.releaseStage,
+      userData: config.userDetails
+    });
   }
 
   function saveToken(token) {
@@ -112,7 +108,7 @@ var Auth = (function () {
     var dfd = $.Deferred();
 
     $.ajax({
-      url: config.restUrl+'/wp-json/api/wp/v2/authentication/logout',
+      url: config.restUrl + '/wp-json/api/wp/v2/authentication/logout',
       method: 'POST',
       contentType: 'application/json',
       xhrFields: {
@@ -120,11 +116,11 @@ var Auth = (function () {
       }
     }).done(function() {
       $.when(saveToken(''), saveUserName('')).done(function() {
+        config.telemetryAgent.pageData.setNotifyLogout(function(requestData) {
+          requestData['statName']= 'Logout';
+          return requestData;
+        }, '');
         dfd.resolve();
-	config.telemetryAgent.pageData.setNotifyLogout(function( requestData ) {
-            requestData['statName']='Logout';
-            return requestData;
-          },'');
       });
     });
 

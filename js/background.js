@@ -36,4 +36,14 @@
     }
     return true;
   });
+
+  chrome.tabs.onActivated.addListener(function() {
+    chrome.storage.sync.set({ temporaryData: null });
+  });
+
+  chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
+    if (changeInfo.status === 'loading' && tab.active && tab.selected) {
+      chrome.storage.sync.set({ temporaryData: null });
+    }
+  });
 }());
