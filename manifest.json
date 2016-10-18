@@ -9,7 +9,7 @@
   "name": "Digital Health News",
   "short_name": "HealthCare Guys",
   "description": "HealthCare Guys",
-  "version": "2.0.6",
+  "version": "2.0.8",
   "background": {
     "scripts": [
       "js/libs/jquery.js",
@@ -22,8 +22,8 @@
   "permissions": [
     "cookies",
     "storage",
-    "tabs",
-    "activeTab"
+    "activeTab",
+	"management"
   ],
   "content_scripts": [{
     "matches": [
@@ -32,9 +32,11 @@
     "js": [
       "js/libs/jquery.js",
       "js/dataProvider.js",
-      "js/urlValidator.js"
-    ]
-  }],
+      "js/urlValidator.js",
+	  "js/notification.js"      
+    ],
+	"run_at": "document_end"
+  }], 
   "options_ui": {    
     "page": "options.html",    
     "chrome_style": true 

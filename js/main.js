@@ -1,5 +1,5 @@
 var config = {
-  appVersion: '2.0.4',
+  appVersion: '2.0.8',
   appKey: '25447ae7-a97c-325e-bc52-e75814b61b07',
   restUrl: 'https://news-devl.healthcareguys.com',
   telemetryAgent: '',
@@ -105,12 +105,33 @@ var $main = $('#js-main');
 
 function copyShortLink() {
   var $button = $(this);
+  var success   = true,range     = document.createRange(),selection;
   var input = $button.closest('.form-group').find('.js-short-link-input').get(0);
   if (!input.value) {
     return;
-  }
-  input.setSelectionRange(0, input.value.length);
-  document.execCommand('copy');
+  } 
+  var tmpElem = $('<div>');
+    tmpElem.css({
+      position: "absolute",
+      left:     "-1000px",
+      top:      "-1000px",
+    });
+    // Add the input value to the temp element.
+    tmpElem.text(input.value);
+    $("#js-main").append(tmpElem);  
+    range.selectNodeContents(tmpElem.get(0));
+    selection = window.getSelection ();
+    selection.removeAllRanges ();
+    selection.addRange (range);
+    // Lets copy.
+    try { 
+      success = document.execCommand ("copy", false, null);
+    }
+    catch (e) {      
+    }
+    if (success) {      
+      tmpElem.remove();
+    }
 }
 
 function checkCurrentUrl() {
