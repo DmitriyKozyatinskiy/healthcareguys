@@ -105,33 +105,14 @@ var $main = $('#js-main');
 
 function copyShortLink() {
   var $button = $(this);
-  var success   = true,range     = document.createRange(),selection;
   var input = $button.closest('.form-group').find('.js-short-link-input').get(0);
   if (!input.value) {
     return;
-  } 
-  var tmpElem = $('<div>');
-    tmpElem.css({
-      position: "absolute",
-      left:     "-1000px",
-      top:      "-1000px",
-    });
-    // Add the input value to the temp element.
-    tmpElem.text(input.value);
-    $("#js-main").append(tmpElem);  
-    range.selectNodeContents(tmpElem.get(0));
-    selection = window.getSelection ();
-    selection.removeAllRanges ();
-    selection.addRange (range);
-    // Lets copy.
-    try { 
-      success = document.execCommand ("copy", false, null);
-    }
-    catch (e) {      
-    }
-    if (success) {      
-      tmpElem.remove();
-    }
+  }
+  input.disabled = false;
+  input.select();
+  document.execCommand('copy');
+  input.disabled = true;
 }
 
 function checkCurrentUrl() {

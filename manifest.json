@@ -25,7 +25,6 @@
     "cookies",
     "storage",
     "activeTab",
-	"management",
     "http://*/",
     "https://*/"
   ],
