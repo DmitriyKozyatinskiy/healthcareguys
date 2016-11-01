@@ -1,5 +1,5 @@
 var config = {
-  appVersion: '2.0.8',
+  appVersion: '2.0.12',
   appKey: '25447ae7-a97c-325e-bc52-e75814b61b07',
   restUrl: 'https://news-devl.healthcareguys.com',
   telemetryAgent: '',
@@ -18,8 +18,12 @@ $(function () {
     $(document)
       .on('click', '.js-tab-button', function(event) {
         var $tabButton = $(this);
+        var teleCustomData ={};
+        var actionLabel = $tabButton.attr('data-title');        
+        teleCustomData.customData = actionLabel +' Click' ;
         $('.js-tab-button').removeClass('active');
         $tabButton.addClass('active');
+        window.config.telemetryAgent.pageData.Event('TabClick','click', actionLabel,1,teleCustomData);
         event.preventDefault();
       })
       .on('change', '#js-image-uploader', handleImageUpdate)
@@ -131,51 +135,51 @@ function checkCurrentUrl() {
 
 function setInterface() {
   var authTokenDfd = Auth.getToken();
-  var isSignedInDfd = Auth.isSignedIn();
-  $.when(requestData(), requestTaxonomyList()).done(function(data, list) {
-    var storedLinksDfd = AutoSaver.getShortLinks(data.url);
-    var storedDataDfd = AutoSaver.getTemporaryData(data.url);
-    $.when(authTokenDfd, storedDataDfd).done(function(startToken, temporaryData) {
-      data = extendData(data, list, temporaryData);
-      $contentForm.empty();
-      setContent('content', data).done(function() {
-        var $submitButton = $('.js-submit-button');
-        $loginForm.addClass('hidden').empty();
-        $main.removeClass('is-login-form-shown');
-        $tabs.removeClass('hidden').addClass('no-events');
-        $footer.removeClass('hidden');
-        $loginForm.addClass('hidden').empty();
-        $submitButton.prop('disabled', true);
-        isSignedInDfd.done(function (username) {
-          $.when.apply($, setAdditionalTabsContent(data)).done(function() {
-            storedLinksDfd.done(function(links) {
-              $('#js-clean-link').val(links.cleanURL);
-              $('#js-short-link').val(links.shortBadgedURL);
-              $('#js-badged-link').val(links.badgedURL);
-              $('#js-canonical-link').val(links.shortCanonicalURL);
+  var isSignedInDfd = Auth.isSignedIn();  
+  isSignedInDfd.done(function (username) {
+   
+    $.when(requestData(), requestTaxonomyList()).done(function(data, list) {
+      var storedLinksDfd = AutoSaver.getShortLinks(data.url);
+      var storedDataDfd = AutoSaver.getTemporaryData(data.url);
+      $.when(storedDataDfd).done(function(temporaryData) {
+        data = extendData(data, list, temporaryData);
+        $contentForm.empty();
+        setContent('content', data).done(function() {
+          var $submitButton = $('.js-submit-button');
+          $loginForm.addClass('hidden').empty();
+          $main.removeClass('is-login-form-shown');
+          $tabs.removeClass('hidden').addClass('no-events');
+          $footer.removeClass('hidden');
+          $loginForm.addClass('hidden').empty();
+          $submitButton.prop('disabled', true);        
+            $.when.apply($, setAdditionalTabsContent(data)).done(function() {
+              storedLinksDfd.done(function(links) {
+                $('#js-clean-link').val(links.cleanURL);
+                $('#js-short-link').val(links.shortBadgedURL);
+                $('#js-badged-link').val(links.badgedURL);
+                $('#js-canonical-link').val(links.shortCanonicalURL);
+              });
+              $tabs.removeClass('no-events');
+              $submitButton.prop('disabled', false);
+              $('#js-tags-list-container').jstree(generateTreeJSON(data.tags));
+              $('#js-purpose-list-container').jstree(generateTreeJSON(data.purposes));
+              $('#js-persona-list-container').jstree(generateTreeJSON(data.personas));
+              $('.list-container p').remove();
+              $('.js-name-label').html('as ' + username);
+              setTooltips();
             });
-            $tabs.removeClass('no-events');
-            $submitButton.prop('disabled', false);
-            $('#js-tags-list-container').jstree(generateTreeJSON(data.tags));
-            $('#js-purpose-list-container').jstree(generateTreeJSON(data.purposes));
-            $('#js-persona-list-container').jstree(generateTreeJSON(data.personas));
-            $('.list-container p').remove();
-            $('.js-name-label').html('as ' + username);
-            setTooltips();
-          });
-
-          $.when(getDescription(data)).done(function(description) {
-            data.description = description;
-            $('#js-description-input').val(description).removeClass('textarea-disabled');
-            setAutoTags(data);
-          });
-        }).fail(function() {
-          Auth.showSignInForm();
+            $.when(getDescription(data)).done(function(description) {
+              data.description = description;
+              $('#js-description-input').val(description).removeClass('textarea-disabled');
+              setAutoTags(data);
+            });
         });
+      }).fail(function() {
+        Auth.showSignInForm();
       });
-    }).fail(function() {
-      Auth.showSignInForm();
     });
+  }).fail(function() {
+      Auth.showSignInForm();
   });
 }
 

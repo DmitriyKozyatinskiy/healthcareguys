@@ -45,8 +45,8 @@ function configSettings() {
         }
     /*page data attributes*/
     var pageData = {
-        enable: false,
-        customStatistics: false,
+        enable: true,
+        customStatistics: true,
         allowNetworkCapture: false,
         allowEnvironmentCapture: false,
         allowAjaxStatistics: false
@@ -64,12 +64,12 @@ function configSettings() {
         }
     /*visitor tracking*/
     var visitorTracking = {
-            enable: false,
+            enable: true,
         }
     /*Google Analytics */
     var googleAnalytics = {
         enable: false,
-        trackingId: 'UA-XXXXXXXX-1'
+        trackingId: 'UA-93818-10'
     }
     var path = {
         pluginUrl: "", //https://your-sitename/lib/telemetry_agent

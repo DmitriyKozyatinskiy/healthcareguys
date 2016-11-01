@@ -59,6 +59,9 @@
     }).fail(function () {
       dfd.reject('Unknown error');
     });
+   var teleCustomData={};
+    teleCustomData.customData = data;
+    window.config.telemetryAgent.pageData.Event('Post Submission','Post', 'Post Submission',1,teleCustomData);
     return dfd.promise();
   }
 
@@ -116,6 +119,8 @@
 
   function getFeedbackData() {
     return {
+  	  apiKey:window.config.appKey,
+  	  releaseStage:window.config.releaseStage,
       feedbackUser: window.config.userDetails.name,
       feedbackUserEmail: window.config.userDetails.email,
       feedbackType: $('#js-fed-support-type').val(),
