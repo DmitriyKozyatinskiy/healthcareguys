@@ -54,7 +54,7 @@ function configSettings() {
 
     /*exception attributes*/
     var problems = {
-            enable: false,
+            enable: true,
             allowNetworkCapture: false,
             customError: false,
             allowConsoleCapture: false,

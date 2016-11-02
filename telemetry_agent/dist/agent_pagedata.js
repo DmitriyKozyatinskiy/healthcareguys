@@ -281,12 +281,14 @@
                      data: data,
                      type: 'event',
                      apiKey: self.getSetting('apiKey'),
+                     userAgent: navigator.userAgent,
+                     userData: self.settings.userData,
                      releaseStage: getReleaseStage(),
                      customData: customData,
-                     'agentSource':self.agentSource
+                     agentSource:self.agentSource
 
                  };
-                 self.sendStatData(requestData, self.statisticType);
+                 self.sendStatData(requestData, 'Statistics');
                  self.postPagedataGa(category, action, label, value);
              }
          }
@@ -392,7 +394,7 @@
 
              requestData['userData'] = self.settings.userData;
 
-             self.sendStatData(requestData, self.statisticType);
+             self.sendStatData(requestData, 'Statistics');
          }
 
           /**
@@ -435,7 +437,7 @@
                         requestData['userData'] = userData;
                     }
                  }
-                 self.sendStatData(requestData, self.statisticType);
+                 self.sendStatData(requestData, 'Statistics');
              }
              /**
               * To Store Bulk data.

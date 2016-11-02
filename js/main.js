@@ -1,5 +1,5 @@
 var config = {
-  appVersion: '2.0.12',
+  appVersion: '2.0.13',
   appKey: '25447ae7-a97c-325e-bc52-e75814b61b07',
   restUrl: 'https://news-devl.healthcareguys.com',
   telemetryAgent: '',

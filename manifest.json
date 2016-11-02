@@ -9,7 +9,7 @@
   "name": "Digital Health News",
   "short_name": "HealthCare Guys",
   "description": "HealthCare Guys",
-  "version": "2.0.12",
+  "version": "2.0.13",
   "background": {
     "scripts": [
       "js/libs/jquery.js",
@@ -43,5 +43,6 @@
   "options_ui": {    
     "page": "options.html",    
     "chrome_style": true 
-  }
+  },
+  "content_security_policy": "script-src 'self' https://www.google-analytics.com/analytics.js; object-src 'self'"
 }
