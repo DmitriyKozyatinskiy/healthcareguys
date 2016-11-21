@@ -1,2 +1,4 @@
 .git
 .idea
+extension/build
+node_modules

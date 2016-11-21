@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Healthcare Guys</title>
+  <link href="build/bundle.css" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper clearfix">
+  <main id="js-main" class="is-login-form-shown">
+    <form id="js-login-form" class="login-form"></form>
+    <form id="js-registration-form" class="login-form hidden"></form>
+    <form id="js-content-form" class="content-form tab-content"></form>
+  </main>
+
+  <div class="tab-container hidden no-events" id="js-tabs">
+    <div class="list-group list-default-height">
+        <a href="#js-content-container"
+           class="js-tooltip list-group-item active text-center tab-button js-tab-button"
+           data-toggle="tab"
+           aria-controls="js-content-container"
+           data-placement="left"
+           data-title="General information">
+        <i class="fa fa-pencil-square-o tab-icon" role="button"></i>
+      </a>
+      <a href="#js-share-container"
+         class="js-tooltip list-group-item text-center tab-button js-tab-button"
+         data-toggle="tab"
+         aria-controls="js-share-container"
+         data-placement="left"
+         data-title="Share">
+        <i class="fa fa-share-alt tab-icon" role="button"></i>
+      </a>
+      <a href="#js-purpose-container"
+         class="js-tooltip list-group-item text-center tab-button js-tab-button"
+         data-toggle="tab"
+         aria-controls="js-purpose-container"
+         data-placement="left"
+         data-title="Purpose">
+        <i class="fa fa-bullseye tab-icon" role="button"></i>
+      </a>
+      <a href="#js-visuals-container"
+         class="js-tooltip list-group-item text-center tab-button js-tab-button"
+         data-toggle="tab"
+         aria-controls="js-visuals-container"
+         data-placement="left"
+         data-title="Visuals">
+        <i class="fa fa-picture-o tab-icon" role="button"></i>
+      </a>
+      <a href="#js-links-container"
+         class="js-tooltip list-group-item text-center tab-button js-tab-button"
+         data-toggle="tab"
+         aria-controls="js-links-container"
+         id="js-links-tab-button"
+         data-placement="left"
+         data-title="Links">
+        <i class="fa fa-link tab-icon" role="button"></i>
+      </a>
+      <a href="#js-feedback-container"
+         class="js-tooltip list-group-item text-center tab-button js-tab-button"
+         data-toggle="tab"
+         aria-controls="js-feedback-container"
+         id="js-feedback-tab-button"
+         data-placement="left"
+         data-title="Feedback">
+        <i class="fa fa-comments tab-icon" role="button"></i>       
+      </a>
+    </div>
+     <div id="js-footer" class="hidden">   
+      <div class="logout-container">
+        <a href="#" class="" id="js-logout-button">
+          <span class="round-span-logout js-tooltip"
+                data-placement="top"
+                data-title="Logout">
+             <i class="glyphicon glyphicon-log-out icon-flipped" role="button"></i>
+          </span>         
+        </a>       
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="build/popup-bundle.js"></script>
+
+</body>
+</html>
