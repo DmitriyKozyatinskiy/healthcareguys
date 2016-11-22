@@ -8,3 +8,7 @@ Home page: http://dmitriykozyatinskiy.github.io/Pokedex/
 3. Install dependencies: `npm install`
 4. Run build: `webpack`
 5. The built extension is inside the `extension` folder, you should use it
+
+Before making changes to the extension, you can run `node dev-server`.
+This command runs a development server which observe any changes you do and update the extension on flight.
+Otherwise, you need to run `webpack` command to rebuild the extension every time you make any changes.
