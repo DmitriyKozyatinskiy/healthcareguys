@@ -1,5 +1,6 @@
 body {
   background: #EEF0F2;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
 }
 
@@ -13,9 +14,18 @@ body {
 
 .container {
   background: #FAFAFA;
-  margin: 100px auto 0;
+  margin: 10px auto 0;
   text-align: center;
   width: 280px;
+  padding: 30px;
+  box-sizing: border-box;
+  -webkit-border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2)
+}
+
+.container.whats-new {
+  text-align: left;
+  width: 560px;
   padding: 30px;
   box-sizing: border-box;
   -webkit-border-radius: 4px;
