@@ -5,6 +5,6 @@ const devServer = new WebpackDevServer(
   webpack(config),
   {
     contentBase: __dirname,
-    publicPath: '/builds/',
+    publicPath: '/extension/build',
   }
 ).listen(8088, 'localhost');
