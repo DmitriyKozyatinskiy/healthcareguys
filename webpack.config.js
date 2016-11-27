@@ -53,6 +53,7 @@ module.exports = {
     popup: "./src/popup/popup.js",
     background: "./src/background/background.js",
     content: "./src/content/content.js",
+    options: './src/options/options.js'
     //bootstrap: 'bootstrap-loader',
   },
 
