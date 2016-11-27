@@ -39,8 +39,7 @@ export default class Share {
 
 
   _setTree() {
-    const treeGenerator = new jsonTreeGenerator();
-    $('#js-tags-list-container').jstree(treeGenerator.generate(this._data.tags));
+    $('#js-tags-list-container').jstree(jsonTreeGenerator.generate(this._data.tags));
     return this;
   }
 }

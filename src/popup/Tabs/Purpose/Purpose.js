@@ -39,9 +39,8 @@ export default class Purpose {
 
 
   _setTree() {
-    const treeGenerator = new jsonTreeGenerator();
-    $('#js-purpose-list-container').jstree(treeGenerator.generate(this._data.purposes));
-    $('#js-persona-list-container').jstree(treeGenerator.generate(this._data.personas));
+    $('#js-purpose-list-container').jstree(jsonTreeGenerator.generate(this._data.purposes));
+    $('#js-persona-list-container').jstree(jsonTreeGenerator.generate(this._data.personas));
     return this;
   }
 }

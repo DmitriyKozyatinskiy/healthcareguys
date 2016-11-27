@@ -2,7 +2,7 @@ export default class jsonTreeGenerator {
   constructor() {}
 
 
-  generate(data) {
+  static generate(data) {
     var treeData = {
       core: {
         data: [],

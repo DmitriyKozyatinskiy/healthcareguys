@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import Mustache from 'mustache';
 import AutoSummarization from './AutoSummarization';
+import FileUploader from './../../Helpers/FileUploader';
 import jsonTreeGenerator from './../../Helpers/JsonTreeGenerator';
 import template from './General.html';
 import { MAXIMUM_CATEGORY_NUMBER } from './Settings';
@@ -38,20 +39,22 @@ export default class General {
   
 
   _setEvents() {
+    const self = this;
+
     $(document)
-      .on('change', '#js-image-uploader', this._handleImageUpdate)
+      .on('change', '#js-image-uploader', function () {
+        FileUploader.uploadImage.call(this, self._handleImageUpdate)
+      })
       .on('click', '#js-image-container', () => {
         $('#js-image-uploader').trigger('click');
       });
+    $('#js-categories-container').on('changed.jstree', () => this._handleCategorySelection());
     return this;
   }
 
 
   _setTree() {
-    const treeGenerator = new jsonTreeGenerator();
-    const $categoryContainer = $('#js-categories-container');
-    $categoryContainer.jstree(treeGenerator.generate(this._data.categories));
-    $categoryContainer.on('changed.jstree', () => this._handleCategorySelection());
+    $('#js-categories-container').jstree(jsonTreeGenerator.generate(this._data.categories));
     return this;
   }
 
@@ -88,24 +91,18 @@ export default class General {
   }
 
 
-  _handleImageUpdate() {
-    const file = this.files[0];
-    const fileReader = new FileReader();
-    $('#js-image').attr('data-type', 'base64');
-    fileReader.readAsDataURL(file);
-    return new Promise((resolve) => {
-      fileReader.onload = event => {
-        $('#js-image').attr('src', event.target.result).removeClass('hidden');
-        $('#js-visuals-default-image').attr('src', event.target.result).removeClass('hidden');
-        $('#js-add-image').remove();
-        resolve();
-      };
-    });
+  _handleImageUpdate(fileLoadEvent) {
+    const $image = $('#js-image');
+    $image.attr({
+      'data-type': 'base64',
+      'src': fileLoadEvent.target.result
+    }).removeClass('hidden');
+    $('#js-visuals-default-image').attr('src', fileLoadEvent.target.result).removeClass('hidden');
+    $('#js-add-image').remove();
   }
 
 
   _handleCategorySelection() {
-    console.log('HELLO!!!');
     const $categoryContainer = $('#js-categories-container');
     const categoryIds = this._data.categories.map(category => category.id);
     const checkedCategories = $categoryContainer.jstree('get_bottom_checked');
@@ -115,6 +112,5 @@ export default class General {
     } else {
       $categoryContainer.jstree().enable_node(categoryIds);
     }
-    return this;
   }
 }
