@@ -308,6 +308,7 @@ h4.list-header {
 .default-height{
     height: 490px;
     position: relative;
+    overflow-y: auto;
 }
 
 .feedback-container {
