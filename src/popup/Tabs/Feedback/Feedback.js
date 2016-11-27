@@ -4,6 +4,9 @@ import template from './Feedback.html';
 import Loader from './../../Loader/Loader';
 import { config } from './../../config';
 
+const MINIMUM_SUBJECT_SIZE = 3;
+const MAXIMUM_SUBJECT_SIZE = 50;
+
 
 export default class Feedback {
   constructor(container) {
@@ -87,13 +90,16 @@ export default class Feedback {
 
   _validate(data) {
     const errors = [];
-    const isValidSubject = data.feedbackSubject.match('^[a-zA-Z ]{3,50}$');
+    const subject = data.feedbackSubject.trim();
+
     if (!data.feedbackType) {
       errors.push('Select the support type');
     }
-    if (!isValidSubject) {
-      errors.push('Enter a valid subject');
+
+    if (subject.length < MINIMUM_SUBJECT_SIZE || subject.length > MAXIMUM_SUBJECT_SIZE) {
+      errors.push('Subject length must be between 3 and 50 symbols');
     }
+
     if (!data.feedbackDesc) {
       errors.push('Description cannot be blank');
     }
