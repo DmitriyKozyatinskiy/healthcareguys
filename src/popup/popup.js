@@ -122,6 +122,7 @@ function setTooltips() {
     const placement = $item.attr('data-placement');
     $item.tooltip({
       title: text,
+      trigger: 'hover',
       placement: placement
     })
   });
