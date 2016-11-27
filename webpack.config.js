@@ -1,15 +1,8 @@
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const node_dir = __dirname + '/node_modules';
-
-// require("expose-loader?TelemetryAgent!./src/telemetry_agent/dist/agent.js");
-// require("expose-loader?configSettings!./src/telemetry_agent/dist/agent_config.js");
-// require("expose-loader?TelemetryAgentPageData!./src/telemetry_agent/dist/agent_pagedata.js");
-// require("expose-loader?TelemetryAgentProblems!./src/telemetry_agent/dist/agent_problems.js");
-// require("expose-loader?TelemetryAgentSupportWidget!./src/telemetry_agent/dist/agent_support.js");
 
 
 plugins = [
@@ -18,34 +11,27 @@ plugins = [
     jQuery: "jquery",
     jquery: "jquery",
     "window.jQuery": "jquery",
-    "window.jquery": "jquery",
+    "window.jquery": "jquery"
   }),
-  // new CopyWebpackPlugin([
-  //   { from: 'node_modules/jquery/dist/jquery.min.js', to: 'libs/jquery.js' },
-  //   { from: 'node_modules/gmail-js/src/gmail.js', to: 'libs/gmail.js' },
-  // ]),
-  // new webpack.optimize.DedupePlugin(),
-  // new webpack.optimize.OccurenceOrderPlugin(),
-  // new webpack.optimize.UglifyJsPlugin({
-  //   mangle: true,
-  //   compress: {
-  //     warnings: false,
-  //   }
-  // }),
   new ExtractTextPlugin('bundle.css', { allChunks: true })
 ];
 
+productionPlugins = [
+  new webpack.optimize.DedupePlugin(),
+  new webpack.optimize.OccurenceOrderPlugin(),
+  new webpack.optimize.UglifyJsPlugin({
+    mangle: true,
+    compress: {
+      warnings: false
+    }
+  })
+];
 
+if (process.env.NODE_ENV === 'production') {
+  plugins = plugins.concat(productionPlugins);
+}
 
 module.exports = {
-  // entry: [
-  //     './src/background/background.js',
-  // ],
-  //
-  // output: {
-  //   path: path.join(__dirname, 'extension'),
-  //   filename: 'bundle.js',
-  // },
   node: {
     fs: "empty"
   },
@@ -56,6 +42,7 @@ module.exports = {
     options: './src/options/options.js'
     //bootstrap: 'bootstrap-loader',
   },
+  debug: true,
 
   output: {
     path: path.join(__dirname, 'extension/build'),
