@@ -52,9 +52,11 @@ export default class Feedback {
     $submissionError.addClass('hidden');
     $submissionSuccess.addClass('hidden');
     if (errorList.length) {
-      const errorIcon = ' <span class="glyphicon glyphicon glyphicon-remove text-danger"></span> ';
-      const errorMessage = errorList.join(errorIcon).trim();
-      $submissionError.removeClass('hidden').find('.js-submission-error-message').html(errorMessage);
+      const errorIcon = '<span class="glyphicon glyphicon glyphicon-remove text-danger"></span>';
+      const errorTemplate = '{{ #errors }}<div>' + errorIcon + ' {{ . }}</div>{{ /errors }}';
+      const errorMessage = Mustache.render(errorTemplate, { errors: errorList });
+      // const errorMessage = '<div> ' + errorIcon + errorList.join('</div><div> ' + errorIcon).trim() + '</div>';
+      $submissionError.removeClass('hidden').html(errorMessage);
     } else {
       Loader.show();
       $(document).trigger('submit-feedback:telemetry', [ data, () => {
