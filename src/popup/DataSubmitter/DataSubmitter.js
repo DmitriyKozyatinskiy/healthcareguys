@@ -23,18 +23,12 @@ export default class DataSubmitter {
   
   
   _getContentData() {
-    const categories = [];
-    $('.js-category-input:checked').each(function() {
-      const categoryId = $(this).val();
-      categories.push(categoryId);
-    });
-
     return {
       'url': $('#js-url-input').val(),
       'title': $('#js-title-input').val(),
       'description': $('#js-description-input').val(),
       'image-url': $('#js-image').attr('src'),
-      'category': categories,
+      'category': $('#js-categories-container').jstree('get_bottom_checked'),
       'tweet-content': $('#js-tweet-content').val(),
       'share-content': $('#js-share-content').val(),
       'hashtag': $('#js-tags-list-container').jstree('get_bottom_checked'),

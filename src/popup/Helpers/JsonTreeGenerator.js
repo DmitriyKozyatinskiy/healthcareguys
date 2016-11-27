@@ -20,6 +20,9 @@ export default class jsonTreeGenerator {
         text: item.name,
         state: {
           opened: true
+        },
+        a_attr: {
+          title: item.name
         }
       };
       treeData.core.data.push(treeItem);

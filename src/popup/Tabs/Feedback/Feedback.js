@@ -22,6 +22,7 @@ export default class Feedback {
     this._data = data;
     this._render();
     this._container.append(this._tab);
+    return this;
   }
   
   
@@ -35,7 +36,6 @@ export default class Feedback {
     $(document).on('click', '#js-feedback', () => {
       this._submit();
     });
-      
     return this;
   }
 
@@ -59,6 +59,7 @@ export default class Feedback {
         $submissionSuccess.removeClass('hidden');
       } ]);
     }
+    return this;
   }
 
 

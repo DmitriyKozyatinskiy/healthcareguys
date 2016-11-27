@@ -1,8 +1,4 @@
 import $ from 'jquery';
-window.$ = $;
-window.jQuery = $;
-window.jquery = $;
-import 'jstree';
 import Mustache from 'mustache';
 import template from './Share.html';
 import jsonTreeGenerator from './../../Helpers/JsonTreeGenerator';
@@ -26,6 +22,7 @@ export default class Share {
     this._render();
     this._container.append(this._tab);
     this._setTree();
+    return this;
   }
 
 

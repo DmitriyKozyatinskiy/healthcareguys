@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import Mustache from 'mustache';
 import AutoSummarization from './AutoSummarization';
+import jsonTreeGenerator from './../../Helpers/JsonTreeGenerator';
 import template from './General.html';
 import { MAXIMUM_CATEGORY_NUMBER } from './Settings';
 
@@ -21,10 +22,12 @@ export default class General {
     this._data = data;
     this._render();
     this._container.append(this._tab);
+    this._setTree();
     this._setDescription().then(description => {
       $('#js-description-input').val(description).removeClass('textarea-disabled');
       this._setAutoTags();
     });
+    return this;
   }
 
   
@@ -37,10 +40,18 @@ export default class General {
   _setEvents() {
     $(document)
       .on('change', '#js-image-uploader', this._handleImageUpdate)
-      .on('change', '.js-category-input', this._handleCategorySelection)
       .on('click', '#js-image-container', () => {
         $('#js-image-uploader').trigger('click');
       });
+    return this;
+  }
+
+
+  _setTree() {
+    const treeGenerator = new jsonTreeGenerator();
+    const $categoryContainer = $('#js-categories-container');
+    $categoryContainer.jstree(treeGenerator.generate(this._data.categories));
+    $categoryContainer.on('changed.jstree', () => this._handleCategorySelection());
     return this;
   }
 
@@ -94,12 +105,16 @@ export default class General {
 
 
   _handleCategorySelection() {
-    const $categories = $('.js-category-input');
-    const checkedCategoriesNumber = $categories.filter(':checked').length;
-    if (checkedCategoriesNumber >= MAXIMUM_CATEGORY_NUMBER) {
-      $categories.filter(':not(:checked)').prop('disabled', true);
+    console.log('HELLO!!!');
+    const $categoryContainer = $('#js-categories-container');
+    const categoryIds = this._data.categories.map(category => category.id);
+    const checkedCategories = $categoryContainer.jstree('get_bottom_checked');
+    if (checkedCategories.length >= MAXIMUM_CATEGORY_NUMBER) {
+      $categoryContainer.jstree().disable_node(categoryIds);
+      $categoryContainer.jstree().enable_node(checkedCategories);
     } else {
-      $categories.prop('disabled', false);
+      $categoryContainer.jstree().enable_node(categoryIds);
     }
+    return this;
   }
 }

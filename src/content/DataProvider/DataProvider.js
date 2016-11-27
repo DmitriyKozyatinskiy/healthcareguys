@@ -31,12 +31,17 @@ export default class DataProvider {
     const image = $('[property="og:image"]').attr('content') || null;
 
     return {
+      pageUrl: location.href,
+      description: description,
       url: this._formatUrl(url),
       title: this._formatTitle(title),
-      description: description,
-      image: image,
-      pageUrl: location.href
+      image: this._formatImage(image)
     };
+  }
+
+
+  _formatImage(url) {
+    return url ? url.replace(/^(\/\/)/gi, '') : null;
   }
 
 

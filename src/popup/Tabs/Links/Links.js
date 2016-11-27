@@ -20,6 +20,7 @@ export default class Links {
     this._data = data;
     this._render();
     this._container.append(this._tab);
+    return this;
   }
   
 
@@ -50,5 +51,6 @@ export default class Links {
     input.select();
     document.execCommand('copy');
     input.disabled = true;
+    return this;
   }
 }

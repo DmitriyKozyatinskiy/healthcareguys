@@ -14,17 +14,7 @@
         </a>
         <input type="file" class="hidden" id="js-image-uploader" accept=".jpg,.jpeg,.png,.gif">
         <div class="pull-down js-expandable-container">
-            <div class="list-container list-cat-height" id="js-categories-container">
-                {{ #categories }}
-                <p>
-                <div class="checkbox">
-                    <label for="category-{{ id }}">
-                        <input type="checkbox" value="{{ id }}" id="category-{{ id }}" class="js-category-input">{{{ name }}}
-                    </label>
-                </div>
-                </p>
-                {{ /categories }}
-            </div>
+            <div class="list-container list-cat-height" id="js-categories-container"></div>
             <div class="list-size-controller-container js-list-toggler" role="button">
                 <span class="glyphicon glyphicon-chevron-up js-list-icon"></span>
             </div>

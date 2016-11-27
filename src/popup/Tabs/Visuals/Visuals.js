@@ -20,6 +20,7 @@ export default class Visuals {
     this._data = data;
     this._render();
     this._container.append(this._tab);
+    return this;
   }
 
 
@@ -56,6 +57,7 @@ export default class Visuals {
     $groupContainer.find('.js-visuals-image-name-container').addClass('hidden');
     $groupContainer.find('.js-visuals-select').removeAttr('data-image').prop('disabled', false);
     $(className).removeAttr('selected').addClass('hidden');
+    return this;
   }
 
 
@@ -64,6 +66,7 @@ export default class Visuals {
     const $groupContainer = $select.closest('.form-group');
     const $removeButton = $groupContainer.find('.js-visuals-image-remove');
     this._handleVisualsImageRemove($removeButton);
+    return this;
   }
 
 
@@ -101,5 +104,6 @@ export default class Visuals {
       $('.js-submission-error-message').html('Filesize less than 1 MB is allowed');
       $('.js-submission-error').removeClass('hidden');
     }
+    return this;
   }
 }

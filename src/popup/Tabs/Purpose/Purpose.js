@@ -1,7 +1,6 @@
 import $ from 'jquery';
 import Mustache from 'mustache';
 import template from './Purpose.html';
-import 'jstree';
 import jsonTreeGenerator from './../../Helpers/JsonTreeGenerator';
 
 
@@ -23,6 +22,7 @@ export default class Purpose {
     this._render();
     this._container.append(this._tab);
     this._setTree();
+    return this;
   }
   
   
