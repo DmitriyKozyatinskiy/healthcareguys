@@ -3,7 +3,7 @@
  * Javascript Library
  * Version 4.1.18
  */
-export var TelemetryAgentSupportWidget = (function() {
+TelemetryAgentSupportWidget = (function() {
     var instance;
 
     var createInstance = function(config) {

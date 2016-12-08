@@ -7,7 +7,7 @@
  *
  * Version 4.1.18
  */
-export function configSettings() {
+function configSettings() {
 
     this.productNameShort = "Watchtower";
     this.productName = "Netspective Watchtower";

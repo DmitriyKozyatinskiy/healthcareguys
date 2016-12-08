@@ -3,7 +3,7 @@
  * Javascript Library
  * Version 4.1.23
  */
-var TelemetryAgentProblems = (function() {
+TelemetryAgentProblems = (function() {
     var instance;
 
     var createInstance = function(config) {

@@ -6,13 +6,8 @@
  *Registering settings to redirect into corresponding files
  *Configuration settings of statistics, error and support widget in this class
  */
-import { configSettings } from './agent_config';
-import { TelemetryAgentPageData } from './agent_pagedata';
-import { TelemetryAgentProblems } from './agent_problems';
-import { TelemetryAgentSupportWidget } from './agent_support';
 
-
-export var TelemetryAgent = (function() {
+TelemetryAgent = (function() {
     var instance;
 
     var createInstance = function(options) {

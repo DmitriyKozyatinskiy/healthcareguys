@@ -11,7 +11,8 @@ plugins = [
     jQuery: "jquery",
     jquery: "jquery",
     "window.jQuery": "jquery",
-    "window.jquery": "jquery"
+    "window.jquery": "jquery",
+    'window.html2canvas': 'html2canvas'
   }),
   new ExtractTextPlugin('bundle.css', { allChunks: true })
 ];

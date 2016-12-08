@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import { TelemetryAgent } from './../../telemetry_agent/dist/agent';
+// import { TelemetryAgent } from '../../../extension/telemetry_agent/dist/agent';
 // require("expose-loader?TelemetryAgent!./../../telemetry_agent/dist/agent.js");
 // require("expose-loader?configSettings!./../../telemetry_agent/dist/agent_config.js");
 // require("expose-loader?TelemetryAgentPageData!./../../telemetry_agent/dist/agent_pagedata.js");
@@ -39,8 +39,6 @@ export default class TelemetryListener {
         return requestData;
       }, '');
     }).on('update:telemetry', (event, data) => {
-      console.log('data: ', data);
-      console.log('AGENT: ', TelemetryAgent);
       this._telemetryAgent = TelemetryAgent.getInstance(data);
     });
     return this;

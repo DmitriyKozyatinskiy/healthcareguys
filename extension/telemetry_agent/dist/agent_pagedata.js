@@ -8,7 +8,7 @@
   *
   * Version 4.1.21
   **/
- export var TelemetryAgentPageData = (function() {
+TelemetryAgentPageData = (function() {
      var PageDatainstance;
 
      var createInstance = function(config) {

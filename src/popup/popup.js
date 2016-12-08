@@ -17,7 +17,7 @@ import Links from './Tabs/Links/Links';
 import Feedback from './Tabs/Feedback/Feedback';
 import TelemetryListener from './TelemetryListener/TelemetryListener';
 
-// const telemetryListener = new TelemetryListener();
+const telemetryListener = new TelemetryListener();
 const auth = new Auth();
 const dataProvider = new DataProvider();
 const dataSubmitter = new DataSubmitter();
