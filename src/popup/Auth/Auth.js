@@ -82,7 +82,7 @@ export default class Auth {
         Promise.all([
           this._saveToken(''), this._saveUserName('')
         ]).then(() => {
-          $(document).trigger('sign-out:telemetry', [ data ]);
+          $(document).trigger('sign-out:telemetry');
           resolve();
         });
       });
