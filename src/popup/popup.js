@@ -9,6 +9,7 @@ import DataProvider from './DataProvider/DataProvider';
 import DataSubmitter from './DataSubmitter/DataSubmitter';
 import DataSaver from './AutoSavers/DataSaver';
 import LinksSaver from './AutoSavers/LinksSaver';
+import ImageScroller from './ImageScroller/ImageScroller';
 import General from './Tabs/General/General';
 import Share from './Tabs/Share/Share';
 import Purpose from './Tabs/Purpose/Purpose';
@@ -36,6 +37,7 @@ const visualsTab = new Visuals($contentForm);
 const linksTab = new Links($contentForm);
 const feedbackTab = new Feedback($contentForm);
 
+const imageScroller = new ImageScroller();
 
 checkCurrentUrl().then(() => {
   $(document)

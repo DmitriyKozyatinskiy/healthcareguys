@@ -17,6 +17,10 @@ export default class DataProvider {
           data.image = null;
           sendResponse(data);
         })
+      } else if (request.imageByNumberRequired === 0 || request.imageByNumberRequired) {
+        const imageData = this._scrollImages(request.imageByNumberRequired);
+        imageData.image = this._formatImage(imageData.image);
+        sendResponse(imageData);
       }
       return true;
     });
@@ -28,7 +32,7 @@ export default class DataProvider {
     const url = $('[property="og:url"]').attr('content') || location.href;
     const title = $('[property="og:title"]').attr('content') || $('title').text();
     const description = $('[property="og:description"]').attr('content') || '';
-    const image = $('[property="og:image"]').attr('content') || null;
+    const image = this._getImage();
 
     return {
       pageUrl: location.href,
@@ -40,8 +44,83 @@ export default class DataProvider {
   }
 
 
+  _isValidImageExtension(image) {
+    return image && image.search(/(\.png|\.jpg|\.jpeg)$/ig) !== -1;
+  }
+
+
+  _getImage() {
+    const self = this;
+    let image = $('[property="og:image"]').attr('content');
+    if (this._isValidImageExtension(image)) {
+      return image;
+    }
+
+    image = $('img').filter(function() {
+      const src = $(this).attr('src');
+      return self._isValidImageExtension(src);
+    }).eq(0)
+      .attr('src');
+
+    return image || null;
+  }
+
+
+  _scrollImages(number = 0) {
+    const self = this;
+    const $images = $('img').filter(function() {
+      const src = $(this).attr('src');
+      return self._isValidImageExtension(src);
+    });
+
+    let contentImage = $('[property="og:image"]').attr('content');
+
+    if (!this._isValidImageExtension(contentImage)) {
+      contentImage = null;
+    }
+
+    if (!$images.length) {
+      return {
+        image: contentImage,
+        number: 0
+      };
+    }
+
+    let image;
+    if (number < 0) {
+      number = $images.length - 1;
+    } else if (number === $images.length) {
+      if (contentImage) {
+        return {
+          image: contentImage,
+          number: 0
+        };
+      } else {
+        number = 0;
+      }
+    } else if (number > $images.length) {
+      number = 0;
+    }
+
+    image = $images.eq(number).attr('src') || null;
+
+    return {
+      image: image,
+      number: number
+    };
+  }
+
+
   _formatImage(url) {
-    return url ? url.replace(/^(\/\/)/gi, '') : null;
+    if (!url) {
+      return null;
+    }
+
+    if (url.search(/^(http[s]?)/ig) === -1) {
+      return url.replace(/^(\/\/|\/)/gi, location.protocol + '//' + location.host + '/');
+    } else {
+      return url;
+    }
   }
 
 

@@ -8,10 +8,14 @@
             <textarea id="js-description-input" class="form-control textarea-editable textarea-editable-description textarea-disabled js-change-observer" placeholder="Description" rows="6">{{ description }}</textarea>
         </div>
         <div class="auto-tags-container" id="js-auto-tags-container"></div>
-        <a href="#" id="js-image-container" class="thumbnail image-container remove-border">
-            <img src="{{ image }}" id="js-image" class="image-holder {{ ^image }}hidden{{ /image }}" height="100" alt="Click to add image" data-type="url">
-            <p class="text-center add-image-button {{ #image }}hidden{{ /image }}" id="js-add-image">Add image</p>
-        </a>
+        <div class="image-container">
+            <span class="glyphicon glyphicon-chevron-left Image__Scroller Image__Scroller--Left js-image-scroller" data-action="prev" id="js-image-scroller-left"></span>
+            <a href="#" id="js-image-container" class="thumbnail remove-border">
+                <img src="{{ image }}" id="js-image" class="image-holder {{ ^image }}hidden{{ /image }}" height="100" alt="Click to add image" data-type="url">
+                <p class="text-center add-image-button {{ #image }}hidden{{ /image }}" id="js-add-image">Add image</p>
+            </a>
+            <span class="glyphicon glyphicon-chevron-right Image__Scroller Image__Scroller--Right js-image-scroller" data-action="next" id="js-image-scroller-right"></span>
+        </div>
         <input type="file" class="hidden" id="js-image-uploader" accept=".jpg,.jpeg,.png,.gif">
         <div class="pull-down js-expandable-container">
             <div class="list-container list-cat-height" id="js-categories-container"></div>

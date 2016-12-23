@@ -1,0 +1,19 @@
+.Image__Scroller {
+  position: absolute;
+  top: 25%;
+  font-size: 50px;
+  color: #5b9bd5;
+  cursor: pointer;
+
+  &:hover {
+    color: #286090;
+  }
+}
+
+.Image__Scroller--Left {
+  left: 5px;
+}
+
+.Image__Scroller--Right {
+  right: 5px;
+}
