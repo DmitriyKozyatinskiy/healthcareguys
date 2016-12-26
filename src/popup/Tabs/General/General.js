@@ -35,6 +35,7 @@ export default class General {
     if (!data.image) {
       this.imageScroller.getNewImage().then(source => {
         this._handleImageUpdate(source);
+        this._clearImageUrl();
       });
     }
 
@@ -55,11 +56,13 @@ export default class General {
     const self = this;
 
     $(document)
-      .on('change', '#js-image-uploader', event => uploadImage(event.target, self._handleImageUpdate))
-      .on('click', '#js-image-container', () => {
-        $('#js-image-uploader').trigger('click');
-      })
-      .on('change', '#js-image-url-input', event => this._handleImageUrlUpdate(event));
+      .on('change', '#js-image-uploader', event => uploadImage(event.target, source => {
+        self._handleImageUpdate(source);
+        self._clearImageUrl();
+      }))
+      .on('click', '#js-image-container', event => $('#js-image-uploader').trigger('click'))
+      .on('change', '#js-image-url-input', event => this._handleImageUrlUpdate(event))
+      .on('change', '#js-title-input', event => this._handleTitleChange());
 
     return this;
   }
@@ -133,6 +136,16 @@ export default class General {
   }
 
 
+  _handleTitleChange() {
+    const $titleError = $('.js-title-error-message');
+    const $errorContainer = $titleError.closest('.js-submission-error');
+    $titleError.remove();
+    if (!$errorContainer.text().trim()) {
+      $errorContainer.addClass('hidden');
+    }
+  }
+
+
   _handleImageUrlUpdate(event) {
     const self = this;
     const $input = $(event.target);
@@ -156,8 +169,8 @@ export default class General {
       canvContext.drawImage(this, 0, 0);
       const dataURL = canvas.toDataURL();
       self._handleImageUpdate(dataURL);
-      
       self._setImageUrlSuccess();
+      self._clearImageUrl();
     }).on('error', () => {
       this._setImageUrlError();
     });
@@ -167,7 +180,7 @@ export default class General {
   _setImageUrlSuccess() {
     $('#js-image-url-error').addClass('hidden');
     $('#js-image-url-success').removeClass('hidden');
-    $input.parent().removeClass('has-error').addClass('has-success');
+    $('#js-image-url-input').parent().removeClass('has-error').addClass('has-success');
     $('.js-image-tab-button').trigger('click');
     return this;
   }
@@ -178,5 +191,12 @@ export default class General {
     $('#js-image-url-success').addClass('hidden');
     $('#js-image-url-input').parent().removeClass('has-success').addClass('has-error');
     return this;
+  }
+
+
+  _clearImageUrl() {
+    $('#js-image-url-error').addClass('hidden');
+    $('#js-image-url-success').addClass('hidden');
+    $('#js-image-url-input').val('').parent().removeClass('has-success').removeClass('has-error');
   }
 }

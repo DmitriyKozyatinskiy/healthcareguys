@@ -5,6 +5,11 @@ const WRONG_FILE_EXTENSION_ERROR = 'Ony jpg and png file types are allowed';
 
 export function uploadImage(fileInput, uploadCallback) {
   const file = fileInput.files[0];
+
+  if (!file) {
+    return;
+  }
+
   const fileSize = Math.round(file.size / 1024);
   const fileExtension = file.name.split('.').pop().toLowerCase();
   const allowedFileTypes = ['jpg', 'jpeg', 'png'];
