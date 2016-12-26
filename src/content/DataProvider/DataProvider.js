@@ -20,7 +20,6 @@ export default class DataProvider {
       } else if (request.imageByNumberRequired === 0 || request.imageByNumberRequired) {
         const imageData = this._scrollImages(request.imageByNumberRequired);
         imageData.image = this._formatImage(imageData.image);
-        console.log('IMGdATA: ', imageData);
         sendResponse(imageData);
       }
       return true;
@@ -55,9 +54,7 @@ export default class DataProvider {
       return isValidImageExtension(src);
     }).eq(0)
       .attr('src');
-
-
-    console.log('getIMAGE: ', image);
+    
     return image || null;
   }
 
