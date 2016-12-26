@@ -39,6 +39,7 @@ export default class General {
     }
 
     this.imageScroller.setEvents();
+    $('#js-categories-container').on('changed.jstree', () => this._handleCategorySelection());
 
     return this;
   }
@@ -59,7 +60,7 @@ export default class General {
         $('#js-image-uploader').trigger('click');
       })
       .on('change', '#js-image-url-input', event => this._handleImageUrlUpdate(event));
-    $('#js-categories-container').on('changed.jstree', () => this._handleCategorySelection());
+
     return this;
   }
 
@@ -114,6 +115,12 @@ export default class General {
 
 
   _handleCategorySelection() {
+    const $categoriesError = $('.js-categories-error-message');
+    const $errorContainer = $categoriesError.closest('.js-submission-error');
+    $categoriesError.remove();
+    if (!$errorContainer.text().trim()) {
+      $errorContainer.addClass('hidden');
+    }
     const $categoryContainer = $('#js-categories-container');
     const categoryIds = this._data.categories.map(category => category.id);
     const checkedCategories = $categoryContainer.jstree('get_bottom_checked');

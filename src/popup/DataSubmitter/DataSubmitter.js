@@ -15,11 +15,12 @@ export default class DataSubmitter {
 
 
   _setEvents() {
-    $(document).on('submit', '#js-content-form', event => {
-      this._handleDataSubmissionProcess(event);
-    });
+    $(document)
+      .on('submit', '#js-content-form', event => this._handleDataSubmissionProcess(event));
     return this;
   }
+
+  // <span class="js-categories-error-message">
   
   
   _getContentData() {
@@ -86,11 +87,11 @@ export default class DataSubmitter {
     $('.js-submission-success').addClass('hidden');
 
     if (!data.title && (!data.category.length || data.category.length > MAX_CATEGORIES_NUMBER)) {
-      errorMessage.message = NO_TITLE_ERROR_MESSAGE + '; ' + CATEGORIES_ERROR_MESSAGE;
+      errorMessage.message = NO_TITLE_ERROR_MESSAGE + '; ' + '<span class="js-categories-error-message">' + CATEGORIES_ERROR_MESSAGE + '</span>';
     } else if (!data.title) {
       errorMessage.message = NO_TITLE_ERROR_MESSAGE;
     } else if (!data.category.length || data.category.length > MAX_CATEGORIES_NUMBER) {
-      errorMessage.message = CATEGORIES_ERROR_MESSAGE;
+      errorMessage.message = '<span class="js-categories-error-message">' + CATEGORIES_ERROR_MESSAGE + '</span>';
     }
 
     if (errorMessage.message) {
