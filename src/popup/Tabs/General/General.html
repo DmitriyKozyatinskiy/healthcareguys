@@ -8,14 +8,47 @@
             <textarea id="js-description-input" class="form-control textarea-editable textarea-editable-description textarea-disabled js-change-observer" placeholder="Description" rows="6">{{ description }}</textarea>
         </div>
         <div class="auto-tags-container" id="js-auto-tags-container"></div>
-        <div class="image-container">
-            <span class="glyphicon glyphicon-chevron-left Image__Scroller Image__Scroller--Left js-image-scroller" data-action="prev" id="js-image-scroller-left"></span>
-            <a href="#" id="js-image-container" class="thumbnail remove-border">
-                <img src="{{ image }}" id="js-image" class="image-holder {{ ^image }}hidden{{ /image }}" height="100" alt="Click to add image" data-type="url">
-                <p class="text-center add-image-button {{ #image }}hidden{{ /image }}" id="js-add-image">Add image</p>
-            </a>
-            <span class="glyphicon glyphicon-chevron-right Image__Scroller Image__Scroller--Right js-image-scroller" data-action="next" id="js-image-scroller-right"></span>
+
+        <div class="clearfix image-content-wrapper">
+            <div class="image-tab-container">
+                <a href="#js-image-upload-tab"
+                   class="js-tooltip list-group-item active text-center tab-button js-tab-button js-image-tab-button"
+                   data-toggle="tab"
+                   aria-controls="js-image-upload-tab"
+                   data-placement="right"
+                   data-title="Upload image">
+                    <i class="fa fa-file-image-o tab-icon" role="button"></i>
+                </a>
+                <a href="#js-image-url-tab"
+                   class="js-tooltip list-group-item text-center tab-button js-tab-button"
+                   data-toggle="tab"
+                   aria-controls="js-image-url-tab"
+                   data-placement="right"
+                   data-title="Set image URL">
+                    <i class="fa fa-external-link tab-icon" role="button"></i>
+                </a>
+            </div>
+
+            <div class="tab-content image-tab-content">
+                <div class="image-container fade in active tab-pane" id="js-image-upload-tab">
+                    <span class="glyphicon glyphicon-chevron-left Image__Scroller Image__Scroller--Left js-image-scroller" data-action="prev" id="js-image-scroller-left"></span>
+                    <a href="#" id="js-image-container" class="thumbnail remove-border">
+                        <img src="{{ image }}" id="js-image" class="image-holder {{ ^image }}hidden{{ /image }}" height="100" alt="Click to add image" data-type="url">
+                        <p class="text-center add-image-button {{ #image }}hidden{{ /image }}" id="js-add-image">Add image</p>
+                    </a>
+                    <span class="glyphicon glyphicon-chevron-right Image__Scroller Image__Scroller--Right js-image-scroller" data-action="next" id="js-image-scroller-right"></span>
+                </div>
+
+                <div class="fade tab-pane" id="js-image-url-tab">
+                    <div class="form-group has-feedback image-url-input-container">
+                        <input class="form-control" id="js-image-url-input" placeholder="Image url">
+                        <span class="glyphicon glyphicon-ok form-control-feedback hidden" id="js-image-url-success" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-remove form-control-feedback hidden" id="js-image-url-error" aria-hidden="true"></span>
+                    </div>
+                </div>
+            </div>
         </div>
+
         <input type="file" class="hidden" id="js-image-uploader" accept=".jpg,.jpeg,.png,.gif">
         <div class="pull-down js-expandable-container">
             <div class="list-container list-cat-height" id="js-categories-container"></div>

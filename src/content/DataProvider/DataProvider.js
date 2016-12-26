@@ -1,5 +1,5 @@
 import $ from 'jquery';
-
+import { isValidImageExtension } from '../../helpers/InputValidation';
 
 export default class DataProvider {
   constructor() {
@@ -33,7 +33,6 @@ export default class DataProvider {
     const title = $('[property="og:title"]').attr('content') || $('title').text();
     const description = $('[property="og:description"]').attr('content') || '';
     const image = this._getImage();
-
     return {
       pageUrl: location.href,
       description: description,
@@ -42,23 +41,17 @@ export default class DataProvider {
       image: this._formatImage(image)
     };
   }
-
-
-  _isValidImageExtension(image) {
-    return image && image.search(/(\.png|\.jpg|\.jpeg)$/ig) !== -1;
-  }
-
+  
 
   _getImage() {
-    const self = this;
     let image = $('[property="og:image"]').attr('content');
-    if (this._isValidImageExtension(image)) {
+    if (isValidImageExtension(image)) {
       return image;
     }
-
+    
     image = $('img').filter(function() {
       const src = $(this).attr('src');
-      return self._isValidImageExtension(src);
+      return isValidImageExtension(src);
     }).eq(0)
       .attr('src');
 
@@ -67,15 +60,14 @@ export default class DataProvider {
 
 
   _scrollImages(number = 0) {
-    const self = this;
     const $images = $('img').filter(function() {
       const src = $(this).attr('src');
-      return self._isValidImageExtension(src);
+      return isValidImageExtension(src);
     });
 
     let contentImage = $('[property="og:image"]').attr('content');
 
-    if (!this._isValidImageExtension(contentImage)) {
+    if (!isValidImageExtension(contentImage)) {
       contentImage = null;
     }
 
@@ -116,8 +108,15 @@ export default class DataProvider {
       return null;
     }
 
+    const hostNameRegExp = new RegExp('^(' + location.host + ')', 'ig');
+
+    url = url.replace(/^(\/\/|\/)/gi, '');
     if (url.search(/^(http[s]?)/ig) === -1) {
-      return url.replace(/^(\/\/|\/)/gi, location.protocol + '//' + location.host + '/');
+      if (url.search(hostNameRegExp) === -1) {
+        return location.protocol + '//' + location.host + '/' + url;
+      } else {
+        return location.protocol + '//' + url;
+      }
     } else {
       return url;
     }

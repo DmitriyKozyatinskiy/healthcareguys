@@ -1,16 +1,19 @@
 import $ from 'jquery';
 import Mustache from 'mustache';
 import AutoSummarization from './AutoSummarization';
-import FileUploader from './../../Helpers/FileUploader';
-import jsonTreeGenerator from './../../Helpers/JsonTreeGenerator';
+import { uploadImage } from '../../../helpers/FileUploader';
+import { generateJSONTree } from './../../../helpers/JsonTreeGenerator';
+import { isValidImageExtension } from './../../../helpers/InputValidation';
 import template from './General.html';
 import { MAXIMUM_CATEGORY_NUMBER } from './Settings';
+import ImageScroller from './../../ImageScroller/ImageScroller';
 
 export default class General {
   constructor(container) {
     this._tab = null;
     this._container = container;
     this._setEvents();
+    this.imageScroller = new ImageScroller();
   }
 
 
@@ -28,6 +31,15 @@ export default class General {
       $('#js-description-input').val(description).removeClass('textarea-disabled');
       this._setAutoTags();
     });
+
+    if (!data.image) {
+      this.imageScroller.getNewImage().then(source => {
+        this._handleImageUpdate(source);
+      });
+    }
+
+    this.imageScroller.setEvents();
+
     return this;
   }
 
@@ -42,19 +54,18 @@ export default class General {
     const self = this;
 
     $(document)
-      .on('change', '#js-image-uploader', function () {
-        FileUploader.uploadImage.call(this, self._handleImageUpdate)
-      })
+      .on('change', '#js-image-uploader', event => uploadImage(event.target, self._handleImageUpdate))
       .on('click', '#js-image-container', () => {
         $('#js-image-uploader').trigger('click');
-      });
+      })
+      .on('change', '#js-image-url-input', event => this._handleImageUrlUpdate(event));
     $('#js-categories-container').on('changed.jstree', () => this._handleCategorySelection());
     return this;
   }
 
 
   _setTree() {
-    $('#js-categories-container').jstree(jsonTreeGenerator.generate(this._data.categories));
+    $('#js-categories-container').jstree(generateJSONTree(this._data.categories));
     return this;
   }
 
@@ -91,13 +102,13 @@ export default class General {
   }
 
 
-  _handleImageUpdate(fileLoadEvent) {
+  _handleImageUpdate(source) {
     const $image = $('#js-image');
     $image.attr({
       'data-type': 'base64',
-      'src': fileLoadEvent.target.result
+      'src': source
     }).removeClass('hidden');
-    $('#js-visuals-default-image').attr('src', fileLoadEvent.target.result).removeClass('hidden');
+    $('#js-visuals-default-image').attr('src', source).removeClass('hidden');
     $('#js-add-image').remove();
   }
 
@@ -112,5 +123,53 @@ export default class General {
     } else {
       $categoryContainer.jstree().enable_node(categoryIds);
     }
+  }
+
+
+  _handleImageUrlUpdate(event) {
+    const self = this;
+    const $input = $(event.target);
+    const url = $input.val();
+
+    if (!isValidImageExtension(url)) {
+      self._setImageUrlError();
+      return;
+    }
+    
+    $('<img>').attr('src', url).on('load', function(event) {
+      if (!this.complete || typeof this.naturalWidth == 'undefined' || this.naturalWidth == 0) {
+        self._setImageUrlError();
+        return;
+      }
+
+      const canvas = document.createElement('CANVAS');
+      const canvContext = canvas.getContext('2d');
+      canvas.height = this.height;
+      canvas.width = this.width;
+      canvContext.drawImage(this, 0, 0);
+      const dataURL = canvas.toDataURL();
+      self._handleImageUpdate(dataURL);
+      
+      self._setImageUrlSuccess();
+    }).on('error', () => {
+      this._setImageUrlError();
+    });
+  }
+
+
+  _setImageUrlSuccess() {
+    $('#js-image-url-error').addClass('hidden');
+    $('#js-image-url-success').removeClass('hidden');
+    $input.parent().removeClass('has-error').addClass('has-success');
+    $('.js-image-tab-button').trigger('click');
+    return this;
+  }
+  
+  
+  _setImageUrlError() {
+    $('#js-image-url-error').removeClass('hidden');
+    $('#js-image-url-success').addClass('hidden');
+    $('#js-image-url-input').parent().removeClass('has-success').addClass('has-error');
+    return this;
   }
 }

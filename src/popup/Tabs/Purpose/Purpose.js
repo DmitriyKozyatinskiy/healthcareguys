@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import Mustache from 'mustache';
 import template from './Purpose.html';
-import jsonTreeGenerator from './../../Helpers/JsonTreeGenerator';
+import { generateJSONTree } from '../../../helpers/JsonTreeGenerator';
 
 
 export default class Purpose {
@@ -39,8 +39,8 @@ export default class Purpose {
 
 
   _setTree() {
-    $('#js-purpose-list-container').jstree(jsonTreeGenerator.generate(this._data.purposes));
-    $('#js-persona-list-container').jstree(jsonTreeGenerator.generate(this._data.personas));
+    $('#js-purpose-list-container').jstree(generateJSONTree(this._data.purposes));
+    $('#js-persona-list-container').jstree(generateJSONTree(this._data.personas));
     return this;
   }
 }

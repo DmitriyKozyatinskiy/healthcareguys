@@ -41,7 +41,7 @@ hr {
 }
 
 .image-holder {
-    height: 95px !important;
+    height: 114px !important;
     padding: 0 50px;
     text-align: center;
 }
@@ -51,7 +51,7 @@ hr {
 }
 
 .add-image-button {
-    margin: 10px 0;
+    margin: 40px 0;
 }
 
 .submit-container {
@@ -65,7 +65,7 @@ hr {
 
 .auto-tags-container {
     min-height: 25px;
-    margin: -1px 0 5px 0;
+    margin: -1px 0 0 0;
     padding: 0 5px;
     border-top: 1px solid #CCCCCC;
     border-bottom: 1px solid #CCCCCC;
@@ -481,4 +481,36 @@ h4.list-header {
     border: 1px solid #ececec; 
     padding: 1px 5px; 
     background: #fffcdf;
+}
+
+.image-tab-container {
+    float: left;
+
+    .tab-button {
+        height: 63px;
+        z-index: 999;
+
+        &:first-of-type {
+            border-top: none;
+        }
+
+        &:last-of-type {
+            border-bottom: none;
+        }
+    }
+
+    i {
+        vertical-align: sub;
+    }
+}
+
+.image-tab-content {
+    width: 350px;
+    float: right;
+    margin-top: 5px;
+}
+
+.image-url-input-container {
+    width: 90%;
+    margin: 11% auto;
 }

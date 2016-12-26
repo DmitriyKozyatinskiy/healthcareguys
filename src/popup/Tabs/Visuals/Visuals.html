@@ -9,7 +9,7 @@
                     </span>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group js-visual-group-container">
                 <label for="js-thumbnail-select" class="col-xs-5 control-label visuals-label">
                 Thumbnail image
                 <span class="help-block js-visuals-image-name-container hidden">
@@ -20,17 +20,23 @@
                 <div class="col-xs-3">
                     <button class="btn btn-primary js-visuals-image-upload-button" type="button">Upload</button>
                     <input type="file" class="hidden js-visuals-uploader" id="js-visuals-thumbnail-uploader" data-select-class="js-visuals-selector-thumb" accept=".jpg,.jpeg,.png,.gif">
+                    <div class="form-group has-feedback js-visuals-url-container hidden">
+                        <input class="form-control js-image-url-input" placeholder="Url">
+                        <span class="glyphicon glyphicon-ok form-control-feedback hidden js-image-url-success" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-remove form-control-feedback hidden js-image-url-error" aria-hidden="true"></span>
+                    </div>
                 </div>
                 <div class="col-xs-4">
-                    <select class="form-control js-visuals-select" id="js-thumbnail-select" disabled>
-                        <option class="js-visuals-option js-visuals-selector-none" value="">--select--</option>
+                    <select class="form-control js-visuals-select" id="js-thumbnail-select">
+                        <option class="js-visuals-option js-visuals-selector-upload" value="">Upload</option>
+                        <option class="js-visuals-option js-visuals-selector-url" value="">Use image url</option>
                         <option class="js-visuals-option js-visuals-selector-web hidden" value="web">Use web image</option>
                         <option class="js-visuals-option js-visuals-selector-tweet hidden" value="tweet">Use tweet image</option>
                         <option class="js-visuals-option js-visuals-selector-share hidden" value="share">Use share image</option>
                     </select>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group js-visual-group-container">
                 <label for="js-web-select" class="col-xs-5 control-label visuals-label">
                 Web image
                 <span class="help-block js-visuals-image-name-container hidden">
@@ -41,17 +47,23 @@
                 <div class="col-xs-3">
                     <button class="btn btn-primary js-visuals-image-upload-button" type="button">Upload</button>
                     <input type="file" class="hidden js-visuals-uploader" id="js-visuals-web-uploader" data-select-class="js-visuals-selector-web" accept=".jpg,.jpeg,.png,.gif">
+                    <div class="form-group has-feedback js-visuals-url-container hidden">
+                        <input class="form-control js-image-url-input" placeholder="Url">
+                        <span class="glyphicon glyphicon-ok form-control-feedback hidden js-image-url-success" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-remove form-control-feedback hidden js-image-url-error" aria-hidden="true"></span>
+                    </div>
                 </div>
                 <div class="col-xs-4">
-                    <select class="form-control js-visuals-select" id="js-web-select" disabled>
-                        <option class="js-visuals-option js-visuals-selector-none" value="">--select--</option>
+                    <select class="form-control js-visuals-select" id="js-web-select">
+                        <option class="js-visuals-option js-visuals-selector-upload" value="">Upload</option>
+                        <option class="js-visuals-option js-visuals-selector-url" value="">Use image url</option>
                         <option class="js-visuals-option js-visuals-selector-thumb hidden" value="thumb">Use thumb image</option>
                         <option class="js-visuals-option js-visuals-selector-tweet hidden" value="tweet">Use tweet image</option>
                         <option class="js-visuals-option js-visuals-selector-share hidden" value="share">Use share image</option>
                     </select>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group js-visual-group-container">
                 <label for="js-tweet-select" class="col-xs-5 control-label visuals-label">
                 Tweet image
                 <span class="help-block js-visuals-image-name-container hidden">
@@ -62,17 +74,23 @@
                 <div class="col-xs-3">
                     <button class="btn btn-primary js-visuals-image-upload-button" type="button">Upload</button>
                     <input type="file" class="hidden js-visuals-uploader" id="js-visuals-tweet-uploader" data-select-class="js-visuals-selector-tweet" accept=".jpg,.jpeg,.png,.gif">
+                    <div class="form-group has-feedback js-visuals-url-container hidden">
+                        <input class="form-control js-image-url-input" placeholder="Url">
+                        <span class="glyphicon glyphicon-ok form-control-feedback hidden js-image-url-success" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-remove form-control-feedback hidden js-image-url-error" aria-hidden="true"></span>
+                    </div>
                 </div>
                 <div class="col-xs-4">
-                    <select class="form-control js-visuals-select" id="js-tweet-select" disabled>
-                        <option class="js-visuals-option js-visuals-selector-none" value="">--select--</option>
+                    <select class="form-control js-visuals-select" id="js-tweet-select">
+                        <option class="js-visuals-option js-visuals-selector-upload" value="">Upload</option>
+                        <option class="js-visuals-option js-visuals-selector-url" value="">Use image url</option>
                         <option class="js-visuals-option js-visuals-selector-thumb hidden" value="thumb">Use thumb image</option>
                         <option class="js-visuals-option js-visuals-selector-web hidden" value="web">Use web image</option>
                         <option class="js-visuals-option js-visuals-selector-share hidden" value="share">Use share image</option>
                     </select>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group js-visual-group-container">
                 <label for="js-share-select" class="col-xs-5 control-label visuals-label">
                 Share image
                 <span class="help-block js-visuals-image-name-container hidden">
@@ -83,10 +101,16 @@
                 <div class="col-xs-3">
                     <button class="btn btn-primary js-visuals-image-upload-button" type="button">Upload</button>
                     <input type="file" class="hidden js-visuals-uploader" id="js-visuals-share-uploader" data-select-class="js-visuals-selector-share" accept=".jpg,.jpeg,.png,.gif">
+                    <div class="form-group has-feedback js-visuals-url-container hidden">
+                        <input class="form-control js-image-url-input" placeholder="Url">
+                        <span class="glyphicon glyphicon-ok form-control-feedback hidden js-image-url-success" aria-hidden="true"></span>
+                        <span class="glyphicon glyphicon-remove form-control-feedback hidden js-image-url-error" aria-hidden="true"></span>
+                    </div>
                 </div>
                 <div class="col-xs-4">
-                    <select class="form-control js-visuals-select" id="js-share-select" disabled>
-                        <option class="js-visuals-option js-visuals-selector-none" value="">--select--</option>
+                    <select class="form-control js-visuals-select" id="js-share-select">
+                        <option class="js-visuals-option js-visuals-selector-upload" value="">Upload</option>
+                        <option class="js-visuals-option js-visuals-selector-url" value="">Use image url</option>
                         <option class="js-visuals-option js-visuals-selector-thumb hidden" value="thumb">Use thumb image</option>
                         <option class="js-visuals-option js-visuals-selector-web hidden" value="web">Use web image</option>
                         <option class="js-visuals-option js-visuals-selector-tweet hidden" value="tweet">Use tweet image</option>

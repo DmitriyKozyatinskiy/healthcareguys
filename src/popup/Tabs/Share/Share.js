@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import Mustache from 'mustache';
 import template from './Share.html';
-import jsonTreeGenerator from './../../Helpers/JsonTreeGenerator';
+import { generateJSONTree } from '../../../helpers/JsonTreeGenerator';
 
 
 export default class Share {
@@ -39,7 +39,7 @@ export default class Share {
 
 
   _setTree() {
-    $('#js-tags-list-container').jstree(jsonTreeGenerator.generate(this._data.tags));
+    $('#js-tags-list-container').jstree(generateJSONTree(this._data.tags));
     return this;
   }
 }
